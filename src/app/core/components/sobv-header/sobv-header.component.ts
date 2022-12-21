@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-sobv-header',
+  selector: 'sobv-header',
   templateUrl: './sobv-header.component.html',
   styleUrls: ['./sobv-header.component.scss']
 })

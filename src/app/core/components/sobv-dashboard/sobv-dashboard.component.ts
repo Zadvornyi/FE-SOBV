@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-sobv-dashboard',
+  selector: 'sobv-dashboard',
   templateUrl: './sobv-dashboard.component.html',
   styleUrls: ['./sobv-dashboard.component.scss']
 })
