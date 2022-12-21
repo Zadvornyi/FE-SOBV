@@ -5,6 +5,7 @@ import { SobvRoutingModule } from './sobv-routing.module';
 import { SobvComponent } from './sobv.component';
 import {CoreModule} from "./core/core.module";
 import {ProfileServicemanModule} from "./profile-serviceman/profile-serviceman.module";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import {ProfileServicemanModule} from "./profile-serviceman/profile-serviceman.m
     SobvRoutingModule,
     ProfileServicemanModule,
     CoreModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [SobvComponent]

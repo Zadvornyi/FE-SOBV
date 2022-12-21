@@ -4,6 +4,7 @@ import {SobvCoreRoutingModule} from "./core-routing.module";
 import {SobvHeaderComponent} from "./components/sobv-header/sobv-header.component";
 import {SobvPageNotFoundComponent} from "./components/sobv-page-not-found/sobv-page-not-found.component";
 import {SobvDashboardComponent} from "./components/sobv-dashboard/sobv-dashboard.component";
+import {NgbTooltipModule} from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import {SobvDashboardComponent} from "./components/sobv-dashboard/sobv-dashboard
   ],
   imports: [
     CommonModule,
-    SobvCoreRoutingModule
+    SobvCoreRoutingModule,
+    NgbTooltipModule
   ],
   exports: [
     SobvHeaderComponent,
