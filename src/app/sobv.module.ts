@@ -13,8 +13,8 @@ import {ProfileServicemanModule} from "./profile-serviceman/profile-serviceman.m
   imports: [
     BrowserModule,
     SobvRoutingModule,
+    ProfileServicemanModule,
     CoreModule,
-    ProfileServicemanModule
   ],
   providers: [],
   bootstrap: [SobvComponent]
