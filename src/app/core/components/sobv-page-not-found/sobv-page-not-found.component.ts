@@ -1,4 +1,6 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Event } from '@angular/router';
 
 @Component({
   selector: 'sobv-page-not-found',
@@ -10,12 +12,16 @@ export class SobvPageNotFoundComponent implements OnInit {
   error_name: string = "";
   error_description: string = "";
 
-  constructor() { }
+  constructor(private location: Location ) { }
 
   ngOnInit(): void {
     this.error_number = "404";
     this.error_name = "Page Not Found";
-    this.error_description = "We`re sorry , the page you requested couldn`t be found Please go back home"
+    this.error_description = "the page you requested couldn`t be found"
   }
 
+
+  back() {
+    this.location.back();
+  }
 }
