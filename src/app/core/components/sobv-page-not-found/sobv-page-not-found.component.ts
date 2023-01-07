@@ -12,7 +12,7 @@ interface ICodeValues {
 const defaultCode = "404";
 
 const codeValuesMap = new Map<string, ICodeValues>();
-codeValuesMap.set("404", {name: "page not found", description: "Сторінка не знайдено"})
+codeValuesMap.set("404", {name: "page not found", description: "Сторінка не знайденa"})
 
 @Component({
   selector: 'sobv-page-not-found',
