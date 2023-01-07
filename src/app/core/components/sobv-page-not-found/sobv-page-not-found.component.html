@@ -1,22 +1,23 @@
-<div class="container">
+<div
+  class="container d-flex justify-content-center align-items-center"
+>
 
-  <div class="not-found">
-    <div class="blank-page__container">
-      <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" fill="none">
-        <path d="M178 56.25V175C178 181.63 178 179 178 185C178 178.37 178 190.025 178 185L171.5 177.5L166 185L157 177L150.875 185L143.562 177L136.25 185L128.937 177L121.625 185L114.312 177L107 185L98.6874 177L90.3748 185L82.0624 177L73.7499 185L65.4374 177L57.1249 185L48.8124 177L40.4999 185L34 177L28 185C35 185 21.3696 185 28 185C27.9999 175 27.9999 181.63 27.9999 175V25C27.9999 18.3696 30.6338 12.0107 35.3222 7.32233C40.0106 2.63392 46.3694 0 52.9999 0H121.75L178 56.25ZM140.5 56.25C135.527 56.25 130.758 54.2746 127.242 50.7583C123.725 47.2419 121.75 42.4728 121.75 37.5V12.5H52.9999C49.6846 12.5 46.5052 13.817 44.161 16.1612C41.8168 18.5054 40.4999 21.6848 40.4999 25V177C34.9999 177 45.9999 177 40.4999 177C37.1846 177 49.9999 177 40.4999 177H57.1249H73.7499H90.3748H107H121.625H136.25H150.875H165.5C161 177 168.815 177 165.5 177C159 177 172 177 165.5 177V56.25H140.5Z" fill="#495057"/>
-      </svg>
-      <p class="blank-page__number">{{error_number}}</p>
+  <div class="not-found ">
+    <div class="position-relative d-flex justify-content-center align-items-center">
+      <span class="bi-file-earmark" style="font-size: 160px;">
+      </span>
+      <span class="align-middle position-absolute fs-2" >{{number}}</span>
     </div>
 
-    <p class="fs-2">{{error_name}}</p>
-    <p class="text-muted">We`re sorry , {{error_description}} Please go back home</p>
+    <p class="fs-2 text-center" >{{name}}</p>
+    <p class="text-muted text-center">We`re sorry , {{description}} Please go back home</p>
 
-    <div class="">
+    <div class="d-flex justify-content-center">
       <button class="btn btn-outline-primary m-1" (click)="back()">
         Go Back
       </button>
 
-      <a  [routerLink]="['/']" routerLinkActive="router-link-active"  >
+      <a [routerLink]="['/']" routerLinkActive="router-link-active">
         <button type="button" class="btn btn-primary m-1">Go Home</button>
       </a>
     </div>

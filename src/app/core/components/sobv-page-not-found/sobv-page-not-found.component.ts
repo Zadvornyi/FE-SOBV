@@ -1,6 +1,13 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Event } from '@angular/router';
+
+const defaultValue = {
+  number:"404",
+  name: "Page Not Found",
+  description: "the page you requested couldn`t be found"
+}
 
 @Component({
   selector: 'sobv-page-not-found',
@@ -8,17 +15,20 @@ import { Event } from '@angular/router';
   styleUrls: ['./sobv-page-not-found.component.scss']
 })
 export class SobvPageNotFoundComponent implements OnInit {
-  error_number: string = "";
-  error_name: string = "";
-  error_description: string = "";
+  number: string = "";
+  name: string = "";
+  description: string = "";
 
-  constructor(private location: Location ) { }
+  constructor(private location: Location, private route: ActivatedRoute ) { }
 
   ngOnInit(): void {
-    this.error_number = "404";
-    this.error_name = "Page Not Found";
-    this.error_description = "the page you requested couldn`t be found"
-  }
+    this.route.queryParams.subscribe(params =>
+      {
+        this.number = params.number ?? defaultValue.number;
+        this.name = params.name ?? defaultValue.name;
+        this.description = params.description ?? defaultValue.description;
+      })
+    }
 
 
   back() {
