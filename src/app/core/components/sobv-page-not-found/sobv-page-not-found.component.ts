@@ -3,11 +3,16 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Event } from '@angular/router';
 
-const defaultValue = {
-  number:"404",
-  name: "Page Not Found",
-  description: "the page you requested couldn`t be found"
+interface ICodeValues {
+  name: string,
+  description: string
 }
+
+
+const defaultCode = "404";
+
+const codeValuesMap = new Map<string, ICodeValues>();
+codeValuesMap.set("404", {name: "page not found", description: "Сторінка не знайдено"})
 
 @Component({
   selector: 'sobv-page-not-found',
@@ -15,7 +20,7 @@ const defaultValue = {
   styleUrls: ['./sobv-page-not-found.component.scss']
 })
 export class SobvPageNotFoundComponent implements OnInit {
-  number: string = "";
+  code: string = "";
   name: string = "";
   description: string = "";
 
@@ -24,9 +29,11 @@ export class SobvPageNotFoundComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe(params =>
       {
-        this.number = params.number ?? defaultValue.number;
-        this.name = params.name ?? defaultValue.name;
-        this.description = params.description ?? defaultValue.description;
+        this.code = params?.code || defaultCode;
+
+        const codeValues = codeValuesMap.get(this.code);
+        this.name = codeValues?.name || "";
+        this.description = codeValues?.description || "";
       })
     }
 
