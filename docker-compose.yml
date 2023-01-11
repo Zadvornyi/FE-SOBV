@@ -1,8 +1,8 @@
 version: '3'
 
-networks:
-  sobv-net:
-    external: true
+#networks:
+#  sobv-net:
+#    external: true
 
 services:
   web:
@@ -11,14 +11,14 @@ services:
       dockerfile: Dockerfile.dev
       args:
         host_api: http://api:80/
-    networks:
-      - sobv-net
+#    networks:
+#      - sobv-net
     restart: always
     ports:
     - "8000:8000"
-    - "4200"
-    volumes:
-    -  ".:/app/"
+    - "4200:4200"
+#    volumes:
+#    -  ".:/app/"
 
 
 

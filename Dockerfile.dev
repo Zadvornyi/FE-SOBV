@@ -1,42 +1,23 @@
-FROM node:18.12.1-alpine
+### Stage 1: build ###
+
+FROM node:18.12.1-alpine as builder
 
 # Set working directory.
 RUN mkdir /app
-
+WORKDIR /app
 
 # Copy app dependencies.
-COPY . /app/angular-app/
-WORKDIR /app/angular-app/
-RUN npm install -g @angular/cli
+COPY package.json package-lock.json /app
+
+# Install app dependencies.
 RUN npm install
 
-
-ENTRYPOINT npm run start
-# CMD pwd
-
-# ================
-# Install app dependencies.
-# RUN cd /app/angular-app/
-# COPY . /app/angular-app/
-# RUN npm install
-
 # Copy app files.
+COPY . /app
 
 
-# Default build configuration.
-# A# RG configuration=production
 
-
-# CMD pwd
 # Build app
-# ENTRYPOINT npm run start
-# RUN ng serve --host 0.0.0.0:80  --prefix angular-app --configuration $configuration
-# RUN npm run build --prefix angular-app -- --output-path=./dist/out --configuration $configuration
-
-
-
-#
-
-# ENTRYPOINT ng serve
+ENTRYPOINT npm run start
 
 
