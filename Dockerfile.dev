@@ -15,9 +15,7 @@ RUN npm install
 # Copy app files.
 COPY . /app
 
-
-
-# Build app
+# Run app server
 ENTRYPOINT npm run start
 
 
