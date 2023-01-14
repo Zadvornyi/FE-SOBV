@@ -1,18 +1,18 @@
-<div style="background: linear-gradient(246.63deg, #819745 2.69%, #4C6A3D 101.82%);">
-  <div class="container sobv-full-page  d-flex justify-content-center align-items-start text-white" >
+<div class="sobv-background">
+  <div class="container sobv-full-page d-flex justify-content-center align-items-start text-white">
     <div class="sobv-mg-top-210">
-      <div class="text-center fw-bold sobv-fs-60">{{code}}</div>
-    <p class="text-center color fs-5 fw-light sobv-mg-bottom-90" >{{name}}</p>
-    <div class="d-flex justify-content-center">
-      <!-- 
+      <div class="text-center fw-bold display-3">{{code}}</div>
+      <p class="text-center color fs-6 fw-light sobv-mg-bottom-50">{{name}}</p>
+      <div class="d-flex justify-content-center">
+        <!-- 
         TODO: make this button when it's necessary.
         <button class="btn btn-outline-primary m-1" (click)="back()">
         Повернутись назад
       </button> -->
-      <a [routerLink]="['/']" routerLinkActive="router-link-active">
-        <button type="button" class="btn btn-primary m-1 sobv-button" >На головну сторінку</button>
-      </a>
+        <a [routerLink]="['/']" routerLinkActive="router-link-active">
+          <button type="button" class="btn btn-primary sobv-button m-1 ">На головну сторінку</button>
+        </a>
+      </div>
     </div>
-  </div>
   </div>
 </div>

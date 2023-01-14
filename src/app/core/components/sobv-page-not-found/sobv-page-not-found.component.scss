@@ -5,13 +5,18 @@
 .sobv-mg-bottom-50 {
   margin-bottom: 50px; 
 }
-.sobv-fs-60 {
-  font-size: 60px;
+
+.sobv-background {
+  position: relative;
+  background:  url("../../../../assets/images/misc/ukraine-pixels.svg"), linear-gradient(246.63deg, #819745 2.69%, #4C6A3D 101.82%);
+  background-repeat: no-repeat;
+  background-position: top right;
 }
 
 .sobv-button {
   height: 40px;
   width: 190px;
+  font-size: 14px;
 }
 
 .sobv-full-page {
