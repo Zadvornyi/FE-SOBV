@@ -1,0 +1,22 @@
+version: '3'
+
+networks:
+  sobv-net:
+    external: true
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+      # api instance is available with host 'http://api:80/'
+    networks:
+    - sobv-net
+    restart: always
+    ports:
+    - "4200:4200"
+    volumes:
+    -  "./src:/app/src"
+
+
+
