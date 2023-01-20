@@ -1,0 +1,13 @@
+$grid-columns: 60; //customize grid system for bootstrap
+
+$min-contrast-ratio: 3; //to customize color of the button. color: color-contrast($background);
+$primary: #357EEB;
+$secondary: #878A8D;
+
+$font-family: #{$sobv-font-family};
+$btn-line-height: 16px;
+$btn-font-size: 12px;
+
+$btn-padding-x: 21px;
+$border-radius: 2px;
+$btn-disabled-opacity: .5;
