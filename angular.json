@@ -107,8 +107,5 @@
       }
     }
   },
-  "defaultProject": "sobv",
-  "cli": {
-    "analytics": false
-  }
+  "defaultProject": "sobv"
 }
