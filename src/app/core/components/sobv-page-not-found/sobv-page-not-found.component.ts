@@ -29,7 +29,8 @@ export class SobvPageNotFoundComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(params =>
       {
-        this.code = params?.code || defaultCode;
+        const code = params?.code;
+        this.code = codeValuesMap.has(code) ? code : defaultCode;
         this.setCorrectUrl(this.code)
 
         const codeValues = codeValuesMap.get(this.code);

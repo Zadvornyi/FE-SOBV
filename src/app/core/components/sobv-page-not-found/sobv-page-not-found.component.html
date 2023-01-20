@@ -1,16 +1,22 @@
 <div class="sobv-background">
-  <div class="container sobv-full-page d-flex justify-content-center align-items-start text-white">
+  <div class="container sobv-full-page d-flex justify-content-center align-items-center text-white">
     <div class="sobv-mg-top-210">
       <div class="text-center fw-bold display-3">{{code}}</div>
-      <p class="text-center color fs-6 fw-light sobv-mg-bottom-50">{{name}}</p>
+       <!-- 
+        TODO: bottom p must be font-size: 18px;  
+      -->
+      <p class="text-center color fs-5 fw-light sobv-mg-bottom-50">{{name}}</p>
       <div class="d-flex justify-content-center">
         <!-- 
         TODO: make this button when it's necessary.
         <button class="btn btn-outline-primary m-1" (click)="back()">
         Повернутись назад
       </button> -->
-        <a [routerLink]="['/']" routerLinkActive="router-link-active">
-          <button type="button" class="btn btn-primary sobv-button m-1 ">На головну сторінку</button>
+       <!-- 
+        TODO: change button size to 190px x 40px  
+      -->
+        <a class="btn btn-primary btn-lg" [routerLink]="['/']" routerLinkActive="router-link-active">
+          На головну сторінку
         </a>
       </div>
     </div>

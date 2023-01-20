@@ -1,5 +1,8 @@
+@import "./../../../styles/variables.scss";
+
+// TODO: remove this code
 .sobv-mg-top-210 {
-  margin-top: 210px;
+  margin-bottom: 210px;
 }
 
 .sobv-mg-bottom-50 {
@@ -8,17 +11,12 @@
 
 .sobv-background {
   position: relative;
-  background:  url("../../../../assets/images/misc/ukraine-pixels.svg"), linear-gradient(246.63deg, #819745 2.69%, #4C6A3D 101.82%);
+  background: #{$sobv-background-image}, #{$sobv-background-gradiend};
   background-repeat: no-repeat;
   background-position: top right;
 }
 
-.sobv-button {
-  height: 40px;
-  width: 190px;
-  font-size: 14px;
-}
-
+// TODO: use header height for calculation
 .sobv-full-page {
-  height: calc(100vh - 65.84px);
+  height: calc(100vh - 50px);
 }
