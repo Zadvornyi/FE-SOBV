@@ -1,0 +1,22 @@
+@import "./../../../styles/variables.scss";
+
+// TODO: remove this code
+.sobv-mg-top-210 {
+  margin-bottom: 210px;
+}
+
+.sobv-mg-bottom-50 {
+  margin-bottom: 50px; 
+}
+
+.sobv-background {
+  position: relative;
+  background: #{$sobv-background-image}, #{$sobv-background-gradiend};
+  background-repeat: no-repeat;
+  background-position: top right;
+}
+
+// TODO: use header height for calculation
+.sobv-full-page {
+  height: calc(100vh - 50px);
+}

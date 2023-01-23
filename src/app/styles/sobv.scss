@@ -1,6 +1,6 @@
+@import "variables";
 @import "reset";
-$grid-columns: 60; //customize grid system for bootstrap
+@import "custom.bootstrap.variables";
+
 @import "../../../node_modules/bootstrap/scss/bootstrap";
 @import "~bootstrap-icons/font/bootstrap-icons.css";
-
-

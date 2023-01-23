@@ -1,0 +1,21 @@
+### Stage 1: build ###
+
+FROM node:18.12.1-alpine as builder
+
+# Set working directory.
+RUN mkdir /app
+WORKDIR /app
+
+# Copy app dependencies.
+COPY package.json package-lock.json /app
+
+# Install app dependencies.
+RUN npm install
+
+# Copy app files.
+COPY . /app
+
+# Run app server
+ENTRYPOINT npm run start
+
+

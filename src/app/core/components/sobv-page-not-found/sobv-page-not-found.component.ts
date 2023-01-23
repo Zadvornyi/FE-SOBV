@@ -5,14 +5,15 @@ import { Event } from '@angular/router';
 
 interface ICodeValues {
   name: string,
-  description: string
 }
 
 
 const defaultCode = "404";
 
 const codeValuesMap = new Map<string, ICodeValues>();
-codeValuesMap.set("404", {name: "page not found", description: "Сторінка не знайденa"})
+codeValuesMap.set("403", {name: "В доступі відмовлено"})
+codeValuesMap.set("404", {name: "Сторінку не знайдено"})
+codeValuesMap.set("500", {name: "Неполадки на стороні серверу"})
 
 @Component({
   selector: 'sobv-page-not-found',
@@ -22,21 +23,25 @@ codeValuesMap.set("404", {name: "page not found", description: "Сторінка
 export class SobvPageNotFoundComponent implements OnInit {
   code: string = "";
   name: string = "";
-  description: string = "";
 
   constructor(private location: Location, private route: ActivatedRoute ) { }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params =>
+    this.route.params.subscribe(params =>
       {
-        this.code = params?.code || defaultCode;
+        const code = params?.code;
+        this.code = codeValuesMap.has(code) ? code : defaultCode;
+        this.setCorrectUrl(this.code)
 
         const codeValues = codeValuesMap.get(this.code);
         this.name = codeValues?.name || "";
-        this.description = codeValues?.description || "";
       })
     }
 
+
+  setCorrectUrl(url: string) {
+    this.location.replaceState(`/error/${url}`)
+  }
 
   back() {
     this.location.back();
