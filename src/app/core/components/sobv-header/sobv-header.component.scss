@@ -1,0 +1,14 @@
+@import "../../../styles/variables.scss";
+
+.sobv-header {
+  background-color: #{$sobv-background-primary};
+  height: #{$sobv-height-header};
+  padding: #{$sobv-padding-header};
+  color: #{$sobv-color-gray-light};
+  display: flex;
+  align-items: center;
+  .sobv-label {
+    font-weight: 300;
+    text-transform: uppercase;
+  }
+}
