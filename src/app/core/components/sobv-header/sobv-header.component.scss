@@ -1,0 +1,8 @@
+@import "../../../styles/variables.scss";
+
+.sobv-header {
+  background-color: #{$sobv-background-primary};
+  height: #{$sobv-height-header};
+  padding: #{$sobv-padding-header};
+  color: #{$sobv-color-gray-light}
+}
