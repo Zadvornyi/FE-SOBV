@@ -11,13 +11,18 @@
   align-items: center;
   flex-direction: column;
   >h1 {
-
+    font-size: $sobv-font-size-xl;
   }
   > .sobv-desc {
+    font-size: $sobv-font-size-semi-lg;
     margin-bottom: 50px;
   }
+  .sobv-btn {
+    height: $sobv-height-btn;
+    width: $sobv-width-btn;
+  }
   .sobv-btn-wrap {
-
+    margin-bottom: 85px;
   }
 }
 
