@@ -1,22 +1,23 @@
 @import "./../../../styles/variables.scss";
 
-// TODO: remove this code
-.sobv-mg-top-210 {
-  margin-bottom: 210px;
-}
-
-.sobv-mg-bottom-50 {
-  margin-bottom: 50px; 
-}
-
-.sobv-background {
-  position: relative;
+.sobv-page-not-found-cont {
   background: #{$sobv-background-image}, #{$sobv-background-gradiend};
   background-repeat: no-repeat;
   background-position: top right;
+  height: calc(100vh - #{$sobv-height-header});
+  color: $sobv-color-white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  >h1 {
+
+  }
+  > .sobv-desc {
+    margin-bottom: 50px;
+  }
+  .sobv-btn-wrap {
+
+  }
 }
 
-// TODO: use header height for calculation
-.sobv-full-page {
-  height: calc(100vh - 50px);
-}

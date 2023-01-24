@@ -1,12 +1,10 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Event } from '@angular/router';
 
 interface ICodeValues {
   name: string,
 }
-
 
 const defaultCode = "404";
 
