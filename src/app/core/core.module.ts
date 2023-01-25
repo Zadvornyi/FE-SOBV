@@ -5,12 +5,14 @@ import {SobvHeaderComponent} from "./components/sobv-header/sobv-header.componen
 import {SobvPageNotFoundComponent} from "./components/sobv-page-not-found/sobv-page-not-found.component";
 import {SobvDashboardComponent} from "./components/sobv-dashboard/sobv-dashboard.component";
 import {NgbTooltipModule} from "@ng-bootstrap/ng-bootstrap";
+import { SobvSubHeaderComponent } from './components/sobv-sub-header/sobv-sub-header.component';
 
 @NgModule({
   declarations: [
     SobvHeaderComponent,
     SobvPageNotFoundComponent,
-    SobvDashboardComponent
+    SobvDashboardComponent,
+    SobvSubHeaderComponent
   ],
   imports: [
     CommonModule,
