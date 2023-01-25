@@ -1,0 +1,31 @@
+@import "../../../styles/sobv.scss";
+
+.sobv-modal-content {
+  color: $sobv-color-secondary;
+  
+  .modal-title {
+    // TODO: change to variable when merge file with it
+    font-size: 18px; 
+    color: $sobv-color-gray-dark;
+  }
+
+  label {
+    font-size: $sobv-font-size;
+    color: $secondary;
+    line-height: 10px;
+    padding-bottom: 11px;
+  }
+
+  input {
+    border: 1px $sobv-color-gray-light solid;
+  }
+}
+
+.sobv-modal-content {
+  margin-top: 25%;
+  background-color: $sobv-color-gray-extra-light;
+}
+
+.sobv-invalid-feedback {
+  color: $danger;
+}

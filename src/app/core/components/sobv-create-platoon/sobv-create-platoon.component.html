@@ -1,0 +1,31 @@
+<div class="modal" id="modal-create-platoon" tabindex="-1">
+  <div class="modal-dialog">
+    <form class="modal-content sobv-modal-content" [formGroup]="form" (ngSubmit)="handleSubmit()">
+      <div class="modal-header border-0 pb-0">
+        <h5 class="modal-title">Додати взвод</h5>
+      </div>
+      <div class="modal-body">
+        <fieldset class="d-flex gap-3">
+          <div class="gap-0 w-100">
+            <label for="platoonNumber" class="form-label">Номер</label>
+            <input type="text" id="platoonNumber" class="form-control" formControlName="number">
+            <div class="sobv-invalid-feedback" *ngIf="isNumberValid()">
+              Номер має бути щонайменше 3 символи
+            </div>
+          </div>
+          <div class="gap-0 w-100">
+            <label for="platoonCommander" class="form-label">Командир</label>
+            <input type="text" id="platoonCommander" class="form-control" formControlName="comander">
+            <div class="sobv-invalid-feedback" *ngIf="isComanderValid()">
+              Командир має мати як найменше 3 символа та включати лише букви або пробіли
+            </div>
+          </div>
+        </fieldset>
+      </div>
+      <div class="modal-footer border-0 pt-0">
+        <button type="button" class="btn btn-secondary" (click)="handleClose()">Відмінити</button>
+        <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Зберегти</button>
+      </div>
+    </form>
+  </div>
+</div>
