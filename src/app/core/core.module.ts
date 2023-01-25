@@ -7,6 +7,7 @@ import {SobvPageNotFoundComponent} from "./components/sobv-page-not-found/sobv-p
 import {SobvDashboardComponent} from "./components/sobv-dashboard/sobv-dashboard.component";
 import {NgbTooltipModule} from "@ng-bootstrap/ng-bootstrap";
 import { SobvCreatePlatoonComponent } from './components/sobv-create-platoon/sobv-create-platoon.component';
+import { SobvCreateCompanyComponent } from './components/sobv-create-company/sobv-create-company.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { SobvCreatePlatoonComponent } from './components/sobv-create-platoon/sob
     SobvPageNotFoundComponent,
     SobvDashboardComponent,
     SobvCreatePlatoonComponent,
+    SobvCreateCompanyComponent,
   ],
   imports: [
     CommonModule,
