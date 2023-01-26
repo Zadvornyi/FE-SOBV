@@ -6,6 +6,7 @@ import { SobvComponent } from './sobv.component';
 import {CoreModule} from "./core/core.module";
 import {ProfileServicemanModule} from "./profile-serviceman/profile-serviceman.module";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {PollsModule} from "./polls/polls.module";
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserModule,
     SobvRoutingModule,
     ProfileServicemanModule,
+    PollsModule,
     CoreModule,
     NgbModule,
   ],
