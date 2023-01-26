@@ -1,8 +1,7 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { SobvPollModalComponent } from './components/sobv-poll-modal/sobv-poll-modal.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {SobvPollModalComponent} from './components/sobv-poll-modal/sobv-poll-modal.component';
 import {SobvPollsRoutingModule} from "./polls-routing.module";
-
 
 
 @NgModule({
@@ -14,4 +13,5 @@ import {SobvPollsRoutingModule} from "./polls-routing.module";
     SobvPollsRoutingModule
   ]
 })
-export class PollsModule { }
+export class PollsModule {
+}
