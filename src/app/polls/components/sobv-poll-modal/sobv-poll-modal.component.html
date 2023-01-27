@@ -5,8 +5,8 @@
 <ul>
   <li *ngFor="let item of polls$ | async">
     <ul>
-      <li>Title: {{ item.first_name }}</li>
-      <li>Content: {{ item.last_name }}</li>
+      <li>Title: {{ item.title }}</li>
+      <li>Content: {{ item.description }}</li>
     </ul>
   </li>
 </ul>

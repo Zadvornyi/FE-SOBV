@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {SobvPollsService} from "../../services/sobv-polls.service";
 import {Observable} from "rxjs";
-import {Serviceman} from "../../interfaces";
+import {filter} from 'rxjs/operators';
+import {Poll} from "../../interfaces";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'sobv-sobv-poll-modal',
@@ -9,16 +11,24 @@ import {Serviceman} from "../../interfaces";
   styleUrls: ['./sobv-poll-modal.component.scss']
 })
 export class SobvPollModalComponent implements OnInit {
-  public polls$: Observable<Serviceman[]> | undefined;
+  public polls$: Observable<Poll[]> | undefined;
 
-  constructor(private sobvPollsService: SobvPollsService) {
+  constructor(
+    private sobvPollsService: SobvPollsService,
+    private route: ActivatedRoute
+  ) {
   }
 
   ngOnInit() {
-    this.polls$ = this.getPollsCategory();
+    this.route.params.subscribe(params => {
+        if(!params.categoryId) return
+        this.polls$ = this.getPollsCategory(params.categoryId);
+      }
+    );
+
   }
 
-  public getPollsCategory(): Observable<Serviceman[]> {
-    return this.sobvPollsService.getPollsCategoryById();
+  public getPollsCategory(categoryId: number): Observable<Poll[]> {
+    return this.sobvPollsService.getPollsCategoryById(categoryId);
   }
 }
