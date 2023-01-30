@@ -10,7 +10,7 @@ import {NgbTooltipModule} from "@ng-bootstrap/ng-bootstrap";
   declarations: [
     SobvHeaderComponent,
     SobvPageNotFoundComponent,
-    SobvDashboardComponent
+    SobvDashboardComponent,
   ],
   imports: [
     CommonModule,
