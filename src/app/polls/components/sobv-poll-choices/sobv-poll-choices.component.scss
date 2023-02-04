@@ -12,7 +12,7 @@ $sobv-questions-rate-width: 100%;
       + li {
         margin-left: 2px;
       }
-      .gl-radio {
+      .sobv-radio {
         position: relative;
         width: $sobv-questions-rate-width;
         height: $sobv-questions-rate-height;
@@ -70,7 +70,7 @@ $sobv-questions-rate-width: 100%;
       }
     }
   }
-  .gl-message {
+  .sobv-message {
     margin-top: $sobv-margin-base;
     white-space: nowrap;
   }
