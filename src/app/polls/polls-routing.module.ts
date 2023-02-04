@@ -3,7 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {SobvPollModalComponent} from "./components/sobv-poll-modal/sobv-poll-modal.component";
 
 const routes: Routes = [
-  {path: 'poll/category/:categoryId', component: SobvPollModalComponent},
+  {path: 'polls/category/:categoryId/poll/:pollId', component: SobvPollModalComponent},
 ];
 
 @NgModule({

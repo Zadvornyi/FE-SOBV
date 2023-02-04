@@ -1,27 +1,25 @@
-import {Component, OnInit} from '@angular/core';
-import {SobvPollsService} from "../../services/sobv-polls.service";
+import {Component} from '@angular/core';
 import {Observable} from "rxjs";
-import {filter} from 'rxjs/operators';
 import {Poll} from "../../interfaces";
+import {SobvPollsService} from "../../services/sobv-polls.service";
 import {ActivatedRoute} from "@angular/router";
 
 @Component({
-  selector: 'sobv-sobv-poll-modal',
+  selector: 'sobv-poll-modal',
   templateUrl: './sobv-poll-modal.component.html',
   styleUrls: ['./sobv-poll-modal.component.scss']
 })
-export class SobvPollModalComponent implements OnInit {
+export class SobvPollModalComponent {
   public polls$: Observable<Poll[]> | undefined;
 
   constructor(
     private sobvPollsService: SobvPollsService,
-    private route: ActivatedRoute
-  ) {
+    private route: ActivatedRoute) {
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-        if(!params.categoryId) return
+        if (!params.categoryId) return
         this.polls$ = this.getPollsCategory(params.categoryId);
       }
     );
@@ -31,4 +29,5 @@ export class SobvPollModalComponent implements OnInit {
   public getPollsCategory(categoryId: number): Observable<Poll[]> {
     return this.sobvPollsService.getPollsCategoryById(categoryId);
   }
+
 }
