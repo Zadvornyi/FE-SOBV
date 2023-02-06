@@ -6,6 +6,7 @@ import {SobvPageNotFoundComponent} from "./components/sobv-page-not-found/sobv-p
 const routes: Routes = [
   {path: 'dashboard', component: SobvDashboardComponent},
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
+  {path: 'error/:code', component: SobvPageNotFoundComponent},
   {path: '**', component: SobvPageNotFoundComponent}
 ];
 

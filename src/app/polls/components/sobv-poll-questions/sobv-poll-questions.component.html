@@ -1,0 +1,21 @@
+
+<div class="sobv-questions-cont">
+  <div class="container">
+    <ul>
+      <li *ngFor="let item of questions$ | async">
+        <ul>
+          <li>
+            Id: {{ item.id }}
+          </li>
+          <li>question_text: {{ item.question_text }}</li>
+          <li>opposite: {{ item.opposite }}</li>
+          <li>opposite_description: {{ item.opposite_description }}</li>
+        </ul>
+        <sobv-poll-choices></sobv-poll-choices>
+      </li>
+    </ul>
+
+
+
+  </div>
+</div>

@@ -1,9 +1,9 @@
 @import "../../../styles/variables.scss";
 
 .sobv-header {
-  background-color: #{$sobv-background-primary};
-  height: #{$sobv-height-header};
-  padding: #{$sobv-padding-header};
+  background-color: #{$sobv-header-bg};
+  height: #{$sobv-header-height};
+  padding: #{$sobv-header-padding};
   color: #{$sobv-color-gray-light};
   display: flex;
   align-items: center;

@@ -1,15 +1,27 @@
 
 $sobv-font-family: "Open Sans", sans-serif;
-$sobv-background-primary: #404142;
 
 $sobv-height-header: 60px;
 $sobv-height-sub-header: 100px;
 $sobv-padding-header: 0 20px 0 21px;
+
+$sobv-margin-base: 20px;
+$sovb-body-bg: #F5F5F5;
+$sobv-header-bg: #404142;
 
 $sobv-background-image-ukraine-sub-header: url("../../../assets/images/misc/ukraine-pixels-sub-header.svg");
 $sobv-background-gradiend: linear-gradient(246.63deg, #819745 2.69%, #4C6A3D 101.82%);
 
 $sobv-font-size: 13px;
 $sobv-font-size-h-2: 28px;
+$sobv-font-size-semi-lg: 18px;
+$sobv-font-size-xl: 60px;
+
 $sobv-color-gray-light: #B2B5B8;
- 
+$sobv-color-white: #fff;
+
+$sobv-background-image: url("../../../../assets/images/misc/ukraine-pixels.svg");
+$sobv-background-gradiend: linear-gradient(246.63deg, #819745 2.69%, #4C6A3D 101.82%);
+
+$sobv-height-btn: 40px;
+$sobv-width-btn: 190px;
