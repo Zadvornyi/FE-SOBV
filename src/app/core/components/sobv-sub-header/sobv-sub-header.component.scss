@@ -1,11 +1,11 @@
 @import "./../../../styles/sobv.scss";
 
-.sobv-background {
+.sobv-sub-header-background {
   height: $sobv-height-sub-header;
   background: #{$sobv-background-gradiend} ;
 }
 
-.sobv-sub-header-cont {
+.sobv-sub-header-content {
   height: 100%;
 
   display: flex;
