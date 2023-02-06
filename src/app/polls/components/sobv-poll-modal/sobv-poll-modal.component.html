@@ -1,0 +1,12 @@
+<p>sobv-poll-modal works!</p>
+
+<h2>My Polls</h2>
+
+<ul>
+  <li *ngFor="let item of polls$ | async">
+    <ul>
+      <li>Title: {{ item.title }}</li>
+      <li>Content: {{ item.description }}</li>
+    </ul>
+  </li>
+</ul>
