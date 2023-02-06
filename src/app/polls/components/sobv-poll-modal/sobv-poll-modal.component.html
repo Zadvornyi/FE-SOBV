@@ -1,0 +1,26 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-30">
+      <h1>
+        Oцінка МПЗ бійця (%Назва категорії%)
+      </h1>
+      <p>%Позивний бійця%</p>
+    </div>
+    <div class="col-30">
+      <ul>
+        <li *ngFor="let item of polls$ | async">
+          <ul>
+            <li>Title: {{ item.title }}</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="sobv-poll-desc">
+    %Інструкція%
+  </div>
+  <sobv-poll-questions></sobv-poll-questions>
+</div>
+
+
+
