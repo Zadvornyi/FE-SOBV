@@ -4,7 +4,7 @@
   background: #{$sobv-background-image}, #{$sobv-background-gradiend};
   background-repeat: no-repeat;
   background-position: top right;
-  height: calc(100vh - #{$sobv-height-header});
+  height: calc(100vh - #{$sobv-header-height});
   color: $sobv-color-white;
   display: flex;
   justify-content: center;

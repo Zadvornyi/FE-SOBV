@@ -1,7 +1,7 @@
 @import "./../../../styles/sobv.scss";
 
 .sobv-sub-header-background {
-  height: $sobv-height-sub-header;
+  height: $sobv-sub-header-height;
   background: #{$sobv-background-gradiend} ;
 }
 
@@ -11,10 +11,10 @@
   display: flex;
   align-items: center;
 
-  background: #{$sobv-background-image-ukraine-sub-header};
+  background: #{$sobv-sub-header-background};
   background-position: top 0 right 50px;
   background-repeat: no-repeat;
-
+ 
   > h1 {
     margin-left: 50px;
     color: $white;
