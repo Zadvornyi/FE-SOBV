@@ -1,66 +1,16 @@
-<ul>
-  <li *ngFor="let item of choices$ | async">
-    <ul>
-      <li>{{ item.choice_text }}</li>
-    </ul>
-  </li>
-</ul>
-<div class="row sobv-poll-choice-wrap">
-  <div class="col-lg-23 col-md-23 d-flex align-items-start">
-    <div class="sobv-poll-choice-good-cont d-flex align-items-center">
-      <p class="sobv-poll-choice-label sobv-choice-desc"> some positive</p>
-    </div>
-  </div>
-  <div class="col-lg-14 col-md-14 sobv-poll-choice">
-    <ul>
-      <li>
-        <div class="sobv-radio rate-red">
-          <input type="radio"
-                 id="sobv-poll-choice-red-1"
-                 name="sobv-poll-choice-1"
-                 value="high"
-          >
-          <label for="sobv-poll-choice-red-1"></label>
-          <span class="arrow"></span>
-        </div>
-      </li>
-      <li>
-        <div class="sobv-radio rate-amber">
-          <input type="radio"
-                 id="sobv-poll-choice-amber-1"
-                 name="sobv-poll-choice-1"
-                 value="medium">
-          <label for="sobv-poll-choice-amber-1"></label>
-          <span class="arrow"></span>
-        </div>
-      </li>
-      <li>
-        <div class="sobv-radio rate-yellow">
-          <input type="radio"
-                 id="sobv-poll-choice-yellow-1"
-                 name="sobv-poll-choice-1"
-                 value="low"
-          >
-          <label for="sobv-poll-choice-yellow-1"></label>
-          <span class="arrow"></span>
-        </div>
-      </li>
-      <li>
-        <div class="sobv-radio rate-green">
-          <input type="radio"
-                 id="sobv-poll-choice-green-1"
-                 name="sobv-poll-choice-1"
-                 value="no_issues"
-          >
-          <label for="sobv-poll-choice-green-1"></label>
-          <span class="arrow"></span>
-        </div>
-      </li>
-    </ul>
-  </div>
-  <div class="col-lg-23 col-md-23 d-flex align-items-start">
-    <div class="sobv-poll-choice--good-cont d-flex align-items-center">
-      <p class="sobv-poll-choice--label sobv-choice-opposite-desc">nagative</p>
-    </div>
-  </div>
+<div class="sobv-poll-choice">
+  <ul>
+    <li *ngFor="let item of choices$ | async">
+      <div class="sobv-radio rate-{{item.value}}">
+        <input type="radio"
+               id="sobv-poll-choice-red-{{item.value}}"
+               name="sobv-poll-choice"
+               value="{{item.value}}"
+        >
+        <label for="sobv-poll-choice-red-{{item.value}}"></label>
+        <span class="arrow"></span>
+      </div>
+<!--      <div class="sobv-message">{{item.choice_text}}</div>-->
+    </li>
+  </ul>
 </div>
