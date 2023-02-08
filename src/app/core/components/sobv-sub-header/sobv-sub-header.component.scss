@@ -8,17 +8,15 @@
 .sobv-sub-header-content {
   height: 100%;
 
+  margin-left: 50px;
+  color: $white;
+  font-size: $sobv-font-size-h-2;
+
   display: flex;
   align-items: center;
 
   background: #{$sobv-sub-header-background};
   background-position: top 0 right 50px;
   background-repeat: no-repeat;
- 
-  > h1 {
-    margin-left: 50px;
-    color: $white;
-    font-size: $sobv-font-size-h-2;
-  }
 }
 
