@@ -54,7 +54,7 @@ $sobv-questions-rate-width: 100%;
               background-color: rgba(247, 56, 79, 0.3);
 
               .arrow {
-                background-color: rgba(247, 56, 79, 0.3);
+                border-top-color: rgba(247, 56, 79, 0.3);
               }
             }
           } @else if ($i > 32 and $i <= 49) {
@@ -70,7 +70,7 @@ $sobv-questions-rate-width: 100%;
               background-color: rgba(242, 198, 0, 0.3);
 
               .arrow {
-                background-color: rgba(242, 198, 0, 0.3);
+                border-top-color: rgba(242, 198, 0, 0.3);
               }
             }
           } @else if $i > 65 and $i <= 80 {
@@ -78,7 +78,7 @@ $sobv-questions-rate-width: 100%;
               background-color: rgba(67, 191, 16, 0.3);
 
               .arrow {
-                background-color: rgba(67, 191, 16, 0.3);
+                border-top-color: rgba(67, 191, 16, 0.3);
               }
             }
           } @else if $i > 80 and $i <= 95 {
@@ -86,7 +86,7 @@ $sobv-questions-rate-width: 100%;
               background-color: rgba(67, 191, 16, 0.7);
 
               .arrow {
-                background-color: rgba(67, 191, 16, 0.7);
+                border-top-color: rgba(67, 191, 16, 0.7);
               }
             }
           } @else if $i > 95 and $i <= 100 {
@@ -94,7 +94,7 @@ $sobv-questions-rate-width: 100%;
               background-color: rgba(67, 191, 16, 1);
 
               .arrow {
-                background-color: rgba(67, 191, 16, 1);
+                border-top-color: rgba(67, 191, 16, 1);
               }
             }
           }
