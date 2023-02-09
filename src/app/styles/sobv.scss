@@ -6,6 +6,7 @@
 @import "reset";
 body {
   background: $sovb-body-bg;
-  font-family: Inter, SansSerif, sans-serif;
+  font-family: $sobv-font-family;
+  font-size: $sobv-font-size;
   color: $sobv-font-color;
 }

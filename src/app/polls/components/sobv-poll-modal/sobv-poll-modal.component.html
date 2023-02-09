@@ -1,24 +1,23 @@
-<div class="container-fluid">
+<div class="container" *ngIf="categoryData">
   <div class="row">
     <div class="col-30">
       <h1>
-        Oцінка МПЗ бійця (%Назва категорії%)
+        {{categoryData.title}}
       </h1>
-      <p>%Позивний бійця%</p>
+      <p>Роман Романенко (Міша)</p>
     </div>
     <div class="col-30">
-      <ul>
-        <li *ngFor="let item of polls$ | async">
-          <ul>
-            <li>Title: {{ item.title }}</li>
-          </ul>
+      <ul class="sobv-list-polls">
+        <li *ngFor="let item of categoryData.polls; let first = first;">
+          <span [ngClass]="{'active': first}">{{item.title}}</span>
+          <i class="bi bi-chevron-right align-middle"></i>
         </li>
       </ul>
     </div>
   </div>
-  <div class="sobv-poll-desc">
-    %Інструкція%
-  </div>
+      <div class="sobv-poll-desc">
+        {{categoryData.polls[0].description}}
+      </div>
   <sobv-poll-questions></sobv-poll-questions>
 </div>
 

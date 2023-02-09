@@ -1,0 +1,26 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixin";
+.sobv-list-polls {
+  display: flex;
+  > li {
+    color: $sobv-color-gray-light;
+    .active {
+      color: $sobv-color-blue;
+      font-weight: 600;
+    }
+    > i {
+      font-size: $sobv-font-size-sm;
+      margin:0 $sobv-margin-base ;
+      padding: 0;
+    }
+    &:last-child {
+      > i {
+        display: none;
+      }
+    }
+  }
+}
+.sobv-poll-desc {
+  padding: $sobv-padding-base/2;
+  color: $sobv-color-gray-light;
+}
