@@ -8,7 +8,7 @@ export interface Poll {
 export interface Question {
   id: number,
   question_text: string,
-  opposite: string,
+  description: string,
   opposite_description: string,
   poll_id: number,
   created_date: string

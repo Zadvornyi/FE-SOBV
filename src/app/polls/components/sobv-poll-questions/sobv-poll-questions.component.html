@@ -1,35 +1,20 @@
-
-<div class="sobv-questions-cont">
-  <div class="container">
-    <ul>
-      <li *ngFor="let item of questions$ | async">
-        <ul>
-          <li>
-            Id: {{ item.id }}
-          </li>
-          <li>question_text: {{ item.question_text }}</li>
-          <li>description: {{ item.opposite }}</li>
-          <li>opposite_description: {{ item.opposite_description }}</li>
-        </ul>
+<div class="container sobv-questions-cont">
+  <ul class="sobv-questions-list">
+    <li *ngFor="let item of questions$ | async">
+      <section>
+        <h3>{{ item.question_text }}</h3>
         <div class="row">
-          <div class="col-lg-23 col-md-23 d-flex align-items-start">
-            <div class="sobv-poll-choice-good-cont d-flex align-items-center">
-              <p class="sobv-poll-choice-label sobv-choice-desc"> some positive</p>
-            </div>
+          <div class="col-lg-23 col-md-23">
+            <div class="sobv-choice-desc"> {{ item.description }}</div>
           </div>
           <div class="col-lg-14 col-md-14">
             <sobv-poll-choices></sobv-poll-choices>
           </div>
-          <div class="col-lg-23 col-md-23 d-flex align-items-start">
-            <div class="sobv-poll-choice--good-cont d-flex align-items-center">
-              <p class="sobv-poll-choice--label sobv-choice-opposite-desc">nagative</p>
-            </div>
+          <div class="col-lg-23 col-md-23">
+            <div class="sobv-choice-opposite-desc">{{ item.opposite_description }}</div>
           </div>
         </div>
-      </li>
-    </ul>
-
-
-
-  </div>
+      </section>
+    </li>
+  </ul>
 </div>

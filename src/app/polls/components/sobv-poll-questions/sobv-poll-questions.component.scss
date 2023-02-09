@@ -3,7 +3,13 @@
 
 
 .sobv-questions-cont {
-
+  .sobv-questions-list {
+    > li {
+      padding: $sobv-padding-base;
+      background: #FFF;
+      margin-bottom: $sobv-margin-base/2;
+    }
+  }
 
 }
 

@@ -1,10 +1,11 @@
 @import "variables";
-@import "reset";
 @import "custom.bootstrap.variables";
 
 @import "../../../node_modules/bootstrap/scss/bootstrap";
 @import "~bootstrap-icons/font/bootstrap-icons.css";
-
+@import "reset";
 body {
   background: $sovb-body-bg;
+  font-family: Inter, SansSerif, sans-serif;
+  color: $sobv-font-color;
 }
