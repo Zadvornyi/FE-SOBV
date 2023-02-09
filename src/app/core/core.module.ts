@@ -22,7 +22,8 @@ import { SobvSubHeaderComponent } from './components/sobv-sub-header/sobv-sub-he
   exports: [
     SobvHeaderComponent,
     SobvPageNotFoundComponent,
-    SobvDashboardComponent
+    SobvDashboardComponent,
+    SobvSubHeaderComponent
   ],
   providers: [],
 })
