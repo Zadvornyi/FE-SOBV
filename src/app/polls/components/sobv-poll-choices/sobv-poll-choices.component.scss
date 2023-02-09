@@ -2,20 +2,16 @@
 @import "../../../styles/mixin";
 
 $sobv-questions-rate-height: 50px;
-$sobv-questions-rate-width: 100%;
+$sobv-questions-rate-width: 50px;
 
 .sobv-poll-choice {
   > ul {
     display: flex;
-    width: 100%;
-
     li {
-      width: 25%;
-
+      padding-bottom: $sobv-questions-rate-height;
       + li {
         margin-left: 2px;
       }
-
       .sobv-radio {
         position: relative;
         width: $sobv-questions-rate-width;
@@ -38,6 +34,14 @@ $sobv-questions-rate-width: 100%;
         ; // IE8
           border-right: 10px solid transparent;
           border-left: 10px solid transparent;
+        }
+        .sobv-message {
+          display: none;
+          white-space: nowrap;
+          font-size: $sobv-font-size-sm;
+          color: $sobv-color-gray;
+          min-width: $sobv-questions-rate-width;
+          text-align: center;
         }
 
         @for $i from 1 through 100 {
@@ -105,15 +109,13 @@ $sobv-questions-rate-width: 100%;
             ~ .arrow {
               display: inline;
             }
+            ~ .sobv-message {
+              display: block;
+            }
           }
         }
       }
     }
-  }
-
-  .sobv-message {
-    margin-top: $sobv-margin-base;
-    white-space: nowrap;
   }
 
 }
