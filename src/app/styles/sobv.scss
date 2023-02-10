@@ -7,6 +7,7 @@
 
 body {
   background: $sovb-body-bg;
-  font-family: Inter, SansSerif, sans-serif;
-  color: $sobv-font-color;
+  font-family: $sobv-font-family;
+  font-size: $sobv-font-size;
+  color: $sobv-color-font;
 }

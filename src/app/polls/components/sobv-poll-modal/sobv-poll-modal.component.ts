@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {Observable} from "rxjs";
-import {Poll} from "../../interfaces";
+import {Observable, take} from "rxjs";
+import {Category, Poll} from "../../interfaces";
 import {SobvPollsService} from "../../services/sobv-polls.service";
 import {ActivatedRoute} from "@angular/router";
 
@@ -10,7 +10,7 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./sobv-poll-modal.component.scss']
 })
 export class SobvPollModalComponent {
-  public polls$: Observable<Poll[]> | undefined;
+  public categoryData: Category | undefined;
 
   constructor(
     private sobvPollsService: SobvPollsService,
@@ -20,13 +20,15 @@ export class SobvPollModalComponent {
   ngOnInit() {
     this.route.params.subscribe(params => {
         if (!params.categoryId) return
-        this.polls$ = this.getPollsCategory(params.categoryId);
+        this.getPollsCategory(params.categoryId).pipe(take(1)).subscribe((resp)=>{
+          this.categoryData = resp
+        });
       }
     );
 
   }
 
-  public getPollsCategory(categoryId: number): Observable<Poll[]> {
+  public getPollsCategory(categoryId: number): Observable<Category> {
     return this.sobvPollsService.getPollsCategoryById(categoryId);
   }
 
