@@ -1,1 +1,21 @@
-<p>sobv-profile-serviceman works!</p>
+<sobv-sub-header [title]="'Руслан'">
+  <div info>This should be rendered in header selection of ng-content</div>
+  <div control>
+    <div ngbDropdown class="d-inline-block">
+      <button type="button" class="btn btn-primary" ngbDropdownToggle>
+        Оцінити МПЗ
+      </button>
+      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+        <button ngbDropdownItem>Action - 1</button>
+        <button ngbDropdownItem>Another Action</button>
+        <button ngbDropdownItem>Something else is here</button>
+      </div>
+    </div>
+  </div>
+</sobv-sub-header>
+<div class="container">
+  <div class="row">
+    <div class="col-60">
+    </div>
+  </div>
+</div>
