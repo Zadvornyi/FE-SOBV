@@ -19,6 +19,7 @@ export class SobvPollsService {
   public getQuestionsByPollId(pollId: number): Observable<Question[]> {
     return this.http.get<Question[]>(`${this.API_URL}/poll/${pollId}/question`);
   }
+  
   public getChoicesByPollId(pollId: number): Observable<Choice[]> {
     return this.http.get<Choice[]>(`${this.API_URL}/poll/${pollId}/choice`);
   }
