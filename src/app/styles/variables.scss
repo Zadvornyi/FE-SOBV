@@ -6,14 +6,13 @@ $sobv-padding-base: 20px;
 $sovb-body-bg: #F5F5F5;
 
 $sobv-header-height: 60px;
-$sobv-header-padding: 0 20px 0 20px;
+$sobv-header-padding: 0 $sobv-margin-base 0 $sobv-margin-base;
 $sobv-header-bg: #404142;
 
 $sobv-sub-header-height: 100px;
 $sobv-sub-header-background: url("../../../../assets/images/misc/pixel-ukraine.svg");
 
 $sobv-font-size-sm: 12px;
-$sobv-font-size-semi-sm: 13px;
 $sobv-font-size: 14px;
 $sobv-font-size-semi-lg: 18px;
 $sobv-font-size-lg: 28px;
