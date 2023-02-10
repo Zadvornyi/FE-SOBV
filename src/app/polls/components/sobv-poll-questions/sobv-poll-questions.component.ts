@@ -1,8 +1,9 @@
 import {Component} from '@angular/core';
-import {Observable} from "rxjs";
-import {Question} from "../../interfaces";
+import {Observable, Subscription, take} from "rxjs";
+import {Choice, Question} from "../../interfaces";
 import {SobvPollsService} from "../../services/sobv-polls.service";
 import {ActivatedRoute} from "@angular/router";
+
 
 @Component({
   selector: 'sobv-poll-questions',
@@ -11,6 +12,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class SobvPollQuestionsComponent {
   public questions$: Observable<Question[]> | undefined;
+  public choices: Choice[] | undefined;
 
   constructor(
     private sobvPollsService: SobvPollsService,
@@ -21,6 +23,10 @@ export class SobvPollQuestionsComponent {
     this.route.params.subscribe(params => {
         if (!params.pollId) return
         this.questions$ = this.getQuestionsByPollId(params.pollId);
+        this.getChoicesByPollId(params.pollId).pipe(take(1))
+          .subscribe((resp) => {
+            this.choices = resp;
+          });
       }
     );
 
@@ -29,4 +35,9 @@ export class SobvPollQuestionsComponent {
   public getQuestionsByPollId(pollId: number): Observable<Question[]> {
     return this.sobvPollsService.getQuestionsByPollId(pollId);
   }
+
+  public getChoicesByPollId(pollId: number): Observable<Choice[]> {
+    return this.sobvPollsService.getChoicesByPollId(pollId);
+  }
+
 }

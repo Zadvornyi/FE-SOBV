@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
+const DEFUALT_TITLE = "Оцінка МПЗ підрозділу";
 
 @Component({
   selector: 'sobv-sub-header',
@@ -6,4 +8,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./sobv-sub-header.component.scss']
 })
 export class SobvSubHeaderComponent {
+  @Input() title: string = DEFUALT_TITLE;
 }

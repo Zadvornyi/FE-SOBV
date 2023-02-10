@@ -1,22 +1,37 @@
 @import "./../../../styles/sobv.scss";
 
-.sobv-sub-header-background {
-  height: $sobv-sub-header-height;
-  background: #{$sobv-background-gradiend} ;
-}
+.sobv-sub-header {
+  min-height: $sobv-sub-header-height;
+  
+  background:#{$sobv-sub-header-background} center right 50px, #{$sobv-background-gradiend};
+  background-repeat: no-repeat;
 
-.sobv-sub-header-content {
-  height: 100%;
-
-  margin-left: 50px;
-  color: $white;
-  font-size: $sobv-font-size-h-2;
-
+  padding: 0 50px;
   display: flex;
   align-items: center;
-
-  background: #{$sobv-sub-header-background};
-  background-position: top 0 right 50px;
-  background-repeat: no-repeat;
+  justify-content: space-between;
 }
 
+.sobv-sub-header-info {
+  box-sizing: content-box;
+  color: $white;
+  font-size: $sobv-font-size;
+  font-weight: 300;
+  line-height: 20px;
+  padding: 30px 0;
+
+  h1 {
+    font-size: $sobv-font-size-lg;
+    line-height: 36px;
+    margin-bottom: 4px;
+  }
+}
+
+.sobv-sub-header-control {
+  flex: 1;
+  height: 100%;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
