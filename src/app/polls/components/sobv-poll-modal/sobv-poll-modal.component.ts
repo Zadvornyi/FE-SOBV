@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Observable, take} from "rxjs";
-import {Category, Poll} from "../../interfaces";
+import {Category} from "../../interfaces";
 import {SobvPollsService} from "../../services/sobv-polls.service";
 import {ActivatedRoute} from "@angular/router";
 
