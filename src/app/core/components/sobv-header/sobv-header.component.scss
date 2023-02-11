@@ -4,11 +4,14 @@
   background-color: #{$sobv-header-bg};
   height: #{$sobv-header-height};
   padding: #{$sobv-header-padding};
-  color: #{$sobv-color-gray-light};
   display: flex;
   align-items: center;
+  justify-content: space-between;
   .sobv-label {
+    cursor: pointer;
     font-weight: 300;
     text-transform: uppercase;
+    text-decoration: none;
+    color: #{$sobv-color-gray-light};
   }
 }
