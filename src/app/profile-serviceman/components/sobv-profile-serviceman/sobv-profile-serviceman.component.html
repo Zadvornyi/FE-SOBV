@@ -1,1 +1,19 @@
-<p>sobv-profile-serviceman works!</p>
+<sobv-sub-header [title]="'Руслан'">
+  <div info>This should be rendered in header selection of ng-content</div>
+  <div control *ngIf="categories">
+    <div ngbDropdown id="sobv-serviceman-polls-cat" class="d-inline-block" >
+      <button type="button" class="btn btn-primary" ngbDropdownToggle>
+        Оцінити МПЗ
+      </button>
+      <div ngbDropdownMenu aria-labelledby="sobv-serviceman-polls-cat">
+        <button  *ngFor="let item of categories" ngbDropdownItem>{{item.title}}</button>
+      </div>
+    </div>
+  </div>
+</sobv-sub-header>
+<div class="container">
+  <div class="row">
+    <div class="col-60">
+    </div>
+  </div>
+</div>

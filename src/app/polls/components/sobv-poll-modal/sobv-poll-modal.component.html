@@ -15,9 +15,9 @@
       </ul>
     </div>
   </div>
-      <div class="sobv-poll-desc">
-        {{categoryData.polls[0].description}}
-      </div>
+  <div class="sobv-poll-desc" *ngIf="categoryData.polls">
+    {{categoryData.polls[0].description}}
+  </div>
   <sobv-poll-questions></sobv-poll-questions>
 </div>
 
