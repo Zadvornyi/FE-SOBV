@@ -1,0 +1,11 @@
+.sobv-modal-header  {
+  padding: 0;
+
+  & > * {
+    width: 100%;
+  }
+}
+.sobv-modal-popup {
+  display: flex;
+  gap: 10px;
+}

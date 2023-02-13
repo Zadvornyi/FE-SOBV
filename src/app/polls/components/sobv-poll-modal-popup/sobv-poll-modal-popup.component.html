@@ -1,0 +1,16 @@
+<ng-template #content let-modal>
+	<div class="modal-header sobv-modal-header">
+		<sobv-header>
+			<div control class="sobv-modal-popup">
+				<button class="btn btn-secondary" (click)="modal.close('Close')">Закрити</button>
+				<button class="btn btn-secondary disabled" (click)="next()">Далі</button>
+				<button class="btn btn-primary disabled" (click)="submit()">Готово</button>
+			</div>
+		</sobv-header>
+	</div>
+	<div class="modal-body">
+		<sobv-poll-modal></sobv-poll-modal>
+	</div>
+</ng-template>
+
+<button class="btn btn-primary" (click)="open(content)">Launch demo modal</button>

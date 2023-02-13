@@ -9,6 +9,19 @@
       background: #FFF;
       margin-bottom: $sobv-margin-base/2;
     }
+
+    section > h3 {  
+      font-weight: 600;
+      margin-bottom: 30px;
+    }
+
+    .sobv-choice-elements {
+      display: inline-flex;
+    }
+    
+    .sobv-questions-choices {
+      display: flex;
+    }
   }
 
 }
