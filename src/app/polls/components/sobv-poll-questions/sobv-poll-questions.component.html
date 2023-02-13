@@ -4,14 +4,14 @@
       <section>
         <h3>{{ item.question_text }}</h3>
         <div class="row">
-          <div class="col-lg-23 col-md-23">
+          <div class="col-lg-21 col-md-17">
             <div class="sobv-choice-desc"> {{ item.description }}</div>
           </div>
-          <div class="col-lg-14 col-md-14">
+          <div class="col-lg-18 col-md-26">
             <sobv-poll-choices [choices]="choices"></sobv-poll-choices>
           </div>
-          <div class="col-lg-23 col-md-23">
-            <div class="sobv-choice-opposite-desc">{{ item.opposite_description }}</div>
+          <div class="col-lg-21 col-md-17">
+            <div class="sobv-choice-opposite-desc">{{ item.opposite_description }} </div>
           </div>
         </div>
       </section>
