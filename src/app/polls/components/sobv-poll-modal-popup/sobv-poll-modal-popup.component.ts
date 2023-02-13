@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, TemplateRef } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -10,6 +10,12 @@ export class SobvPollModalPopupComponent {
 	closeResult = '';
 
   constructor(private modalService: NgbModal) {}
+
+	next () {
+	}
+
+	submit () {
+	}
 
   open(content: any) {
 		this.modalService.open(content, { fullscreen: true }).result.then(

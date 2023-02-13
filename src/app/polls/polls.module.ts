@@ -19,7 +19,6 @@ import { SobvPollModalPopupComponent } from './components/sobv-poll-modal-popup/
     CoreModule,
   ],
   exports: [
-    SobvPollsRoutingModule
   ]
 })
 export class PollsModule {

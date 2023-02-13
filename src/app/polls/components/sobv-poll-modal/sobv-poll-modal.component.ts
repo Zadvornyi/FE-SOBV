@@ -25,7 +25,7 @@ export class SobvPollModalComponent {
         });
       }
     );
-
+    
   }
 
   public getPollsCategory(categoryId: number): Observable<Category> {

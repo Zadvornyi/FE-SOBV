@@ -1,26 +1,18 @@
 <ng-template #content let-modal>
-	<div class="modal-header m-0 p-0 w-100">
-    <sobv-header></sobv-header>
-  </div>
-	<div class="modal-body">
-		<form>
-			<div class="mb-3">
-				<label for="dateOfBirth">Date of birth</label>
-				<div class="input-group">
-					<input
-						id="dateOfBirth"
-						class="form-control"
-						placeholder="yyyy-mm-dd"
-						name="dp"
-						ngbDatepicker
-					/>
-					<button class="btn btn-outline-secondary bi bi-calendar3"  type="button"></button>
-				</div>
+	<div class="modal-header sobv-modal-header">
+		<sobv-header>
+			<div control class="sobv-modal-popup">
+				<button class="btn btn-secondary" (click)="modal.close('Close')">Закрити</button>
+				<button class="btn btn-secondary disabled" (click)="next()">Далі</button>
+				<button class="btn btn-primary disabled" (click)="submit()">Готово</button>
 			</div>
-		</form>
+		</sobv-header>
+	</div>
+	<div class="modal-body">
+		<sobv-poll-modal></sobv-poll-modal>
 	</div>
 	<div class="modal-footer">
-		<button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+		<button type="button" class="btn btn-outline-dark" >Save</button>
 	</div>
 </ng-template>
 
