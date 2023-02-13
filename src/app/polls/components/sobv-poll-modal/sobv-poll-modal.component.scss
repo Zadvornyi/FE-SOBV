@@ -1,7 +1,10 @@
 @import "../../../styles/variables";
 @import "../../../styles/mixin";
+.sobv-poll-header {
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
 .sobv-list-polls {
-  display: flex;
   > li {
     color: $sobv-color-gray-light;
     .active {
@@ -10,8 +13,10 @@
     }
     > i {
       font-size: $sobv-font-size-sm;
+      font-weight: bold;
       margin:0 $sobv-margin-base ;
       padding: 0;
+      color: $sobv-color-gray;
     }
     &:last-child {
       > i {
@@ -21,6 +26,6 @@
   }
 }
 .sobv-poll-desc {
-  padding: $sobv-padding-base/2;
+  padding: calc($sobv-padding-base / 2);
   color: $sobv-color-gray-light;
 }

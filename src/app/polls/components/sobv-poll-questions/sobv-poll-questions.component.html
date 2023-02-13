@@ -3,15 +3,15 @@
     <li *ngFor="let item of questions$ | async">
       <section>
         <h3>{{ item.question_text }}</h3>
-        <div class="row">
-          <div class="col-lg-21 col-md-17">
-            <div class="sobv-choice-desc"> {{ item.description }}</div>
+        <div class="d-flex flex-column flex-md-row">
+          <div class="flex-fill mb-3" >
+            <div class="text-md-end"> {{ item.description }} {{ lorem }}</div>
           </div>
-          <div class="col-lg-18 col-md-26">
+          <div class="flex-fill mx-3">
             <sobv-poll-choices [choices]="choices"></sobv-poll-choices>
           </div>
-          <div class="col-lg-21 col-md-17">
-            <div class="sobv-choice-opposite-desc">{{ item.opposite_description }} </div>
+          <div class="flex-fill ">
+            <div>{{ item.opposite_description }} {{ lorem }}</div>
           </div>
         </div>
       </section>
