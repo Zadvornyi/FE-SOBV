@@ -6,7 +6,7 @@
         Оцінити МПЗ
       </button>
       <div ngbDropdownMenu aria-labelledby="sobv-serviceman-polls-cat">
-        <button  *ngFor="let item of categories" ngbDropdownItem>{{item.title}}</button>
+        <button  *ngFor="let item of categories" (click)="startPoll(item)"  ngbDropdownItem>{{item.title}}</button>
       </div>
     </div>
   </div>

@@ -1,5 +1,7 @@
-import { Component, TemplateRef } from '@angular/core';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import {Component, TemplateRef, ViewChild} from '@angular/core';
+import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
+import {ActivatedRoute, Router} from "@angular/router";
+import {take} from "rxjs";
 
 @Component({
   selector: 'sobv-poll-modal-popup',
@@ -7,34 +9,36 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./sobv-poll-modal-popup.component.scss']
 })
 export class SobvPollModalPopupComponent {
-	closeResult = '';
+  @ViewChild('contentPopup') templatePopupRef!: TemplateRef<Element>;
+  private modalInstace!: NgbModalRef;
 
-  constructor(private modalService: NgbModal) {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private modalService: NgbModal) {
+  }
 
-	next () {
-	}
+  ngOnInit() {
 
-	submit () {
-	}
+  }
 
-  open(content: any) {
-		this.modalService.open(content, { fullscreen: true }).result.then(
-			(result) => {
-				this.closeResult = `Closed with: ${result}`;
-			},
-			(reason) => {
-				this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-			},
-		);
-	}
+  ngAfterViewInit() {
+    this.modalInstace = this.modalService.open(this.templatePopupRef, {fullscreen: true})
+  }
 
-  private getDismissReason(reason: any): string {
-		if (reason === ModalDismissReasons.ESC) {
-			return 'by pressing ESC';
-		} else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-			return 'by clicking on a backdrop';
-		} else {
-			return `with: ${reason}`;
-		}
-	}
+  next() {
+  }
+
+  submit() {
+  }
+
+  public closePopUp() {
+    this.route.params.subscribe(params => {
+        if (!params) return
+        this.router.navigate([`profile/serviceman/${params.id}`]);
+        this.modalInstace.close()
+      }
+    );
+  }
+
 }
