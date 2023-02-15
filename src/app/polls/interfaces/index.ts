@@ -5,6 +5,7 @@ export interface Category {
   agreement?: string;
   polls?: Poll[]
 }
+
 export interface Poll {
   id: number,
   title: string;

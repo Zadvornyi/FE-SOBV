@@ -2,15 +2,36 @@
 	<div class="modal-header sobv-modal-header">
 		<sobv-header>
 <!--      TODO: rework header without link dashboard-->
-			<div control class="sobv-modal-popup">
+			<div control class="sobv-modal-popup" *ngIf="activePollList">
 				<button class="btn btn-secondary" (click)="closePopUp()">Закрити</button>
-				<button class="btn btn-secondary disabled" (click)="next()">Далі</button>
-				<button class="btn btn-primary disabled" (click)="submit()">Готово</button>
+        <button *ngIf="activePollList.previous"  class="btn btn-secondary" (click)="back()">Назад</button>
+				<button *ngIf="activePollList.next" class="btn btn-secondary" (click)="next()">Далі</button>
+				<button *ngIf="activePollList.next === null" class="btn btn-primary disabled" (click)="submit()">Готово</button>
 			</div>
 		</sobv-header>
 	</div>
 	<div class="modal-body">
-<!--    TODO: remane to sobv-poll-body-->
-		<sobv-poll-modal></sobv-poll-modal>
+    <div class="container" *ngIf="categoryData">
+      <div class="sobv-poll-header row">
+        <div class="col-30">
+          <h1>
+            {{categoryData.title}}
+          </h1>
+          <p>Роман Романенко (Міша)</p>
+        </div>
+        <div class="col-30 d-flex align-items-center justify-content-end">
+          <ul class="sobv-list-polls">
+            <li *ngFor="let item of categoryData.polls; let first = first;">
+              <span [ngClass]="{'active': activePollList?.data.id === item.id}">{{item.title}}</span>
+              <i class="bi bi-chevron-right align-middle"></i>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="sobv-poll-desc" *ngIf="activePollList">
+        {{activePollList.data.description}}
+      </div>
+      <router-outlet></router-outlet>
+    </div>
 	</div>
 </ng-template>

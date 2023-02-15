@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {SobvProfileServicemanService} from "../../services/sobv-profile-serviceman.service";
-import {Category, Poll} from "../../../polls/interfaces";
+import {Category} from "../../../polls/interfaces";
 import {SobvPollsService} from "../../../polls/services/sobv-polls.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Observable, take} from "rxjs";
@@ -41,11 +41,8 @@ export class SobvProfileServicemanComponent implements OnInit {
     this.sobvPollsService.getPollsCategoryById(category.id).pipe(take(1)).subscribe((resp) => {
       const firstPoll = (resp.polls) ? resp.polls[0] : undefined;
       if (firstPoll) {
-        this.router.navigate([`profile/serviceman/${this.userID}/category/${category.id}/poll/${firstPoll.id}`]);
+        this.router.navigate([`profile/serviceman/${this.userID}/category/${category.id}`]);
       }
     });
-
   }
-
-
 }

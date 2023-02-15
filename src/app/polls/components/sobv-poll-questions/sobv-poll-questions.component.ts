@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Observable, Subscription, take} from "rxjs";
+import {Observable, take} from "rxjs";
 import {Choice, Question} from "../../interfaces";
 import {SobvPollsService} from "../../services/sobv-polls.service";
 import {ActivatedRoute} from "@angular/router";
@@ -13,8 +13,6 @@ import {ActivatedRoute} from "@angular/router";
 export class SobvPollQuestionsComponent {
   public questions$: Observable<Question[]> | undefined;
   public choices: Choice[] | undefined;
-
-  lorem = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro, vitae repudiandae?"
 
   constructor(
     private sobvPollsService: SobvPollsService,
