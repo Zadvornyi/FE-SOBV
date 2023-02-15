@@ -6,7 +6,7 @@
 @import "reset";
 
 body {
-  background: $sovb-body-bg;
+  background: $sobv-body-bg;
   font-family: $sobv-font-family;
   font-size: $sobv-font-size;
   color: $sobv-color-font;
@@ -14,5 +14,16 @@ body {
 
 h1 {
   font-size: calc(2 * $sobv-font-size);
-  line-height: calc ( 36px );
+  line-height: 36px;
+}
+
+h3 {
+  font-size: $sobv-font-size;
+  line-height: 20px;
+}
+
+input[type=radio] {
+    accent-color: $sobv-color-blue;
+    height: $sobv-input-radio-size;
+    width: $sobv-input-radio-size; 
 }

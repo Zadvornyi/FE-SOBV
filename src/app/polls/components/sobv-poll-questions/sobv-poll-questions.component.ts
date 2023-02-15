@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Observable, Subscription, take} from "rxjs";
+import {Observable, take} from "rxjs";
 import {Choice, Question} from "../../interfaces";
 import {SobvPollsService} from "../../services/sobv-polls.service";
 import {ActivatedRoute} from "@angular/router";

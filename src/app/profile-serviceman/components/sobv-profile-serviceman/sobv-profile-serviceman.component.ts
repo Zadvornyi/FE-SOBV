@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {SobvProfileServicemanService} from "../../services/sobv-profile-serviceman.service";
 import {Category} from "../../../polls/interfaces";
 import {SobvPollsService} from "../../../polls/services/sobv-polls.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Observable, take} from "rxjs";
 
 @Component({
@@ -12,16 +12,19 @@ import {Observable, take} from "rxjs";
 })
 export class SobvProfileServicemanComponent implements OnInit {
   public categories: Category[] | undefined;
+  public userID: string = '';
 
   constructor(
     private sobvProfileServicemanService: SobvProfileServicemanService,
     private sobvPollsService: SobvPollsService,
+    private router: Router,
     private route: ActivatedRoute) {
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
         if (!params) return
+        this.userID = params.id;
         this.getPollsCategories().pipe(take(1)).subscribe((resp) => {
           this.categories = resp
         });
@@ -34,5 +37,12 @@ export class SobvProfileServicemanComponent implements OnInit {
     return this.sobvPollsService.getPollsCategories();
   }
 
-
+  public startPoll(category: Category): void {
+    this.sobvPollsService.getPollsCategoryById(category.id).pipe(take(1)).subscribe((resp) => {
+      const firstPoll = (resp.polls) ? resp.polls[0] : undefined;
+      if (firstPoll) {
+        this.router.navigate([`profile/serviceman/${this.userID}/category/${category.id}`]);
+      }
+    });
+  }
 }

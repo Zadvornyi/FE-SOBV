@@ -3,10 +3,13 @@
 
 $sobv-questions-rate-height: 50px;
 $sobv-questions-rate-width: 50px;
+$sobv-arrow-size: 10px;
 
 .sobv-poll-choice {
+  width: 100%;
   > ul {
     display: flex;
+    justify-content: center;
     li {
       padding-bottom: $sobv-questions-rate-height;
       + li {
@@ -18,22 +21,26 @@ $sobv-questions-rate-width: 50px;
         height: $sobv-questions-rate-height;
         text-align: center;
         line-height: $sobv-questions-rate-height;
-
+        
         label {
           top: 17px;
           left: calc(50% - 10px);
+        }
+        
+        input {
+          margin-top: calc($sobv-questions-rate-height / 2 - $sobv-input-radio-size / 2);
         }
 
         .arrow {
           position: absolute;
           display: none;
           top: $sobv-questions-rate-height;
-          left: calc(50% - 11px);
-          border-top: 10px dashed;
-          border-top: 10px solid \9
+          left: calc(50% - $sobv-arrow-size);
+          border-top: $sobv-arrow-size dashed;
+          border-top: $sobv-arrow-size solid \9
         ; // IE8
-          border-right: 10px solid transparent;
-          border-left: 10px solid transparent;
+          border-right: $sobv-arrow-size solid transparent;
+          border-left: $sobv-arrow-size solid transparent;
         }
         .sobv-message {
           display: none;

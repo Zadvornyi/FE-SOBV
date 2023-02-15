@@ -1,0 +1,47 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixin";
+
+.sobv-modal-header {
+  padding: 0;
+
+  .sobv-header {
+    width: 100%;
+    
+    &-title {
+      font-weight: 300;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: #{$sobv-color-gray-light};
+    }
+  }
+}
+.sobv-list-polls {
+  display: flex;
+  > li {
+    color: $sobv-color-gray-light;
+
+    .active {
+      color: $sobv-color-blue;
+      font-weight: 600;
+    }
+
+    > i {
+      font-size: $sobv-font-size-sm;
+      font-weight: bold;
+      margin: 0 $sobv-margin-base;
+      padding: 0;
+      color: $sobv-color-gray;
+    }
+
+    &:last-child {
+      > i {
+        display: none;
+      }
+    }
+  }
+}
+
+.sobv-poll-desc {
+  padding: $sobv-padding-base / 2;
+  color: $sobv-color-gray-light;
+}
