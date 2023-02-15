@@ -6,12 +6,11 @@ import { SobvPollModalPopupComponent } from './polls/components/sobv-poll-modal-
 import {SobvProfileServicemanComponent} from "./profile-serviceman/components/sobv-profile-serviceman/sobv-profile-serviceman.component";
 import {SobvPollQuestionsComponent} from "./polls/components/sobv-poll-questions/sobv-poll-questions.component";
 //TODO: create Lazy-loading modules
-// TODO: rename id to servicemanId
 const routes: Routes = [
   {path: 'dashboard', component: SobvDashboardComponent},
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
-  {path: 'profile/serviceman/:id', component: SobvProfileServicemanComponent},
-  {path: 'profile/serviceman/:id/category/:categoryId',
+  {path: 'profile/serviceman/:servicemanId', component: SobvProfileServicemanComponent},
+  {path: 'profile/serviceman/:servicemanId/category/:categoryId',
     component: SobvPollModalPopupComponent,
     children: [
       {

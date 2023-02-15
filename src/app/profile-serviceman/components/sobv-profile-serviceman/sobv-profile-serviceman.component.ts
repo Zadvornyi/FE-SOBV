@@ -24,7 +24,7 @@ export class SobvProfileServicemanComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
         if (!params) return
-        this.userID = params.id;
+        this.userID = params.servicemanId;
         this.getPollsCategories().pipe(take(1)).subscribe((resp) => {
           this.categories = resp
         });
