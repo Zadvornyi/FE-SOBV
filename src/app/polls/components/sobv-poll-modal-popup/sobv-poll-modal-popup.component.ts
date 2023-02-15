@@ -14,9 +14,9 @@ import {SobvPollsService} from "../../services/sobv-polls.service";
 export class SobvPollModalPopupComponent {
   @ViewChild('contentPopup') templatePopupRef!: TemplateRef<Element>;
   private modalInstace!: NgbModalRef;
-  public categoryData: Category | undefined;
-  public pollList: LinkedList | undefined;
-  public activePollList: NodeList | undefined;
+  public categoryData?: Category;
+  public pollList?: LinkedList;
+  public activePollList?: NodeList;
   public params?: Params;
 
   constructor(

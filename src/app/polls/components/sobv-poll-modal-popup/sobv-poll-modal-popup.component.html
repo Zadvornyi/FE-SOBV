@@ -4,9 +4,9 @@
 <!--      TODO: rework header without link dashboard-->
 			<div control class="sobv-modal-popup" *ngIf="activePollList">
 				<button class="btn btn-secondary" (click)="closePopUp()">Закрити</button>
-        <button *ngIf="activePollList.previous"  class="btn btn-secondary" (click)="back()">Назад</button>
-				<button *ngIf="activePollList.next" class="btn btn-secondary" (click)="next()">Далі</button>
-				<button *ngIf="activePollList.next === null" class="btn btn-primary disabled" (click)="submit()">Готово</button>
+        <button *ngIf="activePollList.previous"  class="btn btn-primary" (click)="back()">Назад</button>
+				<button *ngIf="activePollList.next" class="btn btn-primary" (click)="next()">Далі</button>
+				<button *ngIf="activePollList.next === null" class="btn btn-success  disabled" (click)="submit()">Готово</button>
 			</div>
 		</sobv-header>
 	</div>
