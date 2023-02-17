@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
 import {Observable, take} from "rxjs";
-import {Choice, Question} from "../../interfaces";
+import {Choice, Question, Report} from "../../interfaces";
 import {SobvPollsService} from "../../services/sobv-polls.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Params} from "@angular/router";
 import {FormBuilder, FormGroup} from "@angular/forms";
 
 
@@ -30,16 +30,37 @@ export class SobvPollQuestionsComponent {
           .subscribe((resp) => {
             this.choices = resp;
           });
+        // TODO: create get anctive report function
+        // this.createServicemanPollReport(params).pipe(take(1))
+        //   .subscribe();
       }
     );
   }
 
-  public getQuestionsByPollId(pollId: number): Observable<Question[]> {
+
+  private getQuestionsByPollId(pollId: number): Observable<Question[]> {
     return this.sobvPollsService.getQuestionsByPollId(pollId);
   }
 
-  public getChoicesByPollId(pollId: number): Observable<Choice[]> {
+  private getChoicesByPollId(pollId: number): Observable<Choice[]> {
     return this.sobvPollsService.getChoicesByPollId(pollId);
+  }
+
+  // private getActiveServicemanReport(params: Params): Observable<Report> {
+  //   this.sobvPollsService.getServicemanReports(params.servicemanId).pipe(take(1))
+  //     .subscribe((reports) => {
+  //       reports.filter((item)=>{
+  //
+  //       })
+  //     });
+  // }
+
+  private createServicemanPollReport(params: Params): Observable<Report> {
+    const submitData = {
+      "serviceman": params.servicemanId,
+      "poll": params.pollId,
+    }
+    return this.sobvPollsService.createServicemanPollReport(params.servicemanId, submitData);
   }
 
 

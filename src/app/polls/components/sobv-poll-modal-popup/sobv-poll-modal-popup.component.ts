@@ -61,6 +61,7 @@ export class SobvPollModalPopupComponent {
   };
 
   submitReport() {
+
   }
 
   public closePopUp() {

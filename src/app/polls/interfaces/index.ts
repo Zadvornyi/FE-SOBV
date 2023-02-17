@@ -22,6 +22,16 @@ export interface Question {
   created_date: string
 }
 
+export interface Report {
+  id: string
+  serviceman: 1,
+  poll: 2,
+  health_level: number| null,
+  created_date: string,
+  update_date: string,
+  expired_date: string
+}
+
 export interface Choice {
   id: number,
   choice_text: string,
