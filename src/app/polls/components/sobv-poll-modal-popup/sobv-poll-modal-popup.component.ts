@@ -5,6 +5,7 @@ import {Observable, take} from "rxjs";
 import {LinkedList, NodeList} from "../../../core/utils/linked-list";
 import {Category, Poll} from "../../interfaces";
 import {SobvPollsService} from "../../services/sobv-polls.service";
+import {SobvPollQuestionsFormService} from "../../services/sobv-poll-questions-form.service";
 
 @Component({
   selector: 'sobv-poll-modal-popup',
@@ -23,6 +24,7 @@ export class SobvPollModalPopupComponent {
     private router: Router,
     private route: ActivatedRoute,
     private modalService: NgbModal,
+    public pollFormService: SobvPollQuestionsFormService,
     private sobvPollsService: SobvPollsService) {
   }
 
@@ -61,7 +63,7 @@ export class SobvPollModalPopupComponent {
   };
 
   submitReport() {
-
+    console.log(this.pollFormService.answersPollForm, 'form')
   }
 
   public closePopUp() {

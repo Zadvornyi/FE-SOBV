@@ -3,8 +3,8 @@ import {Observable, take} from "rxjs";
 import {Choice, Question, Report} from "../../interfaces";
 import {SobvPollsService} from "../../services/sobv-polls.service";
 import {ActivatedRoute, Params} from "@angular/router";
+import {SobvPollQuestionsFormService} from "../../services/sobv-poll-questions-form.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
-
 
 @Component({
   selector: 'sobv-poll-questions',
@@ -15,9 +15,11 @@ export class SobvPollQuestionsComponent {
   public questions$!: Observable<Question[]>;
   public choices!: Choice[]
   public answersPollForm!: FormGroup
+
   constructor(
-    private sobvPollsService: SobvPollsService,
     private formBuilder: FormBuilder,
+    public pollFormService: SobvPollQuestionsFormService,
+    private sobvPollsService: SobvPollsService,
     private route: ActivatedRoute) {
   }
 
@@ -62,8 +64,6 @@ export class SobvPollQuestionsComponent {
     }
     return this.sobvPollsService.createServicemanPollReport(params.servicemanId, submitData);
   }
-
-
 
 
 }

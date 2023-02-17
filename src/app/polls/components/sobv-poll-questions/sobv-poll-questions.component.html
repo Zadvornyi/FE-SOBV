@@ -1,5 +1,5 @@
 <div class="sobv-questions-cont">
-  <form [formGroup]="answersPollForm">
+  <form [formGroup]="pollFormService.answersPollForm">
   <ul class="sobv-questions-list">
     <li *ngFor="let item of questions$ | async">
       <section>
@@ -8,11 +8,11 @@
           <div class="flex-fill mb-3" >
             <div class="text-md-end"> {{ item.description }}</div>
           </div>
-          <div class="flex-fill mx-3">
+          <div class="flex-fill mx-3" *ngIf="choices">
             <sobv-poll-choices
               [choices]="choices"
               [question]="item"
-              [answersPollForm]="answersPollForm"
+              [answersPollForm]="pollFormService.answersPollForm"
             ></sobv-poll-choices>
           </div>
           <div class="flex-fill ">

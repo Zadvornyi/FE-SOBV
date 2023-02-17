@@ -6,6 +6,7 @@ import { CoreModule } from '../core/core.module';
 import { SobvPollModalPopupComponent } from './components/sobv-poll-modal-popup/sobv-poll-modal-popup.component';
 import {RouterModule} from "@angular/router";
 import {ReactiveFormsModule} from "@angular/forms";
+import {SobvPollQuestionsFormService} from "./services/sobv-poll-questions-form.service";
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     CoreModule,
     ReactiveFormsModule
   ],
+  providers: [SobvPollQuestionsFormService],
   exports: [
   ]
 })

@@ -7,8 +7,16 @@
 			<div control class="sobv-modal-popup" *ngIf="activePollList">
 				<button class="btn btn-secondary" (click)="closePopUp()">Закрити</button>
         <button *ngIf="activePollList.previous"  class="btn btn-primary" (click)="back()">Назад</button>
-				<button *ngIf="activePollList.next" class="btn btn-primary" (click)="next()">Далі</button>
-				<button *ngIf="activePollList.next === null" class="btn btn-success" (click)="submitReport()">Готово</button>
+				<button
+          class="btn btn-primary"
+          *ngIf="activePollList.next"
+          [disabled]="pollFormService.answersPollForm.invalid"
+          (click)="next()">Далі</button>
+				<button
+          class="btn btn-success"
+          *ngIf="activePollList.next === null"
+          [disabled]="pollFormService.answersPollForm.invalid"
+          (click)="submitReport()">Готово</button>
 			</div>
 		</sobv-header-base>
 	</div>

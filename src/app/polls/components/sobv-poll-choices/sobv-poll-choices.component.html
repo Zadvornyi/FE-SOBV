@@ -1,22 +1,20 @@
-<div class="sobv-poll-choice" *ngIf="formChoices">
-  <div *ngIf="formChoices.get('sobv-choice-{{this.question.id}}-name')?.invalid &&
-        formChoices.get('sobv-choice-{{this.question.id}}-name')?.errors &&
-        (formChoices.get('sobv-choice-{{this.question.id}}-name')?.dirty || formChoices.get('sobv-choice-{{this.question.id}}-name')?.touched)">
+<div class="sobv-poll-choice">
+  <div *ngIf="formChoices.get('sobv-choice-'+ question.id + '-name')?.invalid">
     <small class="text-danger"
-           *ngIf="formChoices.get('sobv-choice-{{this.question.id}}-name')?.hasError('required')">
-      <span>Це питання є обов'язковими</span>
+           *ngIf="formChoices.get('sobv-choice-'+ question.id + '-name')?.hasError('required')">
+      <span>Це запитання є обов'язковим</span>
     </small>
   </div>
   <ul [formGroup]="formChoices">
     <li *ngFor="let item of choices">
       <div class="sobv-radio rate-{{item.value}}">
         <input type="radio"
-               id="sobv-poll-choice-{{this.question.id}}-{{item.id}}"
-               name="sobv-choice-{{this.question.id}}-name"
+               id="sobv-poll-choice-{{question.id}}-{{item.id}}"
+               name="sobv-choice-{{question.id}}-name"
                value="{{item.value}}"
-               formControlName="sobv-choice-{{this.question.id}}-name"
+               formControlName="sobv-choice-{{question.id}}-name"
         >
-        <label for="sobv-poll-choice-{{this.question.id}}-{{item.id}}"></label>
+        <label for="sobv-poll-choice-{{question.id}}-{{item.id}}"></label>
         <span class="arrow"></span>
         <div class="sobv-message">{{item.choice_text}}</div>
       </div>
