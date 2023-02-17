@@ -1,7 +1,22 @@
 @import "../../../styles/variables";
 @import "../../../styles/mixin";
 
+.sobv-modal-header {
+  padding: 0;
+
+  .sobv-header {
+    width: 100%;
+    
+    &-title {
+      font-weight: 300;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: #{$sobv-color-gray-light};
+    }
+  }
+}
 .sobv-list-polls {
+  display: flex;
   > li {
     color: $sobv-color-gray-light;
 
