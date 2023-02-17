@@ -65,7 +65,7 @@ export class SobvPollModalPopupComponent {
   public closePopUp() {
     this.route.params.subscribe(params => {
         if (!params) return
-        this.router.navigate([`profile/serviceman/${params.id}`]);
+        this.router.navigate([`profile/serviceman/${params.servicemanId}`]);
         this.modalInstace.close()
       }
     );
@@ -74,7 +74,7 @@ export class SobvPollModalPopupComponent {
   private setPoll(pollId: any) {
     if (!pollId) return;
 
-    this.router.navigate([`profile/serviceman/${this.params?.id}/category/${this.params?.categoryId}/poll/${pollId}`]);
+    this.router.navigate([`profile/serviceman/${this.params?.servicemanId}/category/${this.params?.categoryId}/poll/${pollId}`]);
     this.activePollList = this.pollList?.findAtPath(pollId, 'data.id');
   }
 
