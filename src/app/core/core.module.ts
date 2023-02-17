@@ -6,13 +6,15 @@ import {SobvDashboardComponent} from "./components/sobv-dashboard/sobv-dashboard
 import {NgbTooltipModule} from "@ng-bootstrap/ng-bootstrap";
 import {SobvSubHeaderComponent} from './components/sobv-sub-header/sobv-sub-header.component';
 import {RouterModule} from "@angular/router";
+import { SobvHeaderBaseComponent } from './components/sobv-header-base/sobv-header-base.component';
 
 @NgModule({
   declarations: [
     SobvHeaderComponent,
     SobvPageNotFoundComponent,
     SobvDashboardComponent,
-    SobvSubHeaderComponent
+    SobvSubHeaderComponent,
+    SobvHeaderBaseComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +25,8 @@ import {RouterModule} from "@angular/router";
     SobvHeaderComponent,
     SobvPageNotFoundComponent,
     SobvDashboardComponent,
-    SobvSubHeaderComponent
+    SobvSubHeaderComponent,
+    SobvHeaderBaseComponent
   ],
   providers: [],
 })

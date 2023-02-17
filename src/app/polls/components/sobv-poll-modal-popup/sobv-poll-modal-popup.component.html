@@ -1,14 +1,16 @@
 <ng-template #contentPopup let-modal>
 	<div class="modal-header sobv-modal-header">
-		<sobv-header>
-<!--      TODO: rework header without link dashboard-->
+		<sobv-header-base class="sobv-header">
+      <span title class="sobv-header-title" >
+        Оцінка МПЗ підрозділу
+      </span>
 			<div control class="sobv-modal-popup" *ngIf="activePollList">
 				<button class="btn btn-secondary" (click)="closePopUp()">Закрити</button>
         <button *ngIf="activePollList.previous"  class="btn btn-primary" (click)="back()">Назад</button>
 				<button *ngIf="activePollList.next" class="btn btn-primary" (click)="next()">Далі</button>
 				<button *ngIf="activePollList.next === null" class="btn btn-success  disabled" (click)="submit()">Готово</button>
 			</div>
-		</sobv-header>
+		</sobv-header-base>
 	</div>
 	<div class="modal-body">
     <div class="container" *ngIf="categoryData">
