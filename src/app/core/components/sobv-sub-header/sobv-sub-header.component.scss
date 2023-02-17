@@ -3,10 +3,10 @@
 .sobv-sub-header {
   min-height: $sobv-sub-header-height;
 
-  background:#{$sobv-sub-header-background} center right 50px, #{$sobv-background-gradiend};
+  background:#{$sobv-sub-header-background} top 66% right calc($sobv-padding-base * 2) / 30% , #{$sobv-background-gradiend};
   background-repeat: no-repeat;
 
-  padding: 0 2*$sobv-padding-base;
+  padding: 0 calc(2 * $sobv-padding-base);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -17,7 +17,7 @@
   color: $white;
   font-size: $sobv-font-size;
   font-weight: 300;
-  padding: $sobv-padding-base 0;
+  padding: calc($sobv-padding-base * 1.5) 0;
   
   h1 {
     margin-bottom: 4px;
