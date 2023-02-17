@@ -44,12 +44,15 @@ $sobv-font-size-xl: 60px;
 $sobv-color-font: #414042;
 $sobv-color-gray: #878A8D;
 $sobv-color-gray-light: #B2B5B8;
+$sobv-color-light: #D8D8D8;
 $sobv-color-white: #fff;
 $sobv-color-blue: #357EEB;
 
-$sobv-background-image: url("../../../../assets/images/misc/ukraine-main.svg");
 //TODO use mixin for gradient
-$sobv-background-gradiend: linear-gradient(246.63deg, #819745 2.69%, #4C6A3D 101.82%);
+$sobv-background-image: url("../../../../assets/images/misc/ukraine-main.svg");
+$sobv-background-gradient: linear-gradient(246.63deg, #819745 2.69%, #4C6A3D 101.82%);
+$sobv-background-gradient-opacity: linear-gradient(246.63deg, rgb(129, 151, 69, 0.5) 2.69%, rgb(76, 106, 61,0.5) 101.82%);
+
 
 $sobv-height-btn: 40px;
 $sobv-width-btn: 190px;
