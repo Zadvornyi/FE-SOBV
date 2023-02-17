@@ -8,7 +8,7 @@
 				<button class="btn btn-secondary" (click)="closePopUp()">Закрити</button>
         <button *ngIf="activePollList.previous"  class="btn btn-primary" (click)="back()">Назад</button>
 				<button *ngIf="activePollList.next" class="btn btn-primary" (click)="next()">Далі</button>
-				<button *ngIf="activePollList.next === null" class="btn btn-success  disabled" (click)="submit()">Готово</button>
+				<button *ngIf="activePollList.next === null" class="btn btn-success" (click)="submitReport()">Готово</button>
 			</div>
 		</sobv-header-base>
 	</div>

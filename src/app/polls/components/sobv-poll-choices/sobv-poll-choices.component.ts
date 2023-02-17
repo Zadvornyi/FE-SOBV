@@ -18,21 +18,21 @@ export class SobvPollChoicesComponent {
 
   ngOnInit() {
     this.generateQuestionFormData()
+    console.log(this.formChoices, 'this.formChoices')
   }
 
   ngOnChanges() {
     this.changeDecector.detectChanges()
+
   }
 
   private generateQuestionFormData() {
     this.formChoices = new FormGroup({});
     this.choices.forEach((choice) => {
-      const nCtrol = {
-        name: `sobv-choice-${this.question.id}-${choice.id}`,
-        control: new FormControl(choice.value, Validators.required)
-      };
-      this.formChoices.addControl(`sobv-choice-${this.question.id}-name`, nCtrol.control);
+
+      this.formChoices.addControl(`sobv-choice-${this.question.id}-name`, new FormControl(choice.value, Validators.required));
     });
+    console.log(this.formChoices.get(`sobv-choice-${this.question.id}-name`))
     this.answersPollForm.addControl(`group-choice-${this.question.id}`, this.formChoices);
   }
 }
