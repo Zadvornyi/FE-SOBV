@@ -19,11 +19,11 @@ export class SobvPollsService {
     return this.http.get<Category>(`${GlobalConstants.API_URL}/poll/category/${categoryId}`);
   }
 
-  public getQuestionsByPollId(pollId: number): Observable<Question[]> {
+  public getQuestionsByPollId(pollId: string): Observable<Question[]> {
     return this.http.get<Question[]>(`${GlobalConstants.API_URL}/poll/${pollId}/question`);
   }
 
-  public getChoicesByPollId(pollId: number): Observable<Choice[]> {
+  public getChoicesByPollId(pollId: string): Observable<Choice[]> {
     return this.http.get<Choice[]>(`${GlobalConstants.API_URL}/poll/${pollId}/choice`);
   }
 
