@@ -70,7 +70,6 @@ export class SobvPollQuestionsComponent {
       "serviceman": servicemanId,
       "poll":pollId,
     }
-    debugger
     return this.sobvPollsService.createServicemanPollReport(servicemanId, submitData);
   }
 

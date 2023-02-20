@@ -76,7 +76,6 @@ export class SobvPollModalPopupComponent {
 
   private setPoll(pollId: any) {
     if (!pollId) return;
-    debugger
     this.router.navigate([`profile/serviceman/${this.servicemanId}/category/${this.categoryId}/poll/${pollId}`]);
 
     this.activePollList = this.pollList?.findAtPath(pollId, 'data.id');
