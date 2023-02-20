@@ -1,10 +1,10 @@
 import {Component} from '@angular/core';
-import {Observable, take} from "rxjs";
+import {mergeMap, Observable, of, take, tap} from "rxjs";
 import {Choice, Question, Report} from "../../interfaces";
 import {SobvPollsService} from "../../services/sobv-polls.service";
 import {ActivatedRoute, Params} from "@angular/router";
 import {SobvPollQuestionsFormService} from "../../services/sobv-poll-questions-form.service";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {map} from "rxjs/operators";
 
 @Component({
   selector: 'sobv-poll-questions',
@@ -13,30 +13,47 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 })
 export class SobvPollQuestionsComponent {
   public questions$!: Observable<Question[]>;
-  public choices!: Choice[]
-  public answersPollForm!: FormGroup
-
+  public choices!: Choice[];
+  public servicemanId?: string;
+  public pollId?: string;
+  public activeReport?: Report;
   constructor(
-    private formBuilder: FormBuilder,
     public pollFormService: SobvPollQuestionsFormService,
     private sobvPollsService: SobvPollsService,
     private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.answersPollForm = this.formBuilder.group({})
-    this.route.params.subscribe(params => {
-        if (!params.pollId) return
-        this.questions$ = this.getQuestionsByPollId(params.pollId);
-        this.getChoicesByPollId(params.pollId).pipe(take(1))
-          .subscribe((resp) => {
-            this.choices = resp;
-          });
-        // TODO: create get anctive report function
-        // this.createServicemanPollReport(params).pipe(take(1))
-        //   .subscribe();
-      }
-    );
+    this.servicemanId = this.route.snapshot.paramMap.get('servicemanId') as string
+    this.pollId = this.route.snapshot.paramMap.get('pollId') as string
+
+    this.sobvPollsService.getServicemanActiveReport(this.servicemanId, this.pollId).pipe(
+      mergeMap((activeReports) => {
+        if(activeReports.length) {
+          return of(activeReports[0])
+        }else {
+          return this.createServicemanPollReport(this.servicemanId as string, this.pollId as string)
+        }
+      }),
+      map(report=> {
+        this.activeReport = report as Report;
+        return this.activeReport;
+      }),
+      take(1)
+    ).subscribe();
+
+    // this.route.params.subscribe(params => {
+    //     if (!params.pollId) return
+    //     this.questions$ = this.getQuestionsByPollId(params.pollId);
+    //     this.getChoicesByPollId(params.pollId).pipe(take(1))
+    //       .subscribe((resp) => {
+    //         this.choices = resp;
+    //       });
+    //     // TODO: create get anctive report function
+    //     // this.createServicemanPollReport(params).pipe(take(1))
+    //     //   .subscribe();
+    //   }
+    // );
   }
 
 
@@ -48,21 +65,13 @@ export class SobvPollQuestionsComponent {
     return this.sobvPollsService.getChoicesByPollId(pollId);
   }
 
-  // private getActiveServicemanReport(params: Params): Observable<Report> {
-  //   this.sobvPollsService.getServicemanReports(params.servicemanId).pipe(take(1))
-  //     .subscribe((reports) => {
-  //       reports.filter((item)=>{
-  //
-  //       })
-  //     });
-  // }
-
-  private createServicemanPollReport(params: Params): Observable<Report> {
+  private createServicemanPollReport(servicemanId: string , pollId: string): Observable<Report> {
     const submitData = {
-      "serviceman": params.servicemanId,
-      "poll": params.pollId,
+      "serviceman": servicemanId,
+      "poll":pollId,
     }
-    return this.sobvPollsService.createServicemanPollReport(params.servicemanId, submitData);
+    debugger
+    return this.sobvPollsService.createServicemanPollReport(servicemanId, submitData);
   }
 
 

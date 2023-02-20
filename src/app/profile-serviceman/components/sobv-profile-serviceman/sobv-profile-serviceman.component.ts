@@ -38,7 +38,7 @@ export class SobvProfileServicemanComponent implements OnInit {
   }
 
   public startPoll(category: Category): void {
-    this.sobvPollsService.getPollsCategoryById(category.id).pipe(take(1)).subscribe((resp) => {
+    this.sobvPollsService.getPollsCategoryById(category.id as string).pipe(take(1)).subscribe((resp) => {
       const firstPoll = (resp.polls) ? resp.polls[0] : undefined;
       if (firstPoll) {
         this.router.navigate([`profile/serviceman/${this.userID}/category/${category.id}`]);

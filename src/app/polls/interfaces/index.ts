@@ -1,5 +1,5 @@
 export interface Category {
-  id: number,
+  id: string,
   title: string;
   description: string;
   agreement?: string;
@@ -26,6 +26,7 @@ export interface Report {
   id: string
   serviceman: 1,
   poll: 2,
+  category?: string,
   health_level: number| null,
   created_date: string,
   update_date: string,

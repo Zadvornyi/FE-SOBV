@@ -15,7 +15,7 @@ export class SobvPollsService {
     return this.http.get<Category[]>(`${GlobalConstants.API_URL}/poll/categories`);
   }
 
-  public getPollsCategoryById(categoryId: number): Observable<Category> {
+  public getPollsCategoryById(categoryId: string): Observable<Category> {
     return this.http.get<Category>(`${GlobalConstants.API_URL}/poll/category/${categoryId}`);
   }
 
@@ -29,6 +29,9 @@ export class SobvPollsService {
 
   public getServicemanReports(servicemanId: string): Observable<Report[]> {
     return this.http.get<Report[]>(`${GlobalConstants.API_URL}/serviceman/${servicemanId}/report`);
+  }
+  public getServicemanActiveReport(servicemanId: string, pollId:string): Observable<Report[]> {
+    return this.http.get<Report[]>(`${GlobalConstants.API_URL}/serviceman/${servicemanId}/poll/${pollId}/active/report`);
   }
   public createServicemanPollReport(servicemanId: string, data: any): Observable<any> {
     return this.http.post<Report>(`${GlobalConstants.API_URL}/serviceman/${servicemanId}/report`, data);

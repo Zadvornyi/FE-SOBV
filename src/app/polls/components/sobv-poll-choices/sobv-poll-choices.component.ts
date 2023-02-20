@@ -1,4 +1,4 @@
-import {Component, Input, ChangeDetectorRef} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {Choice, Question} from "../../interfaces";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 
@@ -13,12 +13,11 @@ export class SobvPollChoicesComponent {
   @Input() answersPollForm!: FormGroup;
   public formChoices!: FormGroup;
 
-  constructor(private changeDecector: ChangeDetectorRef) {
+  constructor() {
   }
 
   ngOnInit() {
     this.generateQuestionFormData()
-    console.log(this.formChoices, 'this.formChoices')
   }
 
   private generateQuestionFormData() {
