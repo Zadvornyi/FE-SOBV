@@ -1,5 +1,6 @@
 <ng-template #contentPopup let-modal>
 	<div class="modal-header sobv-modal-header">
+
 		<sobv-header-base class="sobv-header">
       <span title class="sobv-header-title" >
         Оцінка МПЗ підрозділу
@@ -15,7 +16,6 @@
 				<button
           class="btn btn-success"
           *ngIf="activePollList.next === null"
-          [disabled]="pollFormService.answersPollForm.invalid"
           (click)="submitReport()">Готово</button>
 			</div>
 		</sobv-header-base>

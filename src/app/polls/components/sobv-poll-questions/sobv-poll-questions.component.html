@@ -1,7 +1,7 @@
 <div class="sobv-questions-cont">
   <form [formGroup]="pollFormService.answersPollForm">
   <ul class="sobv-questions-list">
-    <li *ngFor="let item of questions$ | async">
+    <li *ngFor="let item of questions">
       <section>
         <h3>{{ item.question_text }}</h3>
         <div class="d-flex flex-column flex-md-row">

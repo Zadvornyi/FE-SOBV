@@ -62,7 +62,8 @@ export class SobvPollModalPopupComponent {
   };
 
   submitReport() {
-    console.log(this.pollFormService.answersPollForm, 'form')
+    console.log(this.pollFormService.answersPollForm)
+    console.log(this.pollFormService.answersPollForm.valid, 'valid')
   }
 
   public closePopUp() {

@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {mergeMap, Observable, of, take, tap} from "rxjs";
 import {Choice, Question, Report} from "../../interfaces";
 import {SobvPollsService} from "../../services/sobv-polls.service";
-import {ActivatedRoute, Params} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {SobvPollQuestionsFormService} from "../../services/sobv-poll-questions-form.service";
 import {map} from "rxjs/operators";
 
@@ -12,7 +12,7 @@ import {map} from "rxjs/operators";
   styleUrls: ['./sobv-poll-questions.component.scss']
 })
 export class SobvPollQuestionsComponent {
-  public questions$!: Observable<Question[]>;
+  public questions!: Question[];
   public choices!: Choice[];
   public servicemanId?: string;
   public pollId?: string;
@@ -43,7 +43,11 @@ export class SobvPollQuestionsComponent {
       take(1)
     ).subscribe();
 
-    this.questions$ = this.getQuestionsByPollId(this.pollId);
+    this.getQuestionsByPollId(this.pollId).pipe(
+      take(1)
+    ).subscribe((resp)=>{
+      this.questions = resp;
+    });
     this.getChoicesByPollId(this.pollId).pipe(take(1))
       .subscribe((resp) => {
         this.choices = resp;
