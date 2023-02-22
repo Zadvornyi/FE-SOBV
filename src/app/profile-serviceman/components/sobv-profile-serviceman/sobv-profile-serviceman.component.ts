@@ -12,7 +12,7 @@ import {Observable, take} from "rxjs";
 })
 export class SobvProfileServicemanComponent implements OnInit {
   public categories: Category[] | undefined;
-  public userID: string = '';
+  public servicemanId?: string;
 
   constructor(
     private sobvProfileServicemanService: SobvProfileServicemanService,
@@ -24,7 +24,7 @@ export class SobvProfileServicemanComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
         if (!params) return
-        this.userID = params.servicemanId;
+        this.servicemanId = params.servicemanId;
         this.getPollsCategories().pipe(take(1)).subscribe((resp) => {
           this.categories = resp
         });
@@ -41,7 +41,7 @@ export class SobvProfileServicemanComponent implements OnInit {
     this.sobvPollsService.getPollsCategoryById(category.id as string).pipe(take(1)).subscribe((resp) => {
       const firstPoll = (resp.polls) ? resp.polls[0] : undefined;
       if (firstPoll) {
-        this.router.navigate([`profile/serviceman/${this.userID}/category/${category.id}`]);
+        this.router.navigate([`profile/serviceman/${this.servicemanId}/category/${category.id}`]);
       }
     });
   }

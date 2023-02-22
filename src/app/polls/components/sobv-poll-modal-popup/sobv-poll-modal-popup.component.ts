@@ -35,6 +35,7 @@ export class SobvPollModalPopupComponent {
     this.servicemanId = this.route.snapshot.paramMap.get('servicemanId') as string
     this.categoryId = this.route.snapshot.paramMap.get('categoryId') as string
 
+
     this.getCategoryById(this.categoryId as string).pipe(
       take(1)
     ).subscribe((resp) => {
@@ -65,23 +66,25 @@ export class SobvPollModalPopupComponent {
   submitReport() {
     let submitData: Answer[] = [];
 
-    if(this.pollFormService.answersPollForm.invalid) return
+    if(this.pollFormService.answersPollForm.valid) {
+      Object.keys(this.pollFormService.answersPollForm.controls).forEach((key: string) => {
+        // Get a reference to the control using the FormGroup.get() method
+        const abstractControl = this.pollFormService.answersPollForm.get(key);
+        const questionId = key.split('group-question-choice-')[1];
+        const choiceValue = abstractControl?.value[`sobv-question-choice-${questionId}`];
 
-    Object.keys(this.pollFormService.answersPollForm.controls).forEach((key: string) => {
-      // Get a reference to the control using the FormGroup.get() method
-      const abstractControl = this.pollFormService.answersPollForm.get(key);
-      const questionId = key.split('group-question-choice-')[1];
-      const choiceValue = abstractControl?.value[`sobv-question-choice-${questionId}`];
+        let tmpAnswerData = {
+          serviceman: this.servicemanId,
+          report: this.pollFormService.activeReport?.id,
+          choice: choiceValue,
+          question: questionId
+        }
+        submitData.push(tmpAnswerData as Answer)
+      });
+      this.sobvPollsService.bulkServicemanPollAnswers(submitData).subscribe();
+    }
 
-      let tmpAnswerData = {
-        serviceman: this.servicemanId,
-        report: this.pollFormService.activeReport?.id,
-        choice: choiceValue,
-        question: questionId
-      }
-      submitData.push(tmpAnswerData as Answer)
-    });
-    console.log(submitData)
+
   }
 
   public closePopUp() {

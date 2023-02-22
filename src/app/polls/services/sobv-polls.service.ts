@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from "rxjs";
 import {GlobalConstants} from '../../core/global-constants';
-import {Choice, Question, Category, Report} from "../interfaces";
+import {Choice, Question, Category, Report, Answer} from "../interfaces";
 
 @Injectable({
   providedIn: 'root'
@@ -36,8 +36,8 @@ export class SobvPollsService {
   public createServicemanPollReport(servicemanId: string, data: any): Observable<any> {
     return this.http.post<Report>(`${GlobalConstants.API_URL}/serviceman/${servicemanId}/report`, data);
   }
-  public bulkServicemanPollAnswers(servicemanId: string, data: any): Observable<any> {
-    return this.http.post<Report>(`${GlobalConstants.API_URL}/serviceman/${servicemanId}/bulk/answers`, data);
+  public bulkServicemanPollAnswers(data: Answer[]): Observable<any> {
+    return this.http.post<Answer[]>(`${GlobalConstants.API_URL}/serviceman/bulk/answers`, data);
   }
 
 }
