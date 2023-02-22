@@ -16,7 +16,6 @@ export class SobvPollQuestionsComponent {
   public choices!: Choice[];
   public servicemanId?: string;
   public pollId?: string;
-  public activeReport?: Report;
 
   constructor(
     public pollFormService: SobvPollQuestionsFormService,
@@ -36,9 +35,8 @@ export class SobvPollQuestionsComponent {
           return this.createServicemanPollReport(this.servicemanId as string, this.pollId as string)
         }
       }),
-      map(report => {
-        this.activeReport = report as Report;
-        return this.activeReport;
+      tap(report => {
+        this.pollFormService.activeReport = report as Report;
       }),
       take(1)
     ).subscribe();

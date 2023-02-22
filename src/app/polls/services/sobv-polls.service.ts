@@ -36,4 +36,8 @@ export class SobvPollsService {
   public createServicemanPollReport(servicemanId: string, data: any): Observable<any> {
     return this.http.post<Report>(`${GlobalConstants.API_URL}/serviceman/${servicemanId}/report`, data);
   }
+  public bulkServicemanPollAnswers(servicemanId: string, data: any): Observable<any> {
+    return this.http.post<Report>(`${GlobalConstants.API_URL}/serviceman/${servicemanId}/bulk/answers`, data);
+  }
+
 }

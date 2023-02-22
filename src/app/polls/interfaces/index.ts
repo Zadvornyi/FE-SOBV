@@ -24,8 +24,8 @@ export interface Question {
 
 export interface Report {
   id: string
-  serviceman: 1,
-  poll: 2,
+  serviceman: string,
+  poll: string,
   category?: string,
   health_level: number| null,
   created_date: string,
@@ -39,4 +39,12 @@ export interface Choice {
   order: number,
   poll_id: number,
   value: number
+}
+
+export interface Answer {
+  id: string,
+  serviceman: string,
+  report: string,
+  choice: string,
+  question: string
 }

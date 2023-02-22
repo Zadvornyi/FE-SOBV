@@ -16,6 +16,7 @@
 				<button
           class="btn btn-success"
           *ngIf="activePollList.next === null"
+          [disabled]="pollFormService.answersPollForm.invalid"
           (click)="submitReport()">Готово</button>
 			</div>
 		</sobv-header-base>

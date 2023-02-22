@@ -1,7 +1,7 @@
 <div class="sobv-poll-choice">
-  <div *ngIf="formChoices.get('sobv-choice-'+ question.id + '-name')?.invalid">
+  <div *ngIf="formChoices.get('sobv-question-choice-'+ question.id)?.invalid">
     <small class="text-danger"
-           *ngIf="formChoices.get('sobv-choice-'+ question.id + '-name')?.hasError('required')">
+           *ngIf="formChoices.get('sobv-question-choice-'+ question.id)?.hasError('required')">
       <span>Це запитання є обов'язковим</span>
     </small>
   </div>
@@ -10,9 +10,9 @@
       <div class="sobv-radio rate-{{item.value}}">
         <input type="radio"
                id="sobv-poll-choice-{{question.id}}-{{item.id}}"
-               name="sobv-choice-{{question.id}}-name"
+               name="sobv-question-choice-{{question.id}}"
                value="{{item.value}}"
-               formControlName="sobv-choice-{{question.id}}-name"
+               formControlName="sobv-question-choice-{{question.id}}"
         >
         <label for="sobv-poll-choice-{{question.id}}-{{item.id}}"></label>
         <span class="arrow"></span>

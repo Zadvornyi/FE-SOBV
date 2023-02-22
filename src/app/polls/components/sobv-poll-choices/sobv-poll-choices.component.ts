@@ -23,8 +23,8 @@ export class SobvPollChoicesComponent {
   private generateQuestionFormData() {
     this.formChoices = new FormGroup({});
     this.choices.forEach((choice) => {
-      this.formChoices.addControl(`sobv-choice-${this.question.id}-name`, new FormControl('', Validators.required));
+      this.formChoices.addControl(`sobv-question-choice-${this.question.id}`, new FormControl(null, Validators.required));
     });
-    this.answersPollForm.addControl(`group-choice-${this.question.id}`, this.formChoices);
+    this.answersPollForm.addControl(`group-question-choice-${this.question.id}`, this.formChoices);
   }
 }

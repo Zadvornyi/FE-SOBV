@@ -4,9 +4,10 @@ import {ActivatedRoute, Params, Router} from "@angular/router";
 import {mergeMap, Observable, take, tap} from "rxjs";
 import {map} from "rxjs/operators"
 import {LinkedList, NodeList} from "../../../core/utils/linked-list";
-import {Category, Poll, Report} from "../../interfaces";
+import {Answer, Category, Poll, Report} from "../../interfaces";
 import {SobvPollsService} from "../../services/sobv-polls.service";
 import {SobvPollQuestionsFormService} from "../../services/sobv-poll-questions-form.service";
+import {FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'sobv-poll-modal-popup',
@@ -62,8 +63,25 @@ export class SobvPollModalPopupComponent {
   };
 
   submitReport() {
-    console.log(this.pollFormService.answersPollForm)
-    console.log(this.pollFormService.answersPollForm.valid, 'valid')
+    let submitData: Answer[] = [];
+
+    if(this.pollFormService.answersPollForm.invalid) return
+
+    Object.keys(this.pollFormService.answersPollForm.controls).forEach((key: string) => {
+      // Get a reference to the control using the FormGroup.get() method
+      const abstractControl = this.pollFormService.answersPollForm.get(key);
+      const questionId = key.split('group-question-choice-')[1];
+      const choiceValue = abstractControl?.value[`sobv-question-choice-${questionId}`];
+
+      let tmpAnswerData = {
+        serviceman: this.servicemanId,
+        report: this.pollFormService.activeReport?.id,
+        choice: choiceValue,
+        question: questionId
+      }
+      submitData.push(tmpAnswerData as Answer)
+    });
+    console.log(submitData)
   }
 
   public closePopUp() {
