@@ -2,12 +2,11 @@ import {Component, TemplateRef, ViewChild} from '@angular/core';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {mergeMap, Observable, take, tap} from "rxjs";
-import {map} from "rxjs/operators"
 import {LinkedList, NodeList} from "../../../core/utils/linked-list";
 import {Answer, Category, Poll, Report} from "../../interfaces";
 import {SobvPollsService} from "../../services/sobv-polls.service";
 import {SobvPollQuestionsFormService} from "../../services/sobv-poll-questions-form.service";
-import {FormGroup} from "@angular/forms";
+
 
 @Component({
   selector: 'sobv-poll-modal-popup',
@@ -63,6 +62,12 @@ export class SobvPollModalPopupComponent {
     this.setPoll(this.activePollList.next.data.id)
   };
 
+  finish() {
+    if (!this.activePollList?.next === null) return;
+    this.submitReport()
+    this.closePopUp()
+  };
+
   submitReport() {
     let submitData: Answer[] = [];
 
@@ -81,7 +86,13 @@ export class SobvPollModalPopupComponent {
         }
         submitData.push(tmpAnswerData as Answer)
       });
-      this.sobvPollsService.bulkServicemanPollAnswers(submitData).subscribe();
+      //TODO: add notification if there is some error when i try to submiting answers
+      this.sobvPollsService.bulkServicemanPollAnswers(submitData).pipe(
+        tap(resp=>{
+          this.closePopUp()
+        }),
+        take(1)
+      ).subscribe();
     }
 
 
