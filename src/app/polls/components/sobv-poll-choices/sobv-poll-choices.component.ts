@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {Choice, Question} from "../../interfaces";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'sobv-poll-choices',
@@ -13,7 +13,7 @@ export class SobvPollChoicesComponent {
   @Input() answersPollForm!: FormGroup;
   public formChoices!: FormGroup;
 
-  constructor() {
+  constructor(public fb: FormBuilder) {
   }
 
   ngOnInit() {
@@ -21,10 +21,9 @@ export class SobvPollChoicesComponent {
   }
 
   private generateQuestionFormData() {
-    this.formChoices = new FormGroup({});
-    this.choices.forEach((choice) => {
-      this.formChoices.addControl(`sobv-question-choice-${this.question.id}`, new FormControl(null, Validators.required));
-    });
+    const formDataObj:any = {};
+    formDataObj[`sobv-question-choice-${this.question.id}`] = [null, [Validators.required]];
+    this.formChoices = this.fb.group(formDataObj);
     this.answersPollForm.addControl(`group-question-choice-${this.question.id}`, this.formChoices);
   }
 }

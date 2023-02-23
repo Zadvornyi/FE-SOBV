@@ -26,7 +26,7 @@ export class SobvPollQuestionsComponent {
   ngOnInit() {
     this.servicemanId = this.route.snapshot.paramMap.get('servicemanId') as string
     this.pollId = this.route.snapshot.paramMap.get('pollId') as string
-
+    // TODO: fix but with router when change poll
     this.sobvPollsService.getServicemanActiveReport(this.servicemanId, this.pollId).pipe(
       mergeMap((activeReports) => {
         if (activeReports.length) {

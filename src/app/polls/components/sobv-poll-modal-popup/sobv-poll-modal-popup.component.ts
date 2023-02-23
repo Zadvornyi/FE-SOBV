@@ -72,21 +72,35 @@ export class SobvPollModalPopupComponent {
     let submitData: Answer[] = [];
 
     if(this.pollFormService.answersPollForm.valid) {
+      let sumAllValue: number = 0;
+      let count:number = 0
       Object.keys(this.pollFormService.answersPollForm.controls).forEach((key: string) => {
         // Get a reference to the control using the FormGroup.get() method
         const abstractControl = this.pollFormService.answersPollForm.get(key);
         const questionId = key.split('group-question-choice-')[1];
-        const choiceValue = abstractControl?.value[`sobv-question-choice-${questionId}`];
+        const choiceObj = abstractControl?.value[`sobv-question-choice-${questionId}`].split('/');
+        const choiceId = choiceObj[0]
+
+        sumAllValue += Number(choiceObj[1]);
+        count++;
 
         let tmpAnswerData = {
           serviceman: this.servicemanId,
           report: this.pollFormService.activeReport?.id,
-          choice: choiceValue,
+          choice: choiceId,
           question: questionId
         }
         submitData.push(tmpAnswerData as Answer)
       });
+
       //TODO: add notification if there is some error when i try to submiting answers
+      this.sobvPollsService.updateServicemanReportHealth(this.servicemanId as string,
+      {
+        report_id: this.pollFormService.activeReport?.id,
+        health_level: Math.round(sumAllValue/count)
+      }).pipe(
+        take(1)
+      ).subscribe()
       this.sobvPollsService.bulkServicemanPollAnswers(submitData).pipe(
         tap(resp=>{
           this.closePopUp()
