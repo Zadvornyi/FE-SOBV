@@ -97,7 +97,8 @@ export class SobvPollModalPopupComponent {
       this.sobvPollsService.updateServicemanReportHealth(this.servicemanId as string,
       {
         report_id: this.pollFormService.activeReport?.id,
-        health_level: Math.round(sumAllValue/count)
+        health_level: Math.round(sumAllValue/count),
+        update_date: new Date()
       }).pipe(
         take(1)
       ).subscribe()
