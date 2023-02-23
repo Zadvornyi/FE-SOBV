@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {SobvProfileServicemanService} from "../../services/sobv-profile-serviceman.service";
-import {Category} from "../../../polls/interfaces";
+import {Category, Report} from "../../../polls/interfaces";
 import {SobvPollsService} from "../../../polls/services/sobv-polls.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Observable, take} from "rxjs";
@@ -13,6 +13,8 @@ import {Observable, take} from "rxjs";
 export class SobvProfileServicemanComponent implements OnInit {
   public categories: Category[] | undefined;
   public servicemanId?: string;
+  public reportsData?: Report[]
+  public userData?: any
 
   constructor(
     private sobvProfileServicemanService: SobvProfileServicemanService,
@@ -22,19 +24,29 @@ export class SobvProfileServicemanComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-        if (!params) return
-        this.servicemanId = params.servicemanId;
-        this.getPollsCategories().pipe(take(1)).subscribe((resp) => {
-          this.categories = resp
-        });
-      }
-    );
+    this.userData = {
+      name: 'Петро',
+      current_health: 69,
+      average_health: 80,
+      response_rate: 20
+    }
+    this.servicemanId = this.route.snapshot.paramMap.get('servicemanId') as string
+    this.getPollsCategories().pipe(take(1)).subscribe((resp) => {
+      this.categories = resp
+    });
+    this.getServicemanReports(this.servicemanId).pipe(take(1)).subscribe((resp) => {
+      this.reportsData = resp
+    });
+
 
   }
 
-  public getPollsCategories(): Observable<Category[]> {
+  private getPollsCategories(): Observable<Category[]> {
     return this.sobvPollsService.getPollsCategories();
+  }
+
+  private getServicemanReports(servicemanId: string): Observable<Report[]> {
+    return this.sobvPollsService.getServicemanReports(servicemanId);
   }
 
   public startPoll(category: Category): void {
