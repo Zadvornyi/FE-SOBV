@@ -2,6 +2,7 @@ import {Component, ElementRef, Input, Renderer2, ViewChild} from '@angular/core'
 import {SobvRateScrollService} from "../../services/sobv-rate-scroll.service";
 import * as moment from 'moment'
 import {Report} from "../../../polls/interfaces";
+import {RateHealth} from "../../interfaces";
 
 @Component({
   selector: 'sobv-rate-bar',
@@ -30,9 +31,9 @@ export class SobvRateBarComponent {
   isShowCurrentDivision?: boolean;
 
   barLength!: number;
-  divisionLineData?: Array<any>;
-  ratesData?: Array<any>;
-  itemsInTimeRange?: Array<any>;
+  divisionLineData?: Array<{"left": number}>;
+  ratesData?: RateHealth[];
+  selectedRateHealth?: RateHealth;
 
   constructor(private hostElement: ElementRef, private renderer: Renderer2, private sobvRateScroll: SobvRateScrollService) {
   }
@@ -45,7 +46,6 @@ export class SobvRateBarComponent {
     this.calculateBarLineLeng()
     this.calculateDivisionline()
     this.calculatePeriodExist()
-    this.initDisabledToolTip()
     this.initRatesData()
     this.sobvRateScroll.storageRate = {};
   }
@@ -59,27 +59,14 @@ export class SobvRateBarComponent {
       this.calculateBarLineLeng()
       this.calculateDivisionline()
       this.calculatePeriodExist()
-      // this.initDisabledToolTip()
       this.initRatesData()
     }
   }
 
-  showDetails(event: Event, range: any) {
-    let result: any[] = [];
-    if (this.inputData.issues) {
-      this.inputData.issues.forEach((sobvItem: any) => {
-        if (sobvItem.start_time < range.start_time && sobvItem.end_time >= range.start_time) {
-          result.push(sobvItem)
-        } else if (sobvItem.start_time >= range.start_time && sobvItem.end_time <= range.end_time) {
-          result.push(sobvItem)
-        } else if (sobvItem.start_time < range.end_time && sobvItem.end_time >= range.end_time) {
-          result.push(sobvItem)
-        } else if (sobvItem.start_time >= range.start_time && sobvItem.end_time >= range.end_time) {
-          result.push(sobvItem)
-        }
-      })
+  showDetails(event: Event, data: RateHealth) {
+    if (data) {
+      this.selectedRateHealth = data;
     }
-    this.itemsInTimeRange = result;
   }
 
   private calculateDivisionline() {
@@ -128,7 +115,7 @@ export class SobvRateBarComponent {
 
   private initRatesData() {
     //TODO: GET from server unix date_stamp
-    let result: any[] = [];
+    let result: RateHealth[] = [];
     this.inputData.sort(function (a: Report, b: Report) {
       return moment(a.created_date).unix() - moment(b.created_date).unix();
     })
@@ -138,15 +125,15 @@ export class SobvRateBarComponent {
         startTime = moment(item.created_date).unix(),
         endTime = (this.inputData[index + 1]) ? moment(this.inputData[index + 1].created_date).unix() : moment().unix(),
         tmp = Object.assign({
+          report_id: item.id,
           health: item.health_level,
           score: score,
-          _create_date: item.created_date,
           start_time: startTime,
           end_time: endTime,
         }, this.calculateRate(startTime, endTime));
 
       item.score = score;
-      result.push(tmp);
+      result.push(tmp as RateHealth);
     })
     this.ratesData = result;
   }
@@ -157,10 +144,6 @@ export class SobvRateBarComponent {
       widthRate = (px2 - px1);
     return {'width': widthRate, 'left': px1}
   };
-
-  private initDisabledToolTip() {
-    this.isDisabledToolTip = !(this.inputData.risks || this.inputData.issues);
-  }
 
   private calculatePoint(unixTime: number) {
     let unixDelta = this.endTime - this.startTime;

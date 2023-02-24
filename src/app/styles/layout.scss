@@ -1,6 +1,33 @@
 .clearfix {
   @include clearfix
 }
+.tooltip {
+  &.top {
+    .tooltip-arrow {
+      border-top-color:$sobv-tooltip-bg;
+    }
+  }
+  &.bottom {
+    .tooltip-arrow {
+      border-bottom-color:$sobv-tooltip-bg;
+    }
+  }
+  &.left {
+    .tooltip-arrow {
+      border-left-color:$sobv-tooltip-bg;
+    }
+  }
+  &.right {
+    .tooltip-arrow {
+      border-right-color:$sobv-tooltip-bg;
+    }
+  }
+
+  .tooltip-inner {
+    background:$sobv-tooltip-bg;
+    border-radius:$sobv-tooltip-br;
+  }
+}
 //--- cursor ----
 .sobv-cursor-cp {
   cursor: pointer;

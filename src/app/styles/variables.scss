@@ -80,3 +80,6 @@ $sobvRateBlurredColorMap: (
   exist:lighten(desaturate(map-get($sobv-map-color, green), 40%), 40%),
   no-color: lighten(desaturate(map-get($sobv-map-color, grey), 10%), 30%)
 );
+// ------Tooltip -----------
+$sobv-tooltip-bg: rgba(0, 0, 0, 0.7);
+$sobv-tooltip-br: 4px;
