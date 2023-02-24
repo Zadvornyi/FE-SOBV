@@ -76,15 +76,15 @@ export class SobvRateBarComponent {
   showDetails(event: Event, range: any) {
     let result: any[] = [];
     if (this.inputData.issues) {
-      this.inputData.issues.forEach((plmItem:any) => {
-        if (plmItem.start_time < range.start_time && plmItem.end_time >= range.start_time) {
-          result.push(plmItem)
-        } else if (plmItem.start_time >= range.start_time && plmItem.end_time <= range.end_time) {
-          result.push(plmItem)
-        } else if (plmItem.start_time < range.end_time && plmItem.end_time >= range.end_time) {
-          result.push(plmItem)
-        } else if (plmItem.start_time >= range.start_time && plmItem.end_time >= range.end_time) {
-          result.push(plmItem)
+      this.inputData.issues.forEach((sobvItem:any) => {
+        if (sobvItem.start_time < range.start_time && sobvItem.end_time >= range.start_time) {
+          result.push(sobvItem)
+        } else if (sobvItem.start_time >= range.start_time && sobvItem.end_time <= range.end_time) {
+          result.push(sobvItem)
+        } else if (sobvItem.start_time < range.end_time && sobvItem.end_time >= range.end_time) {
+          result.push(sobvItem)
+        } else if (sobvItem.start_time >= range.start_time && sobvItem.end_time >= range.end_time) {
+          result.push(sobvItem)
         }
       })
     }
@@ -159,7 +159,6 @@ export class SobvRateBarComponent {
         tmp = Object.assign({
           health: item.health,
           score: score,
-          isExistPlmItems: this.isExistPlmItems(this.inputData.issues, item),
           start_time: item.start_time,
           end_time: item.end_time,
         }, this.calculateRate(item));
@@ -205,25 +204,6 @@ export class SobvRateBarComponent {
     let unixDelta = this.endTime - this.startTime;
     return ((unixTime - this.startTime) * this.barLength) / unixDelta;
   };
-
-
-  private isExistPlmItems(inputData:any[], rangeData:any) {
-    let isExistPlmItems = false;
-    if (inputData) {
-      inputData.forEach((plmItem) => {
-        if (plmItem.start_time < rangeData.start_time && plmItem.end_time >= rangeData.start_time) {
-          isExistPlmItems = true;
-        } else if (plmItem.start_time >= rangeData.start_time && plmItem.end_time <= rangeData.end_time) {
-          isExistPlmItems = true;
-        } else if (plmItem.start_time < rangeData.end_time && plmItem.end_time >= rangeData.end_time) {
-          isExistPlmItems = true;
-        } else if (plmItem.start_time >= rangeData.start_time && plmItem.end_time >= rangeData.end_time) {
-          isExistPlmItems = true;
-        }
-      })
-    }
-    return isExistPlmItems
-  }
 
   private getAllHealthIdexesByTime(inputData:any, time:number) {
     let result:any = [];

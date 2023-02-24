@@ -17,8 +17,7 @@
            *ngIf="widthPeriodFuture && widthPeriodFuture > 0"
            [ngStyle]="{'width': widthPeriodFuture + 'px', 'left': leftPeriodFuture + 'px'}">
       </div>
-      <div class="sobv-rate-rate-item score-{{item.score}}"
-           [ngClass]="{'sobv-cursor-cp': item.isExistPlmItems}"
+      <div class="sobv-rate-rate-item sobv-cursor-cp score-{{item.score}}"
            [ngStyle]="{'width': item.width + 'px', 'left': item.left + 'px'}"
            [attr.data-sobv-rate-hi]="item.health"
            (click)="item.isOpenTooltip=true; showDetails($event, item)"
