@@ -1,3 +1,12 @@
+//--- cursor ----
+.sobv-cursor-cp {
+  cursor: pointer;
+}
+
+.sobv-cursor-default {
+  cursor: default;
+}
+
 .sobv-layout-header {
   padding: $sobv-padding-base 0;
   position: sticky;
@@ -43,12 +52,7 @@
         }
         position: relative;
         padding-left: $sobv-padding-base;
-        .glicon-arrow-down, .glicon-arrow-right {
-          font-size: $sobv-font-size-sm;
-          position: absolute;
-          top: 4px;
-          left: 0;
-        }
+
       }
       .edit-title-action {
         width: 100%;
@@ -60,12 +64,6 @@
         }
         font-weight: normal;
         color: $sobv-color-gray;
-      }
-
-      [class^="glicon-"], [class*=" glicon-"] {
-        font-size: $sobv-font-size;
-        position: relative;
-        top: 1px;
       }
 
       textarea {

@@ -1,0 +1,74 @@
+@mixin sobv-logo-change-mixin($logo-size, $logo-margin-right) {
+  .sobv-logo-con-wrap {
+    .logo-con {
+      margin-right: $logo-margin-right;
+      .img-wrap {
+        width: $logo-size;
+        height: $logo-size;
+      }
+    }
+    .aside-logo {
+      width: calc(100% - (#{$logo-size} + #{$logo-margin-right}));
+    }
+  }
+}
+@mixin sobv-lineal-strip-gradient($angle, $first-strip-color, $second-strip-color, $first-strip-width, $second-strip-width) {
+  background-image: repeating-linear-gradient(
+      $angle, $first-strip-color,
+      $first-strip-color $first-strip-width,
+      $second-strip-color $first-strip-width,
+      $second-strip-color $second-strip-width);
+}
+
+@mixin sobv-rate-health-solid-color($colorMap) {
+  &.score-high {
+    background-color: #{map-get($colorMap, 'high')};
+  }
+  &.score-medium {
+    background-color: #{map-get($colorMap, 'medium')};
+  }
+  &.score-low {
+    background-color: #{map-get($colorMap, 'low')};
+  }
+  &.score-critical {
+    background-color: #{map-get($colorMap, 'critical')};
+  }
+  &.score-no-item {
+    background-color: #{map-get($colorMap, 'no-color')};
+  }
+}
+
+@mixin sobv-rate-health-strip-color($colorMap) {
+
+  &.score-high {
+    @include sobv-lineal-strip-gradient(
+        -45deg, transparent, #{map-get($colorMap, 'high')},
+        $sobv-first-strip-width,
+        $sobv-second-strip-width);
+  }
+  &.score-medium {
+    @include sobv-lineal-strip-gradient(
+        -45deg, transparent, #{map-get($colorMap, 'medium')},
+        $sobv-first-strip-width,
+        $sobv-second-strip-width);
+  }
+  &.score-low {
+    @include sobv-lineal-strip-gradient(
+        -45deg, transparent, #{map-get($colorMap, 'low')},
+        $sobv-first-strip-width,
+        $sobv-second-strip-width);
+  }
+  &.score-critical {
+    @include sobv-lineal-strip-gradient(
+        -45deg, transparent, #{map-get($colorMap, 'critical')},
+        $sobv-first-strip-width,
+        $sobv-second-strip-width);
+  }
+  &.score-no-color {
+    @include sobv-lineal-strip-gradient(
+        -45deg, transparent, #{map-get($colorMap, 'no-color')},
+        $sobv-first-strip-width,
+        $sobv-second-strip-width);
+  }
+
+}

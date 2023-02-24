@@ -29,6 +29,11 @@ $sobv-sub-header-height: 100px;
 $sobv-sub-header-background: url("../../../../assets/images/misc/pixel-ukraine.svg");
 
 $sobv-input-radio-size: 18px;
+//
+$sobv-border-radius-base: 3px;
+$sobv-input-height: 28px;
+//
+$sobv-input-border-color: #B2B5B8;
 
 // TODO remove unused font sizes
 $sobv-font-size-sm: 12px;
@@ -43,6 +48,7 @@ $sobv-color-white: #fff;
 $sobv-color-blue: #357EEB;
 
 $sobv-background-image: url("../../../../assets/images/misc/ukraine-main.svg");
+//TODO use mixin for gradient
 $sobv-background-gradiend: linear-gradient(246.63deg, #819745 2.69%, #4C6A3D 101.82%);
 
 $sobv-height-btn: 40px;

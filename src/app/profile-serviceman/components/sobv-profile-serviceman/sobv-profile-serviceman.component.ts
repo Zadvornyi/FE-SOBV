@@ -39,7 +39,8 @@ export class SobvProfileServicemanComponent implements OnInit {
     }
     //init timeline
     this.startTime = moment().subtract(6, 'month').unix();
-    this.endTime = moment().unix();
+    this.endTime = moment().add(3, 'month').unix();
+
     this.timeLine = this.sobvRateScroll.initTimeLineRate(this.startTime, this.endTime);
     debugger
     this.servicemanId = this.route.snapshot.paramMap.get('servicemanId') as string
