@@ -20,11 +20,11 @@
         class="label-header">Category</span></div>
       <div class="col-lg-20 d-none d-lg-block d-none d-lg-block">
         <span class="label-header-inline">Health Timeline</span>
-        <!--        <sobv-plm-time-line-->
-        <!--          [startTime]="startTime"-->
-        <!--          [endTime]="endTime"-->
-        <!--          [timeLine]="timeLine"-->
-        <!--        ></sobv-plm-time-line>-->
+                <sobv-time-line
+                  [startTime]="startTime"
+                  [endTime]="endTime"
+                  [timeLine]="timeLine"
+                ></sobv-time-line>
       </div>
       <div class="col-lg-4 d-none d-lg-block">
         <span class="label-header-inline sobv-health-curr-column">Health (current)</span>
@@ -100,7 +100,7 @@
                 <span class="label-bar">N/A</span>
               </div>
               <div class="col-lg-4 d-none d-lg-block"></div>
-              <div class="col-lg-4 col-md-10 col-sm-10 col-10 d-none d-md-block sobv-plm-weight">
+              <div class="col-lg-4 col-md-10 col-sm-10 col-10 d-none d-md-block">
                 <span class="label-bar">N/A</span>
               </div>
             </div>

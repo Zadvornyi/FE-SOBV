@@ -4,6 +4,9 @@ import {Category, Report} from "../../../polls/interfaces";
 import {SobvPollsService} from "../../../polls/services/sobv-polls.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Observable, take} from "rxjs";
+import {SobvRateScrollService} from "../../../core/services/sobv-rate-scroll.service";
+
+import * as moment from 'moment'
 
 @Component({
   selector: 'sobv-profile-serviceman',
@@ -11,13 +14,17 @@ import {Observable, take} from "rxjs";
   styleUrls: ['./sobv-profile-serviceman.component.scss']
 })
 export class SobvProfileServicemanComponent implements OnInit {
-  public categories: Category[] | undefined;
+  public categories?: Category[];
   public servicemanId?: string;
   public reportsData?: Report[]
+  public startTime?: number
+  public endTime?: number
+  public timeLine?: moment.Moment[]
   public userData?: any
 
   constructor(
     private sobvProfileServicemanService: SobvProfileServicemanService,
+    private sobvRateScroll: SobvRateScrollService,
     private sobvPollsService: SobvPollsService,
     private router: Router,
     private route: ActivatedRoute) {
@@ -30,6 +37,11 @@ export class SobvProfileServicemanComponent implements OnInit {
       average_health: 80,
       response_rate: 20
     }
+    //init timeline
+    this.startTime = moment().subtract(6, 'month').unix();
+    this.endTime = moment().unix();
+    this.timeLine = this.sobvRateScroll.initTimeLineRate(this.startTime, this.endTime);
+    debugger
     this.servicemanId = this.route.snapshot.paramMap.get('servicemanId') as string
     this.getPollsCategories().pipe(take(1)).subscribe((resp) => {
       this.categories = resp

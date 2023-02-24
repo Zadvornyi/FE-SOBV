@@ -1,6 +1,22 @@
 
 $sobv-font-family: "Open Sans", sans-serif, Inter, SansSerif;
 
+//TODO get all colors from map
+$sobv-map-color: (
+  white: #ffffff,
+  black: #414042,
+  lime: #8EC549,
+  green: #43BF10,
+  teal: #53BDBE,
+  blue :#499EE2,
+  violet :#8A6CC9,
+  pink: #ED6AC8,
+  red: #FF424B,
+  light-orange :#EE9F41,
+  yellow: #F2C600,
+  grey: #B2B5B8
+);
+
 $sobv-margin-base: 20px;
 $sobv-padding-base: 20px;
 $sobv-body-bg: #F5F5F5;
@@ -37,3 +53,25 @@ $sobv-cascade-level-offset-2: 10px;
 $sobv-cascade-level-offset-3: 20px;
 $sobv-cascade-level-offset-4: 30px;
 $sobv-cascade-level-offset-5: 40px;
+
+$sobv-rate-hight: 12px;
+$sobv-rate-border-radius: 10px;
+
+$sobv-first-strip-width: 3px;
+$sobv-second-strip-width: 6px;
+
+$sobvPastColorMap: (
+  high: map-get($sobv-map-color, green),
+  medium: map-get($sobv-map-color, yellow),
+  low: map-get($sobv-map-color, light-orange),
+  critical: map-get($sobv-map-color, red),
+  exist: map-get($sobv-map-color, green),
+  no-color: map-get($sobv-map-color, grey)
+);
+$sobvPastBlurredColorMap: (
+  high: lighten(desaturate(map-get($sobv-map-color, green), 30%), 40%),
+  medium: lighten(desaturate(map-get($sobv-map-color, yellow), 10%), 30%),
+  low: lighten(desaturate(map-get($sobv-map-color, light-orange), 10%), 30%),
+  exist:lighten(desaturate(map-get($sobv-map-color, green), 40%), 40%),
+  no-color: lighten(desaturate(map-get($sobv-map-color, grey), 10%), 30%)
+);
