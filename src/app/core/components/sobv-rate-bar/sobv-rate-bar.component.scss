@@ -19,7 +19,7 @@
     width: 2px;
     height: calc(100% + 10px);
     top: -5px;
-    @include sobv-rate-health-solid-color($sobvPastColorMap);
+    @include sobv-rate-health-solid-color($sobvRateColorMap);
   }
 }
 
@@ -28,35 +28,22 @@
   height: $sobv-rate-hight;
   border-radius: $sobv-rate-border-radius;
   overflow: hidden;
-  .sobv-rate-future-exist-mask {
-    height: 100%;
-    position: absolute;
-    @include sobv-lineal-strip-gradient(
-        -45deg, transparent, #{map-get($sobvPastColorMap, 'no-color')},
-        $sobv-first-strip-width,
-        $sobv-second-strip-width);
-    @include sobv-rate-health-strip-color($sobvPastColorMap);
-  }
   .sobv-rate-future-mask {
     height: 100%;
     position: absolute;
-    @include sobv-lineal-strip-gradient(
-        -45deg, transparent, #{map-get($sobvPastColorMap, 'no-color')},
+    @include sobv-rate-lineal-strip-gradient(
+        -45deg, transparent, #{map-get($sobvRateColorMap, 'no-color')},
         $sobv-first-strip-width,
         $sobv-second-strip-width);
+    @include sobv-rate-health-strip-color($sobvRateColorMap);
   }
 
   .sobv-rate-rate-item {
     position: absolute;
     height: 100%;
-    @include sobv-rate-health-solid-color($sobvPastColorMap);
+    @include sobv-rate-health-solid-color($sobvRateColorMap);
   }
 
-  .sobv-rate-period-exist {
-    background-color: #{map-get($sobvPastColorMap, 'exist')};
-    position: absolute;
-    height: 100%;
-  }
 
   .sobv-rate-rate-division {
     position: absolute;
@@ -69,26 +56,16 @@
 .blurred {
   .sobv-rate-bar {
     background-color: $sobv-body-bg;
-    .sobv-rate-period-exist {
-      background-color: map-get($sobvPastBlurredColorMap, 'exist');
-    }
     .sobv-rate-rate-item {
-      @include sobv-rate-health-solid-color($sobvPastBlurredColorMap);
+      @include sobv-rate-health-solid-color($sobvRateBlurredColorMap);
     }
 
     .sobv-rate-future-mask {
-      @include sobv-lineal-strip-gradient(
-          -45deg, transparent, #{map-get($sobvPastBlurredColorMap, 'no-color')},
+      @include sobv-rate-lineal-strip-gradient(
+          -45deg, transparent, #{map-get($sobvRateBlurredColorMap, 'no-color')},
           $sobv-first-strip-width,
           $sobv-second-strip-width);
-      @include sobv-rate-health-strip-color($sobvPastBlurredColorMap);
-    }
-    .sobv-rate-future-exist-mask {
-      @include sobv-lineal-strip-gradient(
-          -45deg, transparent, #{map-get($sobvPastBlurredColorMap, 'no-color')},
-          $sobv-first-strip-width,
-          $sobv-second-strip-width);
-      @include sobv-rate-health-strip-color($sobvPastBlurredColorMap);
+      @include sobv-rate-health-strip-color($sobvRateBlurredColorMap);
     }
   }
 }
@@ -151,12 +128,12 @@
       }
       .aside-logo {
         > li {
-          margin: $sobv-margin-base/4 0;
+          margin: calc(#{sobv-margin-base}/4) 0;
         }
       }
     }
     > li {
-      padding: $sobv-padding-base/2;
+      padding: calc(#{$sobv-padding-base}/2);
       .date {
         color: $sobv-color-gray;
       }

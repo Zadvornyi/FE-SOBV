@@ -1,6 +1,7 @@
 import {Component, ElementRef, Input, Renderer2, ViewChild} from '@angular/core';
 import {SobvRateScrollService} from "../../services/sobv-rate-scroll.service";
 import * as moment from 'moment'
+import {Report} from "../../../polls/interfaces";
 
 @Component({
   selector: 'sobv-rate-bar',
@@ -19,14 +20,9 @@ export class SobvRateBarComponent {
 
   isDisabledToolTip!: boolean;
 
-  widthPeriodExist!: number;
-  leftPeriodExist!: number;
-
   widthPeriodFuture!: number;
   leftPeriodFuture!: number;
   isFutureStartTime?: boolean;
-  widthExistPeriodFuture!: number
-  leftExistPeriodFuture!: number;
 
   currentItemRange?: any;
   currentUnixTime!: number;
@@ -42,33 +38,28 @@ export class SobvRateBarComponent {
   }
 
   ngOnInit() {
-    this.calculateBarLineLeng()
-    this.calculatePeriodExist()
-    this.calculateDivisionline()
-    this.initDisabledToolTip()
-    this.initRatesData()
     this.sobvRateScroll.storageRate = {};
   }
 
   onResize(event: UIEvent) {
     this.calculateBarLineLeng()
-    this.calculatePeriodExist()
     this.calculateDivisionline()
+    this.calculatePeriodExist()
     this.initDisabledToolTip()
     this.initRatesData()
     this.sobvRateScroll.storageRate = {};
   }
 
   ngOnChanges(changesObj: any) {
-    if (changesObj.inputData) {
+    if (changesObj.inputData.currentValue) {
       this.currentUnixTime = moment().unix();
       this.currentItemRange = this.getAllHealthIdexesByTime(this.inputData, this.currentUnixTime)[0];
-      this.isFutureStartTime = this.currentUnixTime < this.inputData.start_time;
+      this.isFutureStartTime = this.currentUnixTime < this.endTime;
 
       this.calculateBarLineLeng()
-      this.calculatePeriodExist()
       this.calculateDivisionline()
-      this.initDisabledToolTip()
+      this.calculatePeriodExist()
+      // this.initDisabledToolTip()
       this.initRatesData()
     }
   }
@@ -76,7 +67,7 @@ export class SobvRateBarComponent {
   showDetails(event: Event, range: any) {
     let result: any[] = [];
     if (this.inputData.issues) {
-      this.inputData.issues.forEach((sobvItem:any) => {
+      this.inputData.issues.forEach((sobvItem: any) => {
         if (sobvItem.start_time < range.start_time && sobvItem.end_time >= range.start_time) {
           result.push(sobvItem)
         } else if (sobvItem.start_time >= range.start_time && sobvItem.end_time <= range.end_time) {
@@ -92,7 +83,7 @@ export class SobvRateBarComponent {
   }
 
   private calculateDivisionline() {
-    if(this.timeLine ) {
+    if (this.timeLine) {
       let i = 1, len = this.timeLine?.length - 1;
 
       this.divisionLineData = [];
@@ -121,95 +112,66 @@ export class SobvRateBarComponent {
   };
 
   private calculatePeriodExist() {
-    let tmpPx1:number = (this.inputData.start_time !== null) ? this.calculatePoint(this.inputData.start_time) : 0,
-      px1:number = (tmpPx1 < 0) ? 0 : tmpPx1,
-      px2:number = this.getEndTimePoint(this.inputData.end_time) as number,
-      currentPoint: number = this.calculatePoint(this.currentUnixTime),
-      widthRate:number = (px2 - px1);
-
-    this.widthPeriodExist = widthRate;
-    this.leftPeriodExist = px1;
-
-    if(this.currentUnixTime && this.startTime && this.endTime) {
-      let futureExistPx1:number = (this.isFutureStartTime) ? this.calculatePoint(this.inputData.start_time) : this.calculatePoint(this.currentUnixTime),
-        futureExistPx2: any = (this.inputData.end_time === null || this.inputData.end_time > this.endTime) ? this.barLength : this.calculatePoint(this.inputData.end_time),
-        futureExistWidthRate = (futureExistPx2 - futureExistPx1),
-        futureWidthRate = (this.inputData.end_time === null || this.inputData.end_time > this.endTime) ? 0 :
-          this.calculatePoint(this.endTime) - futureExistPx2;
-
-      this.widthPeriodFuture = (futureWidthRate < 0) ? 0 : futureWidthRate;
-      this.leftPeriodFuture = px2;
-
-      this.widthExistPeriodFuture = (futureExistWidthRate < 0) ? 0 : futureExistWidthRate;
-      this.leftExistPeriodFuture = futureExistPx1;
+    if (this.currentUnixTime && this.startTime && this.endTime) {
+      let curentTimePoint = this.calculatePoint(this.currentUnixTime);
+      let endTimePoint: number =  (this.isFutureStartTime) ? this.calculatePoint(this.endTime): this.barLength;
+      let futureStartPoint: number = (this.isFutureStartTime) ? curentTimePoint: this.calculatePoint(this.endTime);
+      let futureWidthRate = endTimePoint - futureStartPoint;
 
       this.widthPeriodFuture = futureWidthRate;
-      this.leftPeriodFuture = futureExistPx2;
+      this.leftPeriodFuture = futureStartPoint;
 
-      this.leftCurrentPoint = currentPoint;
+      this.leftCurrentPoint = curentTimePoint;
       this.isShowCurrentDivision = this.currentUnixTime >= this.startTime && this.currentUnixTime <= this.endTime;
     }
   }
 
   private initRatesData() {
+    //TODO: GET from server unix date_stamp
     let result: any[] = [];
+    this.inputData.sort(function (a: Report, b: Report) {
+      return moment(a.created_date).unix() - moment(b.created_date).unix();
+    })
 
-    this.inputData?.health_indexes.forEach((item:any) => {
-      let score = (item.health >= 80) ? 'high' : (item.health >= 70 && item.health < 79.99) ? 'medium' : (item.health >= 60 && item.health < 69.99) ? 'low' : 'critical',
+    this.inputData?.forEach((item: any, index: number) => {
+      let score: string = (item.health_level >= 80) ? 'high' : (item.health_level >= 70 && item.health_level < 79.99) ? 'medium' : (item.health_level >= 60 && item.health_level < 69.99) ? 'low' : 'critical',
+        startTime = moment(item.created_date).unix(),
+        endTime = (this.inputData[index + 1]) ? moment(this.inputData[index + 1].created_date).unix() : moment().unix(),
         tmp = Object.assign({
-          health: item.health,
+          health: item.health_level,
           score: score,
-          start_time: item.start_time,
-          end_time: item.end_time,
-        }, this.calculateRate(item));
+          _create_date: item.created_date,
+          start_time: startTime,
+          end_time: endTime,
+        }, this.calculateRate(startTime, endTime));
 
       item.score = score;
       result.push(tmp);
     })
-
     this.ratesData = result;
   }
 
-  private calculateRate(data:any) {
-      let px1 = this.calculatePoint(data.start_time),
-        px2 = (this.currentUnixTime && data.end_time > this.currentUnixTime) ? this.calculatePoint(this.currentUnixTime) : this.calculatePoint(data.end_time),
-        widthRate = (px2 - px1);
-      return {'width': widthRate, 'left': px1}
+  private calculateRate(startTime: number, endtTime: number) {
+    let px1 = this.calculatePoint(startTime),
+      px2 = (this.currentUnixTime && endtTime > this.currentUnixTime) ? this.calculatePoint(this.currentUnixTime) : this.calculatePoint(endtTime),
+      widthRate = (px2 - px1);
+    return {'width': widthRate, 'left': px1}
   };
 
   private initDisabledToolTip() {
     this.isDisabledToolTip = !(this.inputData.risks || this.inputData.issues);
   }
 
-  private getEndTimePoint(endTime:number) {
-    let current = this.currentUnixTime,
-      currentPx = this.calculatePoint(current);
-    if (endTime === null) {
-      if (currentPx && this.barLength && currentPx < this.barLength) {
-        return currentPx;
-
-      } else {
-        return this.barLength
-      }
-    } else if (current < endTime) {
-      return currentPx
-    } else if (endTime < this.endTime) {
-      return this.calculatePoint(endTime);
-    } else {
-      return this.barLength
-    }
-  }
-
-  private calculatePoint(unixTime:number) {
+  private calculatePoint(unixTime: number) {
     let unixDelta = this.endTime - this.startTime;
     return ((unixTime - this.startTime) * this.barLength) / unixDelta;
   };
 
-  private getAllHealthIdexesByTime(inputData:any, time:number) {
-    let result:any = [];
+  private getAllHealthIdexesByTime(inputData: Report[], time: number) {
+    let result: Report[] = [];
 
-    if (inputData.health_indexes) {
-      inputData.health_indexes.forEach((item:any) => {
+    if (inputData) {
+      inputData.forEach((item: any) => {
         if (item.start_time <= time && item.end_time >= time) {
           result.push(item)
         }

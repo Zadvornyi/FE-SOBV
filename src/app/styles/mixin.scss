@@ -23,7 +23,7 @@
     }
   }
 }
-@mixin sobv-lineal-strip-gradient($angle, $first-strip-color, $second-strip-color, $first-strip-width, $second-strip-width) {
+@mixin sobv-rate-lineal-strip-gradient($angle, $first-strip-color, $second-strip-color, $first-strip-width, $second-strip-width) {
   background-image: repeating-linear-gradient(
       $angle, $first-strip-color,
       $first-strip-color $first-strip-width,
@@ -52,31 +52,31 @@
 @mixin sobv-rate-health-strip-color($colorMap) {
 
   &.score-high {
-    @include sobv-lineal-strip-gradient(
+    @include sobv-rate-lineal-strip-gradient(
         -45deg, transparent, #{map-get($colorMap, 'high')},
         $sobv-first-strip-width,
         $sobv-second-strip-width);
   }
   &.score-medium {
-    @include sobv-lineal-strip-gradient(
+    @include sobv-rate-lineal-strip-gradient(
         -45deg, transparent, #{map-get($colorMap, 'medium')},
         $sobv-first-strip-width,
         $sobv-second-strip-width);
   }
   &.score-low {
-    @include sobv-lineal-strip-gradient(
+    @include sobv-rate-lineal-strip-gradient(
         -45deg, transparent, #{map-get($colorMap, 'low')},
         $sobv-first-strip-width,
         $sobv-second-strip-width);
   }
   &.score-critical {
-    @include sobv-lineal-strip-gradient(
+    @include sobv-rate-lineal-strip-gradient(
         -45deg, transparent, #{map-get($colorMap, 'critical')},
         $sobv-first-strip-width,
         $sobv-second-strip-width);
   }
   &.score-no-color {
-    @include sobv-lineal-strip-gradient(
+    @include sobv-rate-lineal-strip-gradient(
         -45deg, transparent, #{map-get($colorMap, 'no-color')},
         $sobv-first-strip-width,
         $sobv-second-strip-width);

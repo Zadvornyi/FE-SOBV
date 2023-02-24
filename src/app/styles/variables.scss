@@ -66,15 +66,14 @@ $sobv-rate-border-radius: 10px;
 $sobv-first-strip-width: 3px;
 $sobv-second-strip-width: 6px;
 
-$sobvPastColorMap: (
+$sobvRateColorMap: (
   high: map-get($sobv-map-color, green),
   medium: map-get($sobv-map-color, yellow),
   low: map-get($sobv-map-color, light-orange),
   critical: map-get($sobv-map-color, red),
-  exist: map-get($sobv-map-color, green),
   no-color: map-get($sobv-map-color, grey)
 );
-$sobvPastBlurredColorMap: (
+$sobvRateBlurredColorMap: (
   high: lighten(desaturate(map-get($sobv-map-color, green), 30%), 40%),
   medium: lighten(desaturate(map-get($sobv-map-color, yellow), 10%), 30%),
   low: lighten(desaturate(map-get($sobv-map-color, light-orange), 10%), 30%),

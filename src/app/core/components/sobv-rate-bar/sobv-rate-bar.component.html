@@ -1,25 +1,12 @@
 <div class="sobv-rate-bar-cont">
   <div class="sobv-rate-wrap" #rateWrap>
     <div class="sobv-rate-bar">
-      <div class="sobv-rate-period-exist"
-           *ngIf="widthPeriodExist && widthPeriodExist > 0"
-           [ngStyle]="{'width': widthPeriodExist + 'px', 'left': leftPeriodExist + 'px'}">
-      </div>
-      <div class="sobv-rate-future-mask"
-           *ngIf="widthPeriodFuture && widthPeriodFuture > 0"
-           [ngStyle]="{'width': widthPeriodFuture + 'px', 'left': leftPeriodFuture + 'px'}">
-      </div>
-      <div class="sobv-rate-future-exist-mask score-{{currentItemRange.score}}"
-           *ngIf="widthExistPeriodFuture && widthExistPeriodFuture > 0"
-           [ngStyle]="{'width': widthExistPeriodFuture + 'px', 'left': leftExistPeriodFuture + 'px'}">
-      </div>
-      <div class="sobv-rate-future-mask"
+      <div class="sobv-rate-future-mask score-{{currentItemRange.score}}"
            *ngIf="widthPeriodFuture && widthPeriodFuture > 0"
            [ngStyle]="{'width': widthPeriodFuture + 'px', 'left': leftPeriodFuture + 'px'}">
       </div>
       <div class="sobv-rate-rate-item sobv-cursor-cp score-{{item.score}}"
            [ngStyle]="{'width': item.width + 'px', 'left': item.left + 'px'}"
-           [attr.data-sobv-rate-hi]="item.health"
            (click)="item.isOpenTooltip=true; showDetails($event, item)"
            [popper]="rateBarTooltip"
            [popperTrigger]="'click'"
@@ -34,11 +21,11 @@
            *ngFor="let item of divisionLineData;"></div>
     </div>
     <div class="sobv-rate-current-division score-{{currentItemRange.score}}"
-         *ngIf="isShowCurrentDivision && !isFutureStartTime"
+         *ngIf="isShowCurrentDivision && isFutureStartTime"
          [ngStyle]="{'left': leftCurrentPoint + 'px'}">
     </div>
     <div class="sobv-rate-current-division score-no-item"
-         *ngIf="isShowCurrentDivision && isFutureStartTime"
+         *ngIf="isShowCurrentDivision && !isFutureStartTime"
          [ngStyle]="{'left': leftCurrentPoint + 'px'}">
     </div>
   </div>
