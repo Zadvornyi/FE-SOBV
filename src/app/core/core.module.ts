@@ -36,11 +36,8 @@ import { SobvLimitStringPipe } from './pipes/sobv-limit-string.pipe';
     SobvDashboardComponent,
     SobvSubHeaderComponent,
     SobvHeaderBaseComponent,
-<<<<<<< HEAD
     SobvTimeLineComponent,
     SobvRateBarComponent
-=======
->>>>>>> 17252a4 ((feat) working with ngModel)
   ],
   providers: [],
 })

@@ -1,4 +1,17 @@
 import { Component } from '@angular/core';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+
+export function confirmPasswordValidator(passwordControlName: string) {
+  return (control: AbstractControl): { [key: string]: any } | null => {
+    const passwordControl = control.parent?.get(passwordControlName);
+
+    if (passwordControl?.value !== control.value) {
+      return { confirmPassword: true };
+    }
+
+    return null;
+  };
+}
 
 @Component({
   selector: 'sobv-sobv-register',
@@ -6,31 +19,38 @@ import { Component } from '@angular/core';
   styleUrls: ['./sobv-register.component.scss']
 })
 export class SobvRegisterComponent {
-  name: string = "";
-  email: string = "";
-  password: string = "";
-  rePassword: string = "";
+  form: FormGroup;
 
-  setName (name: string) {
-    this.name = name;
-  } 
-
-  setEmail(email: string) {
-    this.email = email;
+  constructor(
+    private fb: FormBuilder
+    ) {
+    this.form = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+      password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
+      confirmPassword: ['', [Validators.required,  confirmPasswordValidator('password')]],
+    });
   }
 
-  setPassword(password: string) {
-    this.password = password;
+  getControlName(): FormControl {
+    return this.form.get('name') as FormControl;
   }
 
-  setRePassword (password: string) {
-    this.password = password;
+  getControlEmail(): FormControl {
+    return this.form.get('email') as FormControl;
   }
+
+  getControlPassword (): FormControl {
+    return this.form.get('password') as FormControl;
+  }
+
+  getControlConfirmPassword (): FormControl {
+    return this.form.get('confirmPassword') as FormControl;
+  }
+
 
   onSubmit () {
-    // TODO: get correct URL, make correct login.
-    console.log(this.name, this.email, this.password, this.rePassword);
+    console.log(this.form.value);
   }
-
 } 
   

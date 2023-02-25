@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
-interface IForm {
-  email: string,
-  password: string
-}
 
 @Component({
   selector: 'sobv-login',
@@ -12,34 +9,29 @@ interface IForm {
   styleUrls: ['./sobv-login.component.scss']
 })
 export class SobvLoginComponent {
-  formData: IForm = {
-    email: "", 
-    password: ""
-  }
-  submitted = false;
+  form: FormGroup;
 
-  setEmail(email: string) {
-    this.formData.email = email;
+  constructor(
+    private fb: FormBuilder
+    ) {
+    this.form = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
+    });
   }
 
-  setPassword(password: string) {
-    this.formData.password = password;
+  getControlEmail(): FormControl {
+    return this.form.get('email') as FormControl;
   }
+
+  getControlPassword (): FormControl {
+    return this.form.get('password') as FormControl;
+  }
+
 
   onSubmit () {
-    // TODO: get correct URL, make correct login.
-    if (!this.submitted) {
-      this.submitted = true;
-    } 
-    
-    console.log(this.formData);
+    console.log(this.form.value);
   }
-
-  onChange (event: any) {
-    console.log(event.target.value);    
-  }
-
-
 } 
 
   

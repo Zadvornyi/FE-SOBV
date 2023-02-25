@@ -1,6 +1,6 @@
 @import "./../../../styles/sobv.scss";
 
-.sobv-login {
+.sobv-register {
   height: calc(100vh - $sobv-header-height);
   background: #{$sobv-background-gradient-opacity} ,#{$sobv-sub-header-background} top right/60%, #{$sobv-background-gradient};
   background-repeat: no-repeat; ;

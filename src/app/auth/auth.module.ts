@@ -5,7 +5,7 @@ import { SobvTextBoxComponent } from './components/sobv-text-box/sobv-text-box.c
 import { SobvPasswordBoxComponent } from './components/sobv-password-box/sobv-password-box.component';
 import { SobvRegisterComponent } from './components/sobv-register/sobv-register.component';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms'; 
 
 
 @NgModule({
@@ -18,7 +18,7 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule
+    ReactiveFormsModule
   ],
   exports: [
     SobvLoginComponent,
