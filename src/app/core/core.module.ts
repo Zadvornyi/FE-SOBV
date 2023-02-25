@@ -27,7 +27,8 @@ import { SobvLimitStringPipe } from './pipes/sobv-limit-string.pipe';
     CommonModule,
     RouterModule,
     NgbTooltipModule,
-    NgxPopperModule
+    NgxPopperModule,
+    CommonModule
   ],
   exports: [
     SobvHeaderComponent,
@@ -35,8 +36,11 @@ import { SobvLimitStringPipe } from './pipes/sobv-limit-string.pipe';
     SobvDashboardComponent,
     SobvSubHeaderComponent,
     SobvHeaderBaseComponent,
+<<<<<<< HEAD
     SobvTimeLineComponent,
     SobvRateBarComponent
+=======
+>>>>>>> 17252a4 ((feat) working with ngModel)
   ],
   providers: [],
 })

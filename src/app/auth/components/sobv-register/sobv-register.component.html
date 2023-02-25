@@ -1,0 +1,16 @@
+<div class="sobv-login">
+  <h1>Оцінка МПЗ підрозділу</h1>
+  <form (submit)="onSubmit()">
+    <sobv-text-box title="Прізвище та ім'я" ></sobv-text-box>
+    <sobv-text-box title="Email" ></sobv-text-box>
+    <sobv-password-box title="Пароль" ></sobv-password-box>
+    <sobv-password-box title="Повторіть пароль" ></sobv-password-box>
+
+    <!-- TODO: bind with correct route -->
+    <a class="d-block text-end mb-4">Забули пароль?</a>
+  
+    <button type="submit" class="btn btn-lg btn-primary d-block px-5 mb-4 mx-auto" >Зареєструватися</button>
+    <!-- TODO: bind with correct route -->
+    <a class="d-block text-center" [routerLink]="['/login']">Увійти</a>
+  </form>
+</div>

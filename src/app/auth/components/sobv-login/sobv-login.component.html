@@ -1,21 +1,15 @@
 <div class="sobv-login">
   <h1>Оцінка МПЗ підрозділу</h1>
-  <form>
-    <div class="sobv-text-box form-outline mb-2">
-      <label class="form-label" for="form2Example1">Email address</label>
-      <input type="email" id="form2Example1" class="form-control" />
-    </div>
+  <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+    <sobv-text-box title="Email" name="Email" [(ngModel)]="formData.email" (ngModelChange)="onChange($event)" required></sobv-text-box>
+    
+    <!-- <sobv-password-box title="Пароль"  required></sobv-password-box> -->
+    <!-- TODO: bind with correct route -->
+    <a class="d-block text-end mb-4">Забули пароль?</a>
   
-    <div class="sobv-text-box form-outline mb-2">
-      <label class="form-label" for="form2Example2">Password</label>
-      <input type="password" id="form2Example2" class="form-control" />
-      <i class="sobv-text-box-eye bi " [ngClass]="true ? 'bi-eye' : 'bi-eye-slash'" id="togglePassword" style="cursor: pointer"></i>
-    </div>
-  
-    <a href="#" class="d-block text-end mb-4">Забули пароль?</a>
-  
-    <button type="button" class="btn btn-lg btn-primary d-block px-5 mb-4 mx-auto">Увійти</button>
-  
-    <a class="d-block text-center" href="#">Зареєструватися</a>
+    <button type="submit" class="btn btn-lg btn-primary d-block px-5 mb-4 mx-auto" >Увійти</button>
+    <!-- TODO: bind with correct route -->
+
+    <a class="d-block text-center" [routerLink]="['/register']" routerLinkActive="router-link-active">Зареєструватися</a>
   </form>
 </div>
