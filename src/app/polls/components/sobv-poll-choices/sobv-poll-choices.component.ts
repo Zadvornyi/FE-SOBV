@@ -1,8 +1,6 @@
-import { Component } from '@angular/core';
-import {Observable} from "rxjs";
-import {Choice} from "../../interfaces";
-import {SobvPollsService} from "../../services/sobv-polls.service";
-import {ActivatedRoute} from "@angular/router";
+import {Component, Input} from '@angular/core';
+import {Choice, Question} from "../../interfaces";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'sobv-poll-choices',
@@ -10,23 +8,22 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./sobv-poll-choices.component.scss']
 })
 export class SobvPollChoicesComponent {
-  public choices$: Observable<Choice[]> | undefined;
+  @Input() choices!: Choice[];
+  @Input() question!: Question;
+  @Input() answersPollForm!: FormGroup;
+  public formChoices!: FormGroup;
 
-  constructor(
-    private sobvPollsService: SobvPollsService,
-    private route: ActivatedRoute) {
+  constructor(public fb: FormBuilder) {
   }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-        if (!params.pollId) return
-        this.choices$ = this.getChoicesByPollId(params.pollId);
-      }
-    );
-
+    this.generateQuestionFormData()
   }
 
-  public getChoicesByPollId(pollId: number): Observable<Choice[]> {
-    return this.sobvPollsService.getChoicesByPollId(pollId);
+  private generateQuestionFormData() {
+    const formDataObj:any = {};
+    formDataObj[`sobv-question-choice-${this.question.id}`] = [null, [Validators.required]];
+    this.formChoices = this.fb.group(formDataObj);
+    this.answersPollForm.addControl(`group-question-choice-${this.question.id}`, this.formChoices);
   }
 }

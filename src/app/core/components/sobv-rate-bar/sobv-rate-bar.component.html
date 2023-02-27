@@ -1,0 +1,61 @@
+<div class="sobv-rate-bar-cont">
+  <div class="sobv-rate-wrap" #rateWrap>
+    <div class="sobv-rate-bar">
+      <div class="sobv-rate-future-mask score-{{currentItemRange.score}}"
+           *ngIf="widthPeriodFuture && widthPeriodFuture > 0"
+           [ngStyle]="{'width': widthPeriodFuture + 'px', 'left': leftPeriodFuture + 'px'}">
+      </div>
+      <div class="sobv-rate-rate-item sobv-cursor-cp score-{{item.score}}"
+           [ngStyle]="{'width': item.width + 'px', 'left': item.left + 'px'}"
+           (click)="showDetails($event, item)"
+           [popper]="rateBarTooltip"
+           [popperTrigger]="'click'"
+           [popperPlacement]="'bottom'"
+           [popperApplyClass]="'tooltip,sobv-health-bar-tooltip'"
+           [popperApplyArrowClass]="'tooltip-arrow'"
+           *ngFor="let item of ratesData;">
+      </div>
+      <div class="sobv-rate-rate-division"
+           [ngStyle]="{'left': item.left + 'px'}"
+           *ngFor="let item of divisionLineData;"></div>
+    </div>
+    <div class="sobv-rate-current-division score-{{currentItemRange.score}}"
+         *ngIf="isShowCurrentDivision && isFutureStartTime"
+         [ngStyle]="{'left': leftCurrentPoint + 'px'}">
+    </div>
+    <div class="sobv-rate-current-division score-no-item"
+         *ngIf="isShowCurrentDivision && !isFutureStartTime"
+         [ngStyle]="{'left': leftCurrentPoint + 'px'}">
+    </div>
+  </div>
+  <popper-content #rateBarTooltip>
+    <div class="sobv-tooltip-cont" *ngIf="selectedRateHealth">
+      <ul class="sobv-items-list">
+        <li class="sobv-logo-con-wrap">
+          <div class="logo-con">
+                <span [ngClass]="{
+                'sobv-label-fill-round-red': selectedRateHealth!.score === 'high',
+                 'sobv-label-fill-round-light-orange': selectedRateHealth!.score === 'medium',
+                  'sobv-label-fill-round-yellow': selectedRateHealth!.score === 'low' }">
+                </span>
+          </div>
+          <ul class="aside-logo">
+            <li>
+              <h3><a href="" > {{selectedRateHealth!.report_id| sobvLimitString: 60:'...'}}</a></h3>
+            </li>
+            <li class="priority-{{selectedRateHealth.score}}">
+              Опис звіту
+            </li>
+            <li class="date" *ngIf="selectedRateHealth?.start_time">
+              <span>{{selectedRateHealth!.start_time * 1000|date:'dd MMM yyyy'}}</span>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <div class="clearfix"></div>
+    </div>
+  </popper-content>
+  <div class="clearfix"></div>
+</div>
+
+

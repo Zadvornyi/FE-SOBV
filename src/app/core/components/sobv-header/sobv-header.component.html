@@ -1,3 +1,4 @@
-<header class="sobv-header" role="header">
-  <span class="sobv-label">Оцінка мпз підрозділу</span>
-</header>
+<sobv-header-base>
+  <a class="sobv-title" title [routerLink]="['/']" routerLinkActive="router-link-active">Оцінка мпз підрозділу</a>
+  <ng-content control select="[control]"></ng-content>
+</sobv-header-base>

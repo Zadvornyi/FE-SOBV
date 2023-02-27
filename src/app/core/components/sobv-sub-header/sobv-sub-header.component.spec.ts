@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SobvPollModalComponent } from './sobv-poll-modal.component';
+import { SobvSubHeaderComponent } from './sobv-sub-header.component';
 
-describe('SobvPollModalComponent', () => {
-  let component: SobvPollModalComponent;
-  let fixture: ComponentFixture<SobvPollModalComponent>;
+describe('SobvSubHeaderComponent', () => {
+  let component: SobvSubHeaderComponent;
+  let fixture: ComponentFixture<SobvSubHeaderComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SobvPollModalComponent ]
+      declarations: [ SobvSubHeaderComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SobvPollModalComponent);
+    fixture = TestBed.createComponent(SobvSubHeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
