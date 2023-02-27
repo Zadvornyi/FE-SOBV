@@ -1,5 +1,9 @@
-<sobv-sub-header [title]="userData.name">
-  <div info>This should be rendered in header selection of ng-content</div>
+<sobv-sub-header [title]="getCallSign()">
+  <div info class="sobv-serviceman-info">
+    <div>{{getName()}}</div>
+    <div>{{getCompany()}}</div>
+    <div>{{getPlatoon()}}</div>
+  </div>
   <div control *ngIf="categories">
     <div ngbDropdown id="sobv-serviceman-polls-cat" class="d-inline-block">
       <button type="button" class="btn btn-primary" ngbDropdownToggle>
