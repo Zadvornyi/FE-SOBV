@@ -8,6 +8,7 @@ import {CoreModule} from "./core/core.module";
 import {ProfileServicemanModule} from "./profile-serviceman/profile-serviceman.module";
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {PollsModule} from "./polls/polls.module";
+import {NgxPopperModule} from "ngx-popper";
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import {PollsModule} from "./polls/polls.module";
     PollsModule,
     CoreModule,
     NgbModule,
+    NgxPopperModule.forRoot({})
   ],
   providers: [],
   bootstrap: [SobvComponent]

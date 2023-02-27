@@ -1,0 +1,151 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixin";
+.sobv-cascade-list {
+  .sobv-cascade-level-1 {
+    .sobv-rate-bar {
+      height: 16px;
+    }
+  }
+}
+
+.sobv-rate-wrap {
+  position: relative;
+  float: left;
+  .sobv-rate-bar {
+    background-color: $sobv-body-bg;
+  }
+  .sobv-rate-current-division {
+    position: absolute;
+    width: 2px;
+    height: calc(100% + 10px);
+    top: -5px;
+    @include sobv-rate-health-solid-color($sobvRateColorMap);
+  }
+}
+
+.sobv-rate-bar {
+  position: relative;
+  height: $sobv-rate-hight;
+  border-radius: $sobv-rate-border-radius;
+  overflow: hidden;
+  .sobv-rate-future-mask {
+    height: 100%;
+    position: absolute;
+    @include sobv-rate-lineal-strip-gradient(
+        -45deg, transparent, #{map-get($sobvRateColorMap, 'no-color')},
+        $sobv-first-strip-width,
+        $sobv-second-strip-width);
+    @include sobv-rate-health-strip-color($sobvRateColorMap);
+  }
+
+  .sobv-rate-rate-item {
+    position: absolute;
+    height: 100%;
+    @include sobv-rate-health-solid-color($sobvRateColorMap);
+  }
+
+
+  .sobv-rate-rate-division {
+    position: absolute;
+    background-color: #FFFFFF;
+    width: 1px;
+    height: 100%;
+  }
+}
+
+.blurred {
+  .sobv-rate-bar {
+    background-color: $sobv-body-bg;
+    .sobv-rate-rate-item {
+      @include sobv-rate-health-solid-color($sobvRateBlurredColorMap);
+    }
+
+    .sobv-rate-future-mask {
+      @include sobv-rate-lineal-strip-gradient(
+          -45deg, transparent, #{map-get($sobvRateBlurredColorMap, 'no-color')},
+          $sobv-first-strip-width,
+          $sobv-second-strip-width);
+      @include sobv-rate-health-strip-color($sobvRateBlurredColorMap);
+    }
+  }
+}
+
+.sobv-health-bar-tooltip {
+  &.show {
+    opacity: 1;
+  }
+  &.ngxp__container {
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    .ngxp__inner {
+      box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.2);
+    }
+    > .tooltip-arrow {
+      border-color: #FFFFFF;
+    }
+  }
+
+  //TODO: need to delete this style if keep using ngxp-popover
+  &.top {
+    .tooltip-inner {
+      box-shadow: -1px 2px 5px 0 rgba(0, 0, 0, 0.5);
+    }
+    .tooltip-arrow {
+      border-top-color: #FFFFFF;
+    }
+
+  }
+  &.bottom {
+    .tooltip-inner {
+      box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.5);
+    }
+    .tooltip-arrow {
+      border-bottom-color: #FFFFFF;
+    }
+    &.bs-tooltip-bottom-right {
+      .tooltip-arrow {
+        border-bottom-color: #FFFFFF;
+      }
+    }
+  }
+
+  .tooltip-inner, .ngxp__inner {
+    border-radius: $sobv-border-radius-base;
+    background: #FFFFFF;
+    max-width: initial;
+    width: 300px;
+    padding: 0;
+    text-align: left;
+  }
+  .sobv-items-list {
+    max-height: 300px;
+    overflow: auto;
+    @include sobv-logo-change-mixin($sobv-font-size, calc(#{$sobv-margin-base}/2));
+    .sobv-logo-con-wrap {
+      .logo-con {
+        margin-top: 5px;
+      }
+      .aside-logo {
+        > li {
+          margin: calc(#{sobv-margin-base}/4) 0;
+        }
+      }
+    }
+    > li {
+      padding: calc(#{$sobv-padding-base}/2);
+      .date {
+        color: $sobv-color-gray;
+      }
+      [class^='priority-'] {
+        span {
+          text-transform: capitalize;
+        }
+      }
+      border-bottom: 1px solid $sobv-input-border-color;
+      &:last-child, &:only-child {
+        border-bottom: none;
+      }
+    }
+  }
+}

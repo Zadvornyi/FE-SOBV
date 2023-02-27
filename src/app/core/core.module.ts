@@ -6,24 +6,37 @@ import {SobvDashboardComponent} from "./components/sobv-dashboard/sobv-dashboard
 import {NgbTooltipModule} from "@ng-bootstrap/ng-bootstrap";
 import {SobvSubHeaderComponent} from './components/sobv-sub-header/sobv-sub-header.component';
 import {RouterModule} from "@angular/router";
+import {SobvHeaderBaseComponent} from './components/sobv-header-base/sobv-header-base.component';
+import {SobvTimeLineComponent} from './components/sobv-time-line/sobv-time-line.component';
+import {SobvRateBarComponent} from "./components/sobv-rate-bar/sobv-rate-bar.component";
+import {NgxPopperModule} from "ngx-popper";
+import { SobvLimitStringPipe } from './pipes/sobv-limit-string.pipe';
 
 @NgModule({
   declarations: [
     SobvHeaderComponent,
     SobvPageNotFoundComponent,
     SobvDashboardComponent,
-    SobvSubHeaderComponent
+    SobvSubHeaderComponent,
+    SobvHeaderBaseComponent,
+    SobvTimeLineComponent,
+    SobvRateBarComponent,
+    SobvLimitStringPipe
   ],
   imports: [
     CommonModule,
     RouterModule,
-    NgbTooltipModule
+    NgbTooltipModule,
+    NgxPopperModule
   ],
   exports: [
     SobvHeaderComponent,
     SobvPageNotFoundComponent,
     SobvDashboardComponent,
-    SobvSubHeaderComponent
+    SobvSubHeaderComponent,
+    SobvHeaderBaseComponent,
+    SobvTimeLineComponent,
+    SobvRateBarComponent
   ],
   providers: [],
 })

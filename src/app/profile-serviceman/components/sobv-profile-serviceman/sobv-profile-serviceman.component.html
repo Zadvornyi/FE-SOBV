@@ -1,19 +1,106 @@
-<sobv-sub-header class="sobv-profile" [title]="'Руслан'">
-  <div class="sobv-profile-info" info>This should be rendered in header selection of ng-content</div>
+<sobv-sub-header [title]="userData.name">
+  <div info>This should be rendered in header selection of ng-content</div>
   <div control *ngIf="categories">
-    <div ngbDropdown id="sobv-serviceman-polls-cat" class="d-inline-block" >
+    <div ngbDropdown id="sobv-serviceman-polls-cat" class="d-inline-block">
       <button type="button" class="btn btn-primary" ngbDropdownToggle>
         Оцінити МПЗ
       </button>
       <div ngbDropdownMenu aria-labelledby="sobv-serviceman-polls-cat">
-        <button  *ngFor="let item of categories" (click)="startPoll(item)"  ngbDropdownItem>{{item.title}}</button>
+        <button *ngFor="let item of categories" (click)="startPoll(item)" ngbDropdownItem>{{item.title}}</button>
       </div>
     </div>
   </div>
 </sobv-sub-header>
-<div class="container">
-  <div class="row">
-    <div class="col-60">
+<section class="container sobv-health-cont" *ngIf="userData">
+  <div class="sobv-layout-header">
+    <div class="row">
+      <div class="col-lg-10 col-md-40 col-sm-45 col-45"><span class="label-header sobv-half-pl">Project</span>
+      </div>
+      <div class="col-lg-12 col-md-25 col-sm-25 col-30 d-none d-lg-block"><span
+        class="label-header">Category</span></div>
+      <div class="col-lg-20 d-none d-lg-block d-none d-lg-block">
+        <span class="label-header-inline">Health Timeline</span>
+                <sobv-time-line
+                  [startTime]="startTime"
+                  [endTime]="endTime"
+                  [timeLine]="timeLine"
+                ></sobv-time-line>
+      </div>
+      <div class="col-lg-4 d-none d-lg-block">
+        <span class="label-header-inline sobv-health-curr-column">Health (current)</span>
+      </div>
+      <div class="col-lg-4 col-md-10 col-sm-10 offset-lg-2 col-10">
+        <span class="label-header-inline">Health</span>
+      </div>
+      <div class="col-lg-4 d-none d-lg-block">
+        <span class="label-header-inline">Response rate</span>
+      </div>
+      <div class="col-lg-4 col-md-10 col-sm-10 col-10 d-none d-md-block">
+        <span class="label-header-inline">Weight</span>
+      </div>
     </div>
   </div>
-</div>
+  <ul class="sobv-cascade-list">
+    <li>
+      <div class="main-info sobv-cascade-level-1 blurred">
+        <div class="row">
+          <div class="col-lg-22 col-md-15 col-sm-45 col-45">
+            <i class="bi bi-chevron-down"></i>
+            <span class="title">{{userData.name}}</span>
+          </div>
+          <div class="col-lg-20 d-none d-lg-block d-none d-lg-block ">
+                        <sobv-rate-bar
+                          *ngIf="userData"
+                          [startTime]="startTime"
+                          [endTime]="endTime"
+                          [inputData]="reportsData"
+                          [timeLine]="timeLine"
+                        >
+                        </sobv-rate-bar>
+          </div>
+          <div class="col-lg-4 d-none d-lg-block">
+            <span class="label-bar sobv-health-curr-column"
+                  *ngIf="userData?.current_health !== null">{{userData.current_health}}%</span>
+            <span *ngIf="userData.current_health === null"
+                  class="label-bar sobv-health-curr-column">N/A</span>
+          </div>
+          <div class="col-lg-4 col-md-10 offset-md-25 col-sm-10 offset-lg-2 col-10">
+            <span class="label-bar" *ngIf="userData.average_health">{{userData.average_health}}%</span>
+          </div>
+          <div class="col-lg-4 d-none d-lg-block">
+            <span *ngIf="userData.response_rate !== null" class="label-bar">{{userData.response_rate}}%</span>
+            <span *ngIf="userData.response_rate === null" class="label-bar">N/A</span>
+          </div>
+          <div class="col-lg-4 col-md-10 col-sm-10 col-10"></div>
+        </div>
+      </div>
+      <ul class="sobv-cascade-list">
+        <li *ngFor="let report of reportsData">
+          <div class="main-info sobv-cascade-level-2 blurred">
+            <div class="hidden-row-hover"></div>
+            <div class="row">
+              <div class="col-lg-22 col-md-40 col-45">
+                                    <span class="title-action sobv-cursor-cp">
+                                      <span>{{report.poll}}</span>
+                                    </span>
+              </div>
+              <div class="col-lg-20 d-none d-lg-block d-none d-lg-block">
+
+              </div>
+              <div class="col-lg-4 d-none d-lg-block">
+                <span class="label-bar sobv-health-curr-column">N/A</span>
+              </div>
+              <div class="col-lg-4 col-md-10 col-sm-10 offset-lg-2 col-10">
+                <span class="label-bar">N/A</span>
+              </div>
+              <div class="col-lg-4 d-none d-lg-block"></div>
+              <div class="col-lg-4 col-md-10 col-sm-10 col-10 d-none d-md-block">
+                <span class="label-bar">N/A</span>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</section>
