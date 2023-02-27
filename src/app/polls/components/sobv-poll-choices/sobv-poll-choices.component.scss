@@ -1,0 +1,128 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixin";
+
+$sobv-questions-rate-height: 50px;
+$sobv-questions-rate-width: 50px;
+$sobv-arrow-size: 10px;
+
+.sobv-poll-choice {
+  width: 100%;
+  > ul {
+    display: flex;
+    justify-content: center;
+    li {
+      padding-bottom: $sobv-questions-rate-height;
+      + li {
+        margin-left: 2px;
+      }
+      .sobv-radio {
+        position: relative;
+        width: $sobv-questions-rate-width;
+        height: $sobv-questions-rate-height;
+        text-align: center;
+        line-height: $sobv-questions-rate-height;
+        
+        label {
+          top: 17px;
+          left: calc(50% - 10px);
+        }
+        
+        input {
+          margin-top: calc($sobv-questions-rate-height / 2 - $sobv-input-radio-size / 2);
+        }
+
+        .arrow {
+          position: absolute;
+          display: none;
+          top: $sobv-questions-rate-height;
+          left: calc(50% - $sobv-arrow-size);
+          border-top: $sobv-arrow-size dashed;
+          border-top: $sobv-arrow-size solid \9
+        ; // IE8
+          border-right: $sobv-arrow-size solid transparent;
+          border-left: $sobv-arrow-size solid transparent;
+        }
+        .sobv-message {
+          display: none;
+          white-space: nowrap;
+          font-size: $sobv-font-size-sm;
+          color: $sobv-color-gray;
+          min-width: $sobv-questions-rate-width;
+          text-align: center;
+        }
+
+        @for $i from 1 through 100 {
+          @if $i <= 15 {
+            &.rate-#{$i} {
+              background-color: rgba(247, 56, 79, 0.5);
+
+              .arrow {
+                border-top-color: rgba(247, 56, 79, 0.5);
+              }
+            }
+          } @else if ($i > 15 and $i <= 32) {
+            &.rate-#{$i} {
+              background-color: rgba(247, 56, 79, 0.3);
+
+              .arrow {
+                border-top-color: rgba(247, 56, 79, 0.3);
+              }
+            }
+          } @else if ($i > 32 and $i <= 49) {
+            &.rate-#{$i} {
+              background-color: rgba(238, 159, 65, 0.5);
+
+              .arrow {
+                border-top-color: rgba(238, 159, 65, 0.5);
+              }
+            }
+          } @else if $i > 49 and $i <= 65 {
+            &.rate-#{$i} {
+              background-color: rgba(242, 198, 0, 0.3);
+
+              .arrow {
+                border-top-color: rgba(242, 198, 0, 0.3);
+              }
+            }
+          } @else if $i > 65 and $i <= 80 {
+            &.rate-#{$i} {
+              background-color: rgba(67, 191, 16, 0.3);
+
+              .arrow {
+                border-top-color: rgba(67, 191, 16, 0.3);
+              }
+            }
+          } @else if $i > 80 and $i <= 95 {
+            &.rate-#{$i} {
+              background-color: rgba(67, 191, 16, 0.7);
+
+              .arrow {
+                border-top-color: rgba(67, 191, 16, 0.7);
+              }
+            }
+          } @else if $i > 95 and $i <= 100 {
+            &.rate-#{$i} {
+              background-color: rgba(67, 191, 16, 1);
+
+              .arrow {
+                border-top-color: rgba(67, 191, 16, 1);
+              }
+            }
+          }
+        }
+
+        input[type=radio] {
+          &:checked {
+            ~ .arrow {
+              display: inline;
+            }
+            ~ .sobv-message {
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+
+}

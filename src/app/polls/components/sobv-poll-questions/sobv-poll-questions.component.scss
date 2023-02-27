@@ -1,0 +1,30 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixin";
+
+
+.sobv-questions-cont {
+  .sobv-questions-list {
+    > li {
+      padding: $sobv-padding-base;
+      background: #FFF;
+      margin-bottom: $sobv-margin-base/2;
+    }
+
+    section > h3 {  
+      font-weight: 600;
+      margin-bottom: 30px;
+    }
+
+    .sobv-choice-elements {
+      display: inline-flex;
+    }
+    
+    .sobv-questions-choices {
+      display: flex;
+    }
+  }
+
+}
+
+
+

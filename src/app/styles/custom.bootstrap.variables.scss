@@ -1,3 +1,5 @@
+@import "./variables.scss";
+
 $grid-columns: 60; //customize grid system for bootstrap
 
 $min-contrast-ratio: 3; //to customize color of the button. color: color-contrast($background);
@@ -5,12 +7,13 @@ $primary: $sobv-color-primary;
 $secondary: $sobv-color-secondary;
 
 $font-family: #{$sobv-font-family};
+
 $btn-line-height: 16px;
 $btn-font-size: 12px;
-
 $btn-padding-x: 21px;
 $border-radius: 2px;
 $btn-disabled-opacity: .5;
 
-$modal-md: 620px;
-$modal-inner-padding:  30px;
+$input-btn-padding-y-lg: 11px;
+$input-btn-font-size-lg: #{$btn-font-size};
+$border-radius-lg: 6px;

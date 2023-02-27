@@ -1,14 +1,9 @@
 @import "../../../styles/variables.scss";
 
-.sobv-header {
-  background-color: #{$sobv-color-dark-gray};
-  height: #{$sobv-height-header};
-  padding: #{$sobv-padding-header};
+.sobv-title {
+  cursor: pointer;
+  font-weight: 300;
+  text-transform: uppercase;
+  text-decoration: none;
   color: #{$sobv-color-gray-light};
-  display: flex;
-  align-items: center;
-  .sobv-label {
-    font-weight: 300;
-    text-transform: uppercase;
-  }
 }

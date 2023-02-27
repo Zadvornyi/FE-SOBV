@@ -1,0 +1,263 @@
+.clearfix {
+  @include clearfix
+}
+.tooltip {
+  &.top {
+    .tooltip-arrow {
+      border-top-color:$sobv-tooltip-bg;
+    }
+  }
+  &.bottom {
+    .tooltip-arrow {
+      border-bottom-color:$sobv-tooltip-bg;
+    }
+  }
+  &.left {
+    .tooltip-arrow {
+      border-left-color:$sobv-tooltip-bg;
+    }
+  }
+  &.right {
+    .tooltip-arrow {
+      border-right-color:$sobv-tooltip-bg;
+    }
+  }
+
+  .tooltip-inner {
+    background:$sobv-tooltip-bg;
+    border-radius:$sobv-tooltip-br;
+  }
+}
+//--- cursor ----
+.sobv-cursor-cp {
+  cursor: pointer;
+}
+
+.sobv-cursor-default {
+  cursor: default;
+}
+
+.sobv-layout-header {
+  padding: $sobv-padding-base 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: $sobv-body-bg;
+  .label-header {
+    display: block;
+    font-size: $sobv-font-size-sm;
+  }
+  .label-header-inline {
+    &.sobv-health-curr-column {
+      padding-left: $sobv-padding-base;
+    }
+    color: $sobv-color-gray;
+    display: inline-block;
+    font-size: $sobv-font-size-sm;
+  }
+  .sobv-layout-header-label-list {
+    margin: 0 0 0 calc(#{$sobv-margin-base}/2);
+    .label-header {
+      display: inline;
+      color: $sobv-color-gray;
+      font-size: $sobv-font-size-sm;
+    }
+  }
+}
+/* ---.sobv-cascade-list ---*/
+.sobv-cascade-list {
+  > li {
+    > .main-info {
+      background-color: #FBFCFC;
+      padding: calc(#{$sobv-padding-base}/2) 0;
+      margin-bottom: 1px;
+      .title, .title-action {
+        color: $sobv-color-gray;
+        display: inline-block;
+      }
+      .title-action {
+        [class*="sobv-label-"] {
+          margin-left: -7px;
+          margin-right: 3px;
+        }
+        position: relative;
+        padding-left: $sobv-padding-base;
+
+      }
+      .edit-title-action {
+        width: 100%;
+      }
+
+      .label-bar {
+        &.sobv-health-curr-column {
+          padding-left: $sobv-padding-base;
+        }
+        font-weight: normal;
+        color: $sobv-color-gray;
+      }
+
+      textarea {
+        min-height: 80px;
+        resize: none;
+      }
+      &.blurred {
+        .title, .title-action {
+          font-weight: 600;
+        }
+      }
+    }
+  }
+  .sobv-cascade-level-1 {
+    &.main-info {
+      background-color: #FFFFFF;
+      padding: 0.75*$sobv-padding-base 0;
+      position: relative;
+      .title {
+        padding-left: calc(#{$sobv-padding-base}/2);
+      }
+      &:hover {
+        box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
+      }
+    }
+
+    .action-wrap {
+      .action-icon-list {
+        padding-right: $sobv-padding-base;
+      }
+    }
+  }
+
+  .sobv-cascade-level-2 {
+    &.main-info {
+      background: linear-gradient(to right, transparent, transparent $sobv-cascade-level-offset-2, #FBFCFC $sobv-cascade-level-offset-2, #FBFCFC calc(100% - #{$sobv-cascade-level-offset-2}), transparent calc(100% - #{$sobv-cascade-level-offset-2}), transparent);
+      position: relative;
+      .title-action {
+        margin-left: calc(#{$sobv-cascade-level-offset-2} + #{$sobv-margin-base}/2);
+      }
+      .hidden-row-hover {
+        width: calc(100% - 2 * #{$sobv-cascade-level-offset-2});
+        height: 100%;
+        box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
+        margin-left: $sobv-cascade-level-offset-2;
+        margin-right: $sobv-cascade-level-offset-2;
+        display: none;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+      &:hover {
+        .hidden-row-hover {
+          display: block;
+        }
+      }
+    }
+    .action-wrap {
+      .action-icon-list {
+        padding-right: $sobv-padding-base;
+      }
+    }
+
+  }
+  .sobv-cascade-level-3 {
+    &.main-info {
+      background: linear-gradient(to right, transparent, transparent $sobv-cascade-level-offset-3, #FBFCFC $sobv-cascade-level-offset-3, #FBFCFC calc(100% - #{$sobv-cascade-level-offset-3}), transparent calc(100% - #{$sobv-cascade-level-offset-3}), transparent);
+      position: relative;
+      .title-action {
+        margin-left: calc(#{$sobv-cascade-level-offset-3} + #{$sobv-margin-base}/2);
+      }
+      .hidden-row-hover {
+        width: calc(100% - 2 * #{$sobv-cascade-level-offset-3});
+        height: 100%;
+        box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
+        margin-left: $sobv-cascade-level-offset-3;
+        margin-right: $sobv-cascade-level-offset-3;
+        display: none;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+      &:hover {
+        .hidden-row-hover {
+          display: block;
+        }
+      }
+    }
+    .action-wrap {
+      .action-icon-list {
+        padding-right: 1.5*$sobv-padding-base;
+      }
+    }
+
+  }
+  .sobv-cascade-level-4 {
+    &.main-info {
+      background: linear-gradient(to right, transparent, transparent $sobv-cascade-level-offset-4, #FBFCFC $sobv-cascade-level-offset-4, #FBFCFC calc(100% - #{$sobv-cascade-level-offset-4}), transparent calc(100% - #{$sobv-cascade-level-offset-4}), transparent);
+      position: relative;
+      .title-action {
+        margin-left: calc(#{$sobv-cascade-level-offset-4} + #{$sobv-margin-base}/2);
+      }
+      .hidden-row-hover {
+        width: calc(100% - 2 * #{$sobv-cascade-level-offset-4});
+        height: 100%;
+        box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
+        margin-left: $sobv-cascade-level-offset-4;
+        margin-right: $sobv-cascade-level-offset-4;
+        display: none;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+      &:hover {
+        .hidden-row-hover {
+          display: block;
+        }
+      }
+    }
+  }
+  .sobv-cascade-level-5 {
+    &.main-info {
+      background: linear-gradient(to right, transparent, transparent $sobv-cascade-level-offset-5, #FBFCFC $sobv-cascade-level-offset-5, #FBFCFC calc(100% - #{$sobv-cascade-level-offset-5}), transparent calc(100% - #{$sobv-cascade-level-offset-5}), transparent);
+      position: relative;
+      .title-action {
+        margin-left: calc(#{$sobv-cascade-level-offset-5} + #{$sobv-margin-base}/2);
+      }
+    }
+    .hidden-row-hover {
+      width: calc(100% - 2 * #{$sobv-cascade-level-offset-5});
+      height: 100%;
+      box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
+      margin-left: $sobv-cascade-level-offset-5;
+      margin-right: $sobv-cascade-level-offset-5;
+      display: none;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    &:hover {
+      .hidden-row-hover {
+        display: block;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .sobv-layout-header {
+    .label-header-inline {
+      &.sobv-health-curr-column {
+        padding-left: 0;
+      }
+    }
+  }
+  .sobv-cascade-list {
+    > li {
+      > .main-info {
+        .label-bar {
+          &.sobv-health-curr-column {
+            padding-left: 0;
+          }
+        }
+      }
+    }
+  }
+}
