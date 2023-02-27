@@ -8,11 +8,11 @@ import * as bootstrap from 'bootstrap';
   styleUrls: ['./sobv-create-platoon.component.scss'],
 })
 export class SobvCreatePlatoonComponent implements OnInit {
-  private modal: any;
-  
+  private modal?: bootstrap.Modal;
+
   form = new FormGroup({
-    number: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    comander: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern(/^[а-яА-Яa-zA-ZіІ\s]+$/)]),
+    number: new FormControl('', [Validators.required]),
+    commander: new FormControl('', [Validators.required, Validators.pattern(/^[а-яА-Яa-zA-ZіІ\s]+$/)]),
   });
 
   ngOnInit() {
@@ -23,22 +23,23 @@ export class SobvCreatePlatoonComponent implements OnInit {
     this.modal.show();
   }
 
-  isNumberValid (): boolean {
-    return Boolean(this.form.get('number')?.invalid && this.form.get('number')?.touched)
+  getControlNumber(): FormControl {
+    return this.form.get('number') as FormControl;
   }
 
-  isComanderValid (): boolean {
-    return Boolean(this.form.get('comander')?.invalid && this.form.get('comander')?.touched)
-  }
-  handleClose() {
-    this.modal.hide();
+  getControlCommander (): FormControl {
+    return this.form.get('commander') as FormControl;
   }
 
-  handleOpen() {
-    this.modal.show();
+  onClose() {
+    this.modal?.hide();
   }
 
-  handleSubmit() {
+  onOpen() {
+    this.modal?.show();
+  }
+
+  onSubmit() {
     console.log(this.form.value);
   }
 }

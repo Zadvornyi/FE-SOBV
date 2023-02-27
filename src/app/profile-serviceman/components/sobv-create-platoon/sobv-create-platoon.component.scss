@@ -1,12 +1,12 @@
-@import "../../../styles/sobv.scss";
+@import "../../../styles/sobv";
 
 .sobv-modal-content {
-  color: $sobv-color-secondary;
-  
+  color: map-get($sobv-map-color, black);
+
   .modal-title {
     // TODO: change to variable when merge file with it
-    font-size: 18px; 
-    color: $sobv-color-gray-dark;
+    font-size: 18px;
+    color: map-get($sobv-map-color, black);
   }
 
   label {
@@ -23,7 +23,7 @@
 
 .sobv-modal-content {
   margin-top: 25%;
-  background-color: $sobv-color-gray-extra-light;
+  background-color: map-get($sobv-map-color, white);
 }
 
 .sobv-invalid-feedback {

@@ -1,0 +1,22 @@
+@import "./../../../styles/sobv.scss";
+
+
+  .sobv-text-box {
+    position: relative;
+
+    > label {
+      color: map-get($sobv-map-color, dark-gray);
+      font-size: $sobv-font-size-sm;
+    }
+
+    > input {
+      height: 100%;
+    }
+
+    > .sobv-text-box-icon {
+      position: absolute;
+      $sobv-eye-size: 18px;
+      bottom: 15px - $sobv-eye-size / 2;
+      right: 10px;
+    }
+  }
