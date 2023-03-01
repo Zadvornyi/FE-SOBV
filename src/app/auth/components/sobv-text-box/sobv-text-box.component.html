@@ -1,0 +1,7 @@
+<div class="sobv-text-box form-outline mb-2" >
+  <label class="form-label" [for]="title">{{ title }}</label>
+  <input class="form-control" [type]="type" [id]="title" [name]="title" [formControl]="control" />
+  <div class="sobv-text-box-icon">
+    <ng-content [select] = "icon"></ng-content>
+  </div>
+</div>
