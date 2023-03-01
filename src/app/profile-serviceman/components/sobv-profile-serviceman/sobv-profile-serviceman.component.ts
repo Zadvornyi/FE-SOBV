@@ -32,7 +32,10 @@ export class SobvProfileServicemanComponent implements OnInit {
 
   ngOnInit() {
     this.userData = {
-      name: 'Петро',
+      name: 'Петровський Петро Петрович',
+      call_sign: 'Петруха',
+      platoon: '291',
+      company: '29',
       current_health: 69,
       average_health: 80,
       response_rate: 20
@@ -40,19 +43,15 @@ export class SobvProfileServicemanComponent implements OnInit {
     //init timeline
     this.startTime = moment().subtract(6, 'month').unix();
     this.endTime = moment().add(3, 'month').unix();
-
     this.timeLine = this.sobvRateScroll.initTimeLineRate(this.startTime, this.endTime);
 
-
-    this.servicemanId = this.route.snapshot.paramMap.get('servicemanId') as string
+    this.servicemanId = this.route.snapshot.paramMap.get('servicemanId') as string;
     this.getPollsCategories().pipe(take(1)).subscribe((resp) => {
       this.categories = resp
     });
     this.getServicemanReports(this.servicemanId).pipe(take(1)).subscribe((resp) => {
       this.reportsData = resp
     });
-
-
   }
 
   private getPollsCategories(): Observable<Category[]> {
@@ -61,6 +60,22 @@ export class SobvProfileServicemanComponent implements OnInit {
 
   private getServicemanReports(servicemanId: string): Observable<Report[]> {
     return this.sobvPollsService.getServicemanReports(servicemanId);
+  }
+
+  getCallSign():string {
+    return `Позивний: ${this.userData.call_sign}`
+  }
+
+  getName():string {
+    return `ПІБ: ${this.userData.name}`;
+  }
+
+  getPlatoon():string {
+    return `Взвод: ${this.userData.platoon}`;
+  }
+
+  getCompany():string {
+    return `Рота: ${this.userData.company}`
   }
 
   public startPoll(category: Category): void {
