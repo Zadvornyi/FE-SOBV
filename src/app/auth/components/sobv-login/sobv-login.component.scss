@@ -1,0 +1,41 @@
+@import "./../../../styles/sobv.scss";
+
+.sobv-login {
+  height: calc(100vh - $sobv-header-height);
+  background: #{$sobv-sub-header-background} top right/60%;
+  background-repeat: no-repeat; ;
+
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+
+  .sobv-text-box {
+    position: relative;
+
+    > label {
+      color: map-get($sobv-map-color, white);
+      font-size: $sobv-font-size-sm;
+    }
+
+    > input {
+      height: 100%;
+    }
+
+  }
+
+  > h1 {
+    margin-top: 60px;
+    margin-bottom: 30px;
+
+    color: $sobv-color-white;
+    font-size: calc($sobv-font-size * 2);
+    font-weight: bold;
+  }
+
+  a {
+    color: $sobv-color-white;
+    font-size: $sobv-font-size-sm;
+    text-decoration: none;
+    font-weight: 600;
+  }
+}
