@@ -2,26 +2,25 @@
   <h1>Оцінка МПЗ підрозділу</h1>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div>
-      <sobv-text-box type="email" title="Email" [control]="getControlEmail()" ></sobv-text-box>
+      <sobv-text-box type="email" title="Email" id="'email'" [control]="getControlEmail()" ></sobv-text-box>
       <div class="alert alert-danger" *ngIf="form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched)">
         <div *ngIf="form.get('email')?.errors?.required">Це обов'язкове поле</div>
         <div *ngIf="form.get('email')?.errors?.email">Використовуйте правильну адресу!</div>
       </div>
     </div>
     <div>
-      <sobv-password-box title="Пароль" [control]="getControlPassword()" ></sobv-password-box>
+      <sobv-password-box title="Пароль" id="'password'" [control]="getControlPassword()" ></sobv-password-box>
       <div class="alert alert-danger" *ngIf="form.get('password')?.invalid && (form.get('password')?.dirty || form.get('password')?.touched)">
         <div *ngIf="form.get('password')?.errors?.required">Це обов'язкове поле</div>
         <div *ngIf="form.get('password')?.errors?.minlength">Мінімальна довжина {{form.get('password')?.errors?.minlength.requiredLength}} символів</div>
-        <div *ngIf="form.get('password')?.errors?.maxlength">Максимальна довжина {{form.get('password')?.errors?.maxlength.requiredLength}} символів</div>
       </div>
     </div>
     <br>
-    
+
     <!-- TODO: bind with correct route -->
     <a class="d-block text-end mb-4">Забули пароль?</a>
-  
-    <button type="submit" class="btn btn-lg btn-primary d-block px-5 mb-4 mx-auto" [disabled]="form?.invalid">Увійти</button>
+
+    <button type="submit" class="btn btn-lg btn-primary d-block px-5 mb-4 mx-auto" [disabled]="form.invalid">Увійти</button>
     <!-- TODO: bind with correct route -->
 
     <a class="d-block text-center" [routerLink]="['/register']" routerLinkActive="router-link-active">Зареєструватися</a>
