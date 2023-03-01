@@ -5,7 +5,7 @@
     position: relative;
 
     > label {
-      color: $sobv-color-light;
+      color: map-get($sobv-map-color, light-gray);
       font-size: $sobv-font-size-sm;
     }
 

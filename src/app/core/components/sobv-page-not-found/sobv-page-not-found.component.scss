@@ -1,7 +1,7 @@
 @import "./../../../styles/variables.scss";
 
 .sobv-page-not-found-cont {
-  background: #{$sobv-background-image}, #{$sobv-background-gradient};
+  background: #{$sobv-background-image}, #{$sobv-background-gradiend};
   background-repeat: no-repeat;
   background-position: top right;
   height: calc(100vh - #{$sobv-header-height});
