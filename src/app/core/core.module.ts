@@ -1,5 +1,4 @@
 import {NgModule} from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {CommonModule} from "@angular/common";
 import {SobvHeaderComponent} from "./components/sobv-header/sobv-header.component";
 import {SobvPageNotFoundComponent} from "./components/sobv-page-not-found/sobv-page-not-found.component";
@@ -28,7 +27,8 @@ import { SobvLimitStringPipe } from './pipes/sobv-limit-string.pipe';
     CommonModule,
     RouterModule,
     NgbTooltipModule,
-    NgxPopperModule
+    NgxPopperModule,
+    CommonModule
   ],
   exports: [
     SobvHeaderComponent,
