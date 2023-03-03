@@ -32,10 +32,10 @@ export class SobvProfileServicemanComponent implements OnInit {
 
   ngOnInit() {
     this.userData = {
-      first_name: 'Петро',
-      last_name: 'Петровський',
-      surname_name: 'Петрович',
-      aliases: 'Петруха',
+      first_name: '',
+      last_name: '',
+      surname_name: '',
+      aliases: '',
       platoon: '291',
       company: '29',
       current_health: 69,
