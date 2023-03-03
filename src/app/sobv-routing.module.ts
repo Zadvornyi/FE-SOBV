@@ -5,6 +5,8 @@ import {SobvPageNotFoundComponent} from "./core/components/sobv-page-not-found/s
 import { SobvPollModalPopupComponent } from './polls/components/sobv-poll-modal-popup/sobv-poll-modal-popup.component';
 import {SobvProfileServicemanComponent} from "./profile-serviceman/components/sobv-profile-serviceman/sobv-profile-serviceman.component";
 import {SobvPollQuestionsComponent} from "./polls/components/sobv-poll-questions/sobv-poll-questions.component";
+import { SobvLoginComponent } from './auth/components/sobv-login/sobv-login.component';
+import { SobvRegisterComponent } from './auth/components/sobv-register/sobv-register.component';
 
 export const routingConfiguration: ExtraOptions = {
   paramsInheritanceStrategy: 'always'
@@ -13,6 +15,8 @@ export const routingConfiguration: ExtraOptions = {
 //TODO: create Lazy-loading modules
 const routes: Routes = [
   {path: 'dashboard', component: SobvDashboardComponent},
+  {path: 'login', component: SobvLoginComponent, pathMatch: 'full'},
+  {path: 'register', component: SobvRegisterComponent, pathMatch: 'full'},
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
   {path: 'profile/serviceman/:servicemanId', component: SobvProfileServicemanComponent},
   {path: 'profile/serviceman/:servicemanId/category/:categoryId',
