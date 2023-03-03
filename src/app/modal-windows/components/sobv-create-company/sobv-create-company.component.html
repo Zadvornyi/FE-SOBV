@@ -7,13 +7,13 @@
       <div class="modal-body">
         <fieldset class="d-flex flex-sm-row flex-column gap-3">
           <div>
-            <sobv-text-box type="text" title="Номер" [control]="getControlNumber()" ></sobv-text-box>
+            <sobv-text-box type="text" title="Номер" id="company-number" [control]="getControlNumber()" ></sobv-text-box>
             <div class="alert alert-danger" *ngIf="form.get('number')?.invalid && (form.get('number')?.dirty || form.get('number')?.touched)">
               <div *ngIf="form.get('number')?.errors?.required">Це обов'язкове поле</div>
             </div>
           </div>
           <div>
-            <sobv-text-box type="text" title="Командир" [control]="getControlCommander()" ></sobv-text-box>
+            <sobv-text-box type="text" title="Командир" id="company-commander" [control]="getControlCommander()" ></sobv-text-box>
             <div class="alert alert-danger" *ngIf="form.get('commander')?.invalid && (form.get('commander')?.dirty || form.get('commander')?.touched)">
               <div *ngIf="form.get('commander')?.errors?.required">Це обов'язкове поле</div>
             </div>
