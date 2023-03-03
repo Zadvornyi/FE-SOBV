@@ -32,8 +32,10 @@ export class SobvProfileServicemanComponent implements OnInit {
 
   ngOnInit() {
     this.userData = {
-      name: 'Петровський Петро Петрович',
-      call_sign: 'Петруха',
+      first_name: 'Петро',
+      last_name: 'Петровський',
+      surname_name: 'Петрович',
+      aliases: 'Петруха',
       platoon: '291',
       company: '29',
       current_health: 69,
@@ -46,6 +48,11 @@ export class SobvProfileServicemanComponent implements OnInit {
     this.timeLine = this.sobvRateScroll.initTimeLineRate(this.startTime, this.endTime);
 
     this.servicemanId = this.route.snapshot.paramMap.get('servicemanId') as string;
+    this.getServiceman(this.servicemanId).pipe(take(1)).subscribe((resp) => {
+      // TODO: rewrite fields. Make without @ts-ignore
+      // @ts-ignore
+      Object.keys(this.userData).map((a) => { if(resp[a]) this.userData[a]=resp[a]})
+    })
     this.getPollsCategories().pipe(take(1)).subscribe((resp) => {
       this.categories = resp
     });
@@ -53,7 +60,6 @@ export class SobvProfileServicemanComponent implements OnInit {
       this.reportsData = resp
     });
   }
-
   private getPollsCategories(): Observable<Category[]> {
     return this.sobvPollsService.getPollsCategories();
   }
@@ -62,12 +68,16 @@ export class SobvProfileServicemanComponent implements OnInit {
     return this.sobvPollsService.getServicemanReports(servicemanId);
   }
 
-  getCallSign():string {
-    return `Позивний: ${this.userData.call_sign}`
+  private getServiceman (servicemanId: string) {
+    return this.sobvPollsService.getServiceman(servicemanId);
+  }
+
+  getAliases():string {
+    return `Позивний: ${this.userData.aliases}`
   }
 
   getName():string {
-    return `ПІБ: ${this.userData.name}`;
+    return `ПІБ: ${this.userData.first_name} ${this.userData.surname_name} ${this.userData.last_name} `;
   }
 
   getPlatoon():string {
