@@ -10,6 +10,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {PollsModule} from "./polls/polls.module";
 import {NgxPopperModule} from "ngx-popper";
 import { AuthModule } from './auth/auth.module';
+import {ModalWindowsModule} from "./modal-windows/modal-windows.module";
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { AuthModule } from './auth/auth.module';
     PollsModule,
     CoreModule,
     NgbModule,
+    ModalWindowsModule,
     NgxPopperModule.forRoot({})
   ],
   providers: [],

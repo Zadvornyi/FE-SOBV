@@ -1,0 +1,63 @@
+<div class="modal" id="modal-create-company" tabindex="-1">
+  <div class="modal-dialog">
+    <form class="modal-content" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="modal-header border-0 pb-0">
+        <h5 class="modal-title">Додати бійця</h5>
+      </div>
+      <div class="modal-body p-4">
+        <fieldset class="d-flex flex-column gap-2">
+          <div class="d-flex flex-sm-row flex-column justify-content-between gap-3">
+            <div>
+              <sobv-text-box type="text" title="Ім'я" id="first_name" [control]="getControlFirstName()"></sobv-text-box>
+              <div class="alert alert-danger"
+                   *ngIf="form.get('first_name')?.invalid && (form.get('first_name')?.dirty || form.get('first_name')?.touched)">
+                <div *ngIf="form.get('first_name')?.errors?.required">Це обов'язкове поле</div>
+              </div>
+            </div>
+            <div>
+              <sobv-text-box type="text" title="Прізвище" id="surname_name" [control]="getControlSurnameName()"></sobv-text-box>
+              <div class="alert alert-danger"
+                   *ngIf="form.get('surname_name')?.invalid && (form.get('surname_name')?.dirty || form.get('surname_name')?.touched)">
+                <div *ngIf="form.get('surname_name')?.errors?.required">Це обов'язкове поле</div>
+              </div>
+            </div>
+            <div>
+              <sobv-text-box type="text" title="По батькові" id="last_name" [control]="getControlLastName()"></sobv-text-box>
+              <div class="alert alert-danger"
+                   *ngIf="form.get('last_name')?.invalid && (form.get('last_name')?.dirty || form.get('last_name')?.touched)">
+                <div *ngIf="form.get('last_name')?.errors?.required">Це обов'язкове поле</div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <sobv-text-box type="text" title="Позивний" id="aliases" [control]="getControlAliases()"></sobv-text-box>
+            <div class="alert alert-danger"
+                 *ngIf="form.get('aliases')?.invalid && (form.get('aliases')?.dirty || form.get('aliases')?.touched)">
+              <div *ngIf="form.get('aliases')?.errors?.required">Це обов'язкове поле</div>
+            </div>
+          </div>
+          <div class="d-flex flex-sm-row flex-column justify-content-between gap-3">
+            <div>
+              <sobv-text-box type="text" title="Рота" id="company" [control]="getControlCompany()"></sobv-text-box>
+              <div class="alert alert-danger"
+                   *ngIf="form.get('company')?.invalid && (form.get('company')?.dirty || form.get('company')?.touched)">
+                <div *ngIf="form.get('company')?.errors?.required">Це обов'язкове поле</div>
+              </div>
+            </div>
+            <div>
+              <sobv-text-box type="text" title="Взвод" id="platoon" [control]="getControlPlatoon()"></sobv-text-box>
+              <div class="alert alert-danger"
+                   *ngIf="form.get('platoon')?.invalid && (form.get('platoon')?.dirty || form.get('platoon')?.touched)">
+                <div *ngIf="form.get('platoon')?.errors?.required">Це обов'язкове поле</div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+      <div class="modal-footer border-0 pt-0">
+        <button type="button" class="btn btn-secondary" (click)="onClose()">Відмінити</button>
+        <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Зберегти</button>
+      </div>
+    </form>
+  </div>
+</div>

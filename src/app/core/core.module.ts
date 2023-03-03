@@ -12,6 +12,7 @@ import {SobvTimeLineComponent} from './components/sobv-time-line/sobv-time-line.
 import {SobvRateBarComponent} from "./components/sobv-rate-bar/sobv-rate-bar.component";
 import {NgxPopperModule} from "ngx-popper";
 import { SobvLimitStringPipe } from './pipes/sobv-limit-string.pipe';
+import {ModalWindowsModule} from "../modal-windows/modal-windows.module";
 
 @NgModule({
   declarations: [
@@ -22,14 +23,14 @@ import { SobvLimitStringPipe } from './pipes/sobv-limit-string.pipe';
     SobvHeaderBaseComponent,
     SobvTimeLineComponent,
     SobvRateBarComponent,
-    SobvLimitStringPipe
+    SobvLimitStringPipe,
   ],
   imports: [
     CommonModule,
     RouterModule,
     NgbTooltipModule,
     NgxPopperModule,
-    CommonModule
+    ModalWindowsModule
   ],
   exports: [
     SobvHeaderComponent,
@@ -38,7 +39,7 @@ import { SobvLimitStringPipe } from './pipes/sobv-limit-string.pipe';
     SobvSubHeaderComponent,
     SobvHeaderBaseComponent,
     SobvTimeLineComponent,
-    SobvRateBarComponent
+    SobvRateBarComponent,
   ],
   providers: [],
 })

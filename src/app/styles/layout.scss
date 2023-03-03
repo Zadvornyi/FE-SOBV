@@ -1,3 +1,5 @@
+@import "./variables";
+
 .clearfix {
   @include clearfix
 }
@@ -26,6 +28,18 @@
   .tooltip-inner {
     background:$sobv-tooltip-bg;
     border-radius:$sobv-tooltip-br;
+  }
+}
+//--- modal ---
+.modal {
+  &-title {
+    // TODO: change to variable when merge file with it
+    font-size: 18px;
+    color: map-get($sobv-map-color, black);
+  }
+  &-content {
+    margin-top: 25%;
+    background-color: map-get($sobv-map-color, white);
   }
 }
 //--- cursor ----
