@@ -7,6 +7,7 @@ import {Observable, take} from "rxjs";
 import {SobvRateScrollService} from "../../../core/services/sobv-rate-scroll.service";
 
 import * as moment from 'moment'
+import {Serviceman} from "../../interfaces";
 
 @Component({
   selector: 'sobv-profile-serviceman',
@@ -20,7 +21,7 @@ export class SobvProfileServicemanComponent implements OnInit {
   public startTime?: number
   public endTime?: number
   public timeLine?: moment.Moment[]
-  public userData?: any
+  public userData?: Serviceman
 
   constructor(
     private sobvProfileServicemanService: SobvProfileServicemanService,
@@ -31,17 +32,6 @@ export class SobvProfileServicemanComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userData = {
-      first_name: '',
-      last_name: '',
-      surname_name: '',
-      aliases: '',
-      platoon: '291',
-      company: '29',
-      current_health: 69,
-      average_health: 80,
-      response_rate: 20
-    }
     //init timeline
     this.startTime = moment().subtract(6, 'month').unix();
     this.endTime = moment().add(3, 'month').unix();
@@ -71,19 +61,19 @@ export class SobvProfileServicemanComponent implements OnInit {
   }
 
   getAliases():string {
-    return `Позивний: ${this.userData.aliases}`
+    return `Позивний: ${this.userData?.aliases}`
   }
 
   getName():string {
-    return `ПІБ: ${this.userData.first_name} ${this.userData.surname_name} ${this.userData.last_name} `;
+    return `${this.userData?.first_name} ${this.userData?.surname_name} ${this.userData?.last_name} `;
   }
 
   getPlatoon():string {
-    return `Взвод: ${this.userData.platoon}`;
+    return `${this.userData?.platoon}`;
   }
 
   getCompany():string {
-    return `Рота: ${this.userData.company}`
+    return ` ${this.userData?.company}`
   }
 
   public startPoll(category: Category): void {

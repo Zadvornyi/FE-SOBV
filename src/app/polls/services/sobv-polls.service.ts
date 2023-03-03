@@ -2,7 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from "rxjs";
 import {GlobalConstants} from '../../core/global-constants';
-import {Choice, Question, Category, Report, Answer, Serviceman} from "../interfaces";
+import {Choice, Question, Category, Report, Answer} from "../interfaces";
+import {Serviceman} from "../../profile-serviceman/interfaces";
 
 @Injectable({
   providedIn: 'root'
