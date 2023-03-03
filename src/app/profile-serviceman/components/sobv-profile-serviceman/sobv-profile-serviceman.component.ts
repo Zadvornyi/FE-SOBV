@@ -49,9 +49,7 @@ export class SobvProfileServicemanComponent implements OnInit {
 
     this.servicemanId = this.route.snapshot.paramMap.get('servicemanId') as string;
     this.getServiceman(this.servicemanId).pipe(take(1)).subscribe((resp) => {
-      // TODO: rewrite fields. Make without @ts-ignore
-      // @ts-ignore
-      Object.keys(this.userData).map((a) => { if(resp[a]) this.userData[a]=resp[a]})
+      this.userData = resp;
     })
     this.getPollsCategories().pipe(take(1)).subscribe((resp) => {
       this.categories = resp
