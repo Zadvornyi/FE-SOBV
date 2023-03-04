@@ -7,7 +7,6 @@ export interface Serviceman {
   phone?: string,
   company?: number,
   platoon?: number,
-  current_health?: number
-  average_health?: number,
-  response_rate?: number,
+  current_health?: number,
+  average_health?: number
 }
