@@ -28,7 +28,8 @@ import { SobvLimitStringPipe } from './pipes/sobv-limit-string.pipe';
     CommonModule,
     RouterModule,
     NgbTooltipModule,
-    NgxPopperModule
+    NgxPopperModule,
+    CommonModule
   ],
   exports: [
     SobvHeaderComponent,

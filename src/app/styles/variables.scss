@@ -15,7 +15,7 @@ $sobv-map-color: (
   light-orange :#EE9F41,
   yellow: #F2C600,
   grey: #B2B5B8,
-  dark-gray: #878A8D,
+  light-gray: #b8b8b8,
 );
 
 $sobv-margin-base: 20px;
@@ -50,7 +50,8 @@ $sobv-color-blue: #357EEB;
 
 $sobv-background-image: url("../../../../assets/images/misc/ukraine-main.svg");
 //TODO use mixin for gradient
-$sobv-background-gradiend: linear-gradient(246.63deg, #819745 2.69%, #4C6A3D 101.82%);
+$sobv-background-gradient: linear-gradient(246.63deg, #819745 2.69%, #4C6A3D 101.82%);
+$sobv-background-gradient-opacity: linear-gradient(246.63deg, rgba(129, 151, 69, 0.40) 2.69%, rgba(76, 106, 61, 0.40) 101.82%);
 
 $sobv-height-btn: 40px;
 $sobv-width-btn: 190px;
