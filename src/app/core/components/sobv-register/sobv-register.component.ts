@@ -58,7 +58,6 @@ export class SobvRegisterComponent {
   }
 
   onSubmit () {
-    console.log(this.form.value);
     if(this.form.valid) {
       const { firstName, lastName, email, password } = this.form.value;
 
@@ -66,7 +65,6 @@ export class SobvRegisterComponent {
         take(1)
       ).subscribe({
         next: resp => {
-          console.log(resp);
           this.isSignUpFailed = false;
         },
         error: resp => {

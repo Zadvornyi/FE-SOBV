@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from "../../services/auth.service";
 import {StorageService} from "../../services/storage.service";
 
@@ -17,6 +17,7 @@ export class SobvLoginComponent {
   errorMessage:string = '';
   roles: string[] = [];
   constructor(
+    private router : Router,
     private fb: FormBuilder,
     private authService: AuthService,
     private storageService: StorageService
@@ -42,22 +43,17 @@ export class SobvLoginComponent {
   }
 
 
-  reloadPage(): void {
-    window.location.reload();
-  }
-
   onSubmit () {
     if(this.form.valid) {
       const { email, password } = this.form.value;
       this.authService.login(email, password).subscribe({
         next: data => {
-          debugger
           this.storageService.saveUser(data);
 
           this.isLoginFailed = false;
           this.isLoggedIn = true;
           this.roles = this.storageService.getUser().roles;
-          this.reloadPage();
+          if(data) this.router.navigate(['/dashboard']);
         },
         error: resp => {
           this.errorMessage = resp.message && resp.error.errors;
