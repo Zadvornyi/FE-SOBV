@@ -62,15 +62,15 @@ export class SobvRegisterComponent {
     if(this.form.valid) {
       const { firstName, lastName, email, password } = this.form.value;
 
-      this.authService.register(`${firstName} {lastName}`, email, password).pipe(
+      this.authService.register(`${firstName} ${lastName}`, email, password).pipe(
         take(1)
       ).subscribe({
         next: resp => {
           console.log(resp);
           this.isSignUpFailed = false;
         },
-        error: error => {
-          this.errorMessage = error.message;
+        error: resp => {
+          this.errorMessage = resp.message && resp.error.errors;
           // TODO make timer for notificaltion
           this.isSignUpFailed = true;
         }

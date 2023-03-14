@@ -2,7 +2,7 @@
   <h1>Оцінка МПЗ підрозділу</h1>
 
   <div class="alert alert-danger" *ngIf="isSignUpFailed">
-    {{ errorMessage }}
+    {{ errorMessage|json }}
   </div>
   <form (submit)="onSubmit()">
     <div>
