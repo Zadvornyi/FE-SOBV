@@ -1,4 +1,10 @@
 <sobv-header-base>
   <a class="sobv-title" title [routerLink]="['/']" routerLinkActive="router-link-active">Оцінка мпз підрозділу</a>
-  <ng-content control select="[control]"></ng-content>
+  <div control>
+    <ng-content select="[control]" *ngIf="this.contentType === ContentType.default"></ng-content>
+    <a class="sobv-link" *ngIf="this.contentType === ContentType.login" [routerLink]="['/register']">Зареєструватись</a>
+    <a class="sobv-link" *ngIf="this.contentType === ContentType.register" [routerLink]="['/login']">Увійти</a>
+    <a class="sobv-link" *ngIf="this.contentType === ContentType.dashboard" [routerLink]="['/login']">Увійти</a>
+  </div>
+
 </sobv-header-base>
