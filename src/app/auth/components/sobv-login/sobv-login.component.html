@@ -1,5 +1,5 @@
 <div class="sobv-login">
-  <h1>Оцінка МПЗ підрозділу<br/>Авторизація</h1>
+  <h1>Оцінка МПЗ підрозділу</h1>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div>
       <sobv-text-box type="email" title="Email" id="'email'" [control]="getControlEmail()" ></sobv-text-box>
@@ -17,9 +17,12 @@
     </div>
     <br>
 
-    <a class="d-block text-end mb-4" [routerLink]="['/forgot-password']">Забули пароль?</a>
+    <!-- TODO: bind with correct route -->
+    <a class="d-block text-end mb-4">Забули пароль?</a>
 
     <button type="submit" class="btn btn-lg btn-primary d-block px-5 mb-4 mx-auto" [disabled]="form.invalid">Увійти</button>
+    <!-- TODO: bind with correct route -->
 
+    <a class="d-block text-center" [routerLink]="['/register']" routerLinkActive="router-link-active">Зареєструватися</a>
   </form>
 </div>
