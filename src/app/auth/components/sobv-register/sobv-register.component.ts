@@ -1,17 +1,12 @@
 import { Component } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 
-export function confirmPasswordValidator(passwordControlName: string) {
-  return (control: AbstractControl): { [key: string]: any } | null => {
-    const passwordControl = control.parent?.get(passwordControlName);
+export const confirmPasswordValidator: ValidatorFn = (control: AbstractControl) => {
+  const password = control.get('password');
+  const confirmPassword = control.get('confirmPassword');
 
-    if (passwordControl?.value !== control.value) {
-      return { confirmPassword: true };
-    }
-
-    return null;
-  };
-}
+  return password && confirmPassword && password.value === confirmPassword.value ? null : { confirmPassword: true };
+};
 
 @Component({
   selector: 'sobv-sobv-register',
@@ -22,13 +17,15 @@ export class SobvRegisterComponent {
   form: FormGroup;
 
   constructor(
-    private fb: FormBuilder
+    private formBuilder: FormBuilder
     ) {
-    this.form = this.fb.group({
+    this.form = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
-      password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
-      confirmPassword: ['', [Validators.required,  confirmPasswordValidator('password')]],
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', [Validators.required]]
+    }, {
+      validators: confirmPasswordValidator
     });
   }
 
@@ -48,9 +45,11 @@ export class SobvRegisterComponent {
     return this.form.get('confirmPassword') as FormControl;
   }
 
+  isConfirmPasswordValid (): boolean {
+    return Boolean(confirmPasswordValidator(this.form) && this.form.get('confirmPassword')?.touched);
+  }
 
   onSubmit () {
     console.log(this.form.value);
   }
-} 
-  
+}

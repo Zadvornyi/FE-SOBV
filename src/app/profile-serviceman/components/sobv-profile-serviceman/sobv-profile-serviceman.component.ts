@@ -7,6 +7,7 @@ import {Observable, take} from "rxjs";
 import {SobvRateScrollService} from "../../../core/services/sobv-rate-scroll.service";
 
 import * as moment from 'moment'
+import {Serviceman} from "../../interfaces";
 
 @Component({
   selector: 'sobv-profile-serviceman',
@@ -20,7 +21,7 @@ export class SobvProfileServicemanComponent implements OnInit {
   public startTime?: number
   public endTime?: number
   public timeLine?: moment.Moment[]
-  public userData?: any
+  public userData?: Serviceman
 
   constructor(
     private sobvProfileServicemanService: SobvProfileServicemanService,
@@ -31,21 +32,15 @@ export class SobvProfileServicemanComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userData = {
-      name: 'Петровський Петро Петрович',
-      call_sign: 'Петруха',
-      platoon: '291',
-      company: '29',
-      current_health: 69,
-      average_health: 80,
-      response_rate: 20
-    }
     //init timeline
     this.startTime = moment().subtract(6, 'month').unix();
     this.endTime = moment().add(3, 'month').unix();
     this.timeLine = this.sobvRateScroll.initTimeLineRate(this.startTime, this.endTime);
 
     this.servicemanId = this.route.snapshot.paramMap.get('servicemanId') as string;
+    this.getServiceman(this.servicemanId).pipe(take(1)).subscribe((resp) => {
+      this.userData = resp;
+    })
     this.getPollsCategories().pipe(take(1)).subscribe((resp) => {
       this.categories = resp
     });
@@ -53,7 +48,6 @@ export class SobvProfileServicemanComponent implements OnInit {
       this.reportsData = resp
     });
   }
-
   private getPollsCategories(): Observable<Category[]> {
     return this.sobvPollsService.getPollsCategories();
   }
@@ -62,20 +56,24 @@ export class SobvProfileServicemanComponent implements OnInit {
     return this.sobvPollsService.getServicemanReports(servicemanId);
   }
 
-  getCallSign():string {
-    return `Позивний: ${this.userData.call_sign}`
+  private getServiceman (servicemanId: string) {
+    return this.sobvPollsService.getServiceman(servicemanId);
+  }
+
+  getAliases():string {
+    return `Позивний: ${this.userData?.aliases}`
   }
 
   getName():string {
-    return `ПІБ: ${this.userData.name}`;
+    return `${this.userData?.first_name} ${this.userData?.surname_name} ${this.userData?.last_name} `;
   }
 
   getPlatoon():string {
-    return `Взвод: ${this.userData.platoon}`;
+    return `${this.userData?.platoon}`;
   }
 
   getCompany():string {
-    return `Рота: ${this.userData.company}`
+    return ` ${this.userData?.company}`
   }
 
   public startPoll(category: Category): void {

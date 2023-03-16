@@ -2,7 +2,7 @@
 
 .sobv-register {
   height: calc(100vh - $sobv-header-height);
-  background: #{$sobv-sub-header-background} top right/60%;
+  background:  #{$sobv-background-gradient-opacity}, #{$sobv-sub-header-background}  top right/60%, #{$sobv-background-gradient};
   background-repeat: no-repeat; ;
 
   flex-direction: column;
@@ -13,7 +13,7 @@
     position: relative;
 
     > label {
-      color: map-get($sobv-map-color, white);
+      color: map-get($sobv-map-color, light-gray);
       font-size: $sobv-font-size-sm;
     }
 
@@ -26,13 +26,13 @@
     margin-top: 60px;
     margin-bottom: 30px;
 
-    color: $sobv-color-white;
+    color: map-get($sobv-map-color, white);
     font-size: calc($sobv-font-size * 2);
     font-weight: bold;
   }
 
   a {
-    color: $sobv-color-white;
+    color: map-get($sobv-map-color, white);
     font-size: $sobv-font-size-sm;
     text-decoration: none;
     font-weight: 600;

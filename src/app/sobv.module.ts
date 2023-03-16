@@ -9,6 +9,7 @@ import {ProfileServicemanModule} from "./profile-serviceman/profile-serviceman.m
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {PollsModule} from "./polls/polls.module";
 import {NgxPopperModule} from "ngx-popper";
+import { AuthModule } from './auth/auth.module';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import {NgxPopperModule} from "ngx-popper";
     HttpClientModule,
     SobvRoutingModule,
     ProfileServicemanModule,
+    AuthModule,
     PollsModule,
     CoreModule,
     NgbModule,

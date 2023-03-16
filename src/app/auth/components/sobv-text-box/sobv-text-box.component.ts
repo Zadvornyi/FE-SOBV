@@ -12,7 +12,6 @@ const DEFAULT_INPUT_TYPE = "text";
 export class SobvTextBoxComponent {
   @Input() type: InputType = DEFAULT_INPUT_TYPE;
   @Input() title?: string;
+  @Input() id?:string;
   @Input() control: FormControl = new FormControl();
-  
-  
 }

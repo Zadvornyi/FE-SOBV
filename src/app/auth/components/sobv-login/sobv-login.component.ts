@@ -16,7 +16,7 @@ export class SobvLoginComponent {
     ) {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
@@ -32,6 +32,5 @@ export class SobvLoginComponent {
   onSubmit () {
     console.log(this.form.value);
   }
-} 
+}
 
-  
