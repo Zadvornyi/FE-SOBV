@@ -1,0 +1,64 @@
+<div class="sobv-register">
+  <h1>Оцінка МПЗ підрозділу</h1>
+
+  <div class="alert alert-danger" *ngIf="isSignUpFailed">
+    {{ errorMessage|json }}
+  </div>
+  <form (submit)="onSubmit()">
+    <div>
+      <sobv-text-box type="text" title="Прізвище" id="'lastName'" [control]="getControlLastName()"></sobv-text-box>
+      <div class="alert alert-danger"
+           *ngIf="form.get('lastName')?.invalid && (form.get('lastName')?.dirty || form.get('lastName')?.touched)">
+        <div *ngIf="form.get('lastName')?.errors?.required">Це обов'язкове поле</div>
+        <div *ngIf="form.get('lastName')?.errors?.minlength">Мінімальна
+          довжина {{form.get('lastName')?.errors?.minlength.requiredLength}} символи(ів)
+        </div>
+      </div>
+    </div>
+    <div>
+      <sobv-text-box type="text" title="Ім'я" id="'firstName'" [control]="getControlFirstName()"></sobv-text-box>
+      <div class="alert alert-danger"
+           *ngIf="form.get('firstName')?.invalid && (form.get('firstName')?.dirty || form.get('firstName')?.touched)">
+        <div *ngIf="form.get('firstName')?.errors?.required">Це обов'язкове поле</div>
+        <div *ngIf="form.get('firstName')?.errors?.minlength">Мінімальна
+          довжина {{form.get('firstName')?.errors?.minlength.requiredLength}} символи(ів)
+        </div>
+      </div>
+    </div>
+    <div>
+      <sobv-text-box type="email" title="Email" id="'email'" [control]="getControlEmail()"></sobv-text-box>
+      <div class="alert alert-danger"
+           *ngIf="form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched)">
+        <div *ngIf="form.get('email')?.errors?.required">Це обов'язкове поле</div>
+        <div *ngIf="form.get('email')?.errors?.email">Використовуйте правильну адресу!</div>
+      </div>
+    </div>
+    <div>
+      <sobv-password-box title="Пароль" id="'password'" [control]="getControlPassword()"></sobv-password-box>
+      <div class="alert alert-danger"
+           *ngIf="form.get('password')?.invalid && (form.get('password')?.dirty || form.get('password')?.touched)">
+        <div *ngIf="form.get('password')?.errors?.required">Це обов'язкове поле</div>
+        <div *ngIf="form.get('password')?.errors?.minlength">Мінімальна
+          довжина {{form.get('password')?.errors?.minlength.requiredLength}} символи(ів)
+        </div>
+      </div>
+    </div>
+    <div>
+      <sobv-password-box title="Пароль" id="confirmPassword"
+                         [control]="getControlConfirmPassword()"></sobv-password-box>
+      <div class="alert alert-danger"
+           *ngIf="form.get('confirmPassword')?.invalid && form.get('confirmPassword')?.touched || isConfirmPasswordValid() ">
+        <div *ngIf="form?.hasError('required')"> Це обов'язкове поле</div>
+        <div *ngIf="form?.hasError('confirmPassword')">Паролі не співпадають</div>
+      </div>
+    </div>
+    <br>
+    <!-- TODO: bind with correct route -->
+    <a class="d-block text-end mb-4">Забули пароль?</a>
+
+
+    <button type="button" class="btn btn-lg btn-primary d-block px-5 mb-4 mx-auto" [disabled]="form.invalid" (click)="onSubmit()" >
+      Зареєструватися
+    </button>
+  </form>
+</div>

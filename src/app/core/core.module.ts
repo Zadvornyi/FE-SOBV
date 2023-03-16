@@ -11,6 +11,11 @@ import {SobvTimeLineComponent} from './components/sobv-time-line/sobv-time-line.
 import {SobvRateBarComponent} from "./components/sobv-rate-bar/sobv-rate-bar.component";
 import {NgxPopperModule} from "ngx-popper";
 import { SobvLimitStringPipe } from './pipes/sobv-limit-string.pipe';
+import {ReactiveFormsModule} from "@angular/forms";
+import {SobvRegisterComponent} from "./components/sobv-register/sobv-register.component";
+import {SobvPasswordBoxComponent} from "./components/sobv-password-box/sobv-password-box.component";
+import {SobvTextBoxComponent} from "./components/sobv-text-box/sobv-text-box.component";
+import {SobvLoginComponent} from "./components/sobv-login/sobv-login.component";
 
 @NgModule({
   declarations: [
@@ -21,14 +26,18 @@ import { SobvLimitStringPipe } from './pipes/sobv-limit-string.pipe';
     SobvHeaderBaseComponent,
     SobvTimeLineComponent,
     SobvRateBarComponent,
-    SobvLimitStringPipe
+    SobvLimitStringPipe,
+    SobvLoginComponent,
+    SobvTextBoxComponent,
+    SobvPasswordBoxComponent,
+    SobvRegisterComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
+    ReactiveFormsModule,
     NgbTooltipModule,
-    NgxPopperModule,
-    CommonModule
+    NgxPopperModule
   ],
   exports: [
     SobvHeaderComponent,
@@ -37,7 +46,8 @@ import { SobvLimitStringPipe } from './pipes/sobv-limit-string.pipe';
     SobvSubHeaderComponent,
     SobvHeaderBaseComponent,
     SobvTimeLineComponent,
-    SobvRateBarComponent
+    SobvRateBarComponent,
+    SobvLoginComponent
   ],
   providers: [],
 })

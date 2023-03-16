@@ -9,7 +9,8 @@ import {ProfileServicemanModule} from "./profile-serviceman/profile-serviceman.m
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {PollsModule} from "./polls/polls.module";
 import {NgxPopperModule} from "ngx-popper";
-import { AuthModule } from './auth/auth.module';
+
+import {httpInterceptorProviders} from "./core/utils/http.interceptor";
 
 
 @NgModule({
@@ -21,13 +22,12 @@ import { AuthModule } from './auth/auth.module';
     HttpClientModule,
     SobvRoutingModule,
     ProfileServicemanModule,
-    AuthModule,
     PollsModule,
     CoreModule,
     NgbModule,
     NgxPopperModule.forRoot({})
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [SobvComponent]
 })
 export class SobvModule {

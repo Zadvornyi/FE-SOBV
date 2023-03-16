@@ -13,6 +13,6 @@ export class SobvProfileServicemanService {
   }
 
   public getServicemanById(ServicemanId: number): Observable<Serviceman> {
-    return this.http.get<Serviceman>(`${GlobalConstants.API_URL}/serviceman/${ServicemanId}`);
+    return this.http.get<Serviceman>(`${GlobalConstants.API_URL}/api/serviceman/${ServicemanId}`);
   }
 }

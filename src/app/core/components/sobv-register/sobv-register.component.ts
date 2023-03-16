@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
+import {AuthService} from "../../services/auth.service";
+import {take} from "rxjs";
 
 export const confirmPasswordValidator: ValidatorFn = (control: AbstractControl) => {
   const password = control.get('password');
@@ -15,13 +17,16 @@ export const confirmPasswordValidator: ValidatorFn = (control: AbstractControl) 
 })
 export class SobvRegisterComponent {
   form: FormGroup;
-
+  isSignUpFailed:boolean = false;
+  errorMessage:string = '';
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private authService: AuthService
     ) {
     this.form = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      name: ['', [Validators.required, Validators.minLength(3)]],
+      firstName: ['', [Validators.required, Validators.minLength(3)]],
+      lastName: ['', [Validators.required, Validators.minLength(3)]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required]]
     }, {
@@ -29,8 +34,11 @@ export class SobvRegisterComponent {
     });
   }
 
-  getControlName(): FormControl {
-    return this.form.get('name') as FormControl;
+  getControlFirstName(): FormControl {
+    return this.form.get('firstName') as FormControl;
+  }
+  getControlLastName(): FormControl {
+    return this.form.get('lastName') as FormControl;
   }
 
   getControlEmail(): FormControl {
@@ -50,6 +58,25 @@ export class SobvRegisterComponent {
   }
 
   onSubmit () {
-    console.log(this.form.value);
+    if(this.form.valid) {
+      const { firstName, lastName, email, password } = this.form.value;
+
+      this.authService.register(`${firstName} ${lastName}`, email, password).pipe(
+        take(1)
+      ).subscribe({
+        next: resp => {
+          this.isSignUpFailed = false;
+        },
+        error: resp => {
+          this.errorMessage = resp.message && resp.error.errors;
+          // TODO make timer for notificaltion
+          this.isSignUpFailed = true;
+        }
+      });
+    }
+
+
+
+
   }
 }

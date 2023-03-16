@@ -72,8 +72,8 @@
             <span class="label-bar" *ngIf="userData.average_health">{{userData.average_health}}%</span>
           </div>
           <div class="col-lg-4 d-none d-lg-block">
-            <span *ngIf="userData.response_rate !== null" class="label-bar">{{userData.response_rate}}%</span>
-            <span *ngIf="userData.response_rate === null" class="label-bar">N/A</span>
+            <span *ngIf="userData?.average_health !== null" class="label-bar">{{userData?.average_health}}%</span>
+            <span *ngIf="userData?.average_health === null" class="label-bar">N/A</span>
           </div>
           <div class="col-lg-4 col-md-10 col-sm-10 col-10"></div>
         </div>
