@@ -17,12 +17,9 @@
     </div>
     <br>
 
-    <!-- TODO: bind with correct route -->
-    <a class="d-block text-end mb-4">Забули пароль?</a>
+    <a class="d-block text-end mb-4" [routerLink]="['/forgot-password']">Забули пароль?</a>
 
     <button type="submit" class="btn btn-lg btn-primary d-block px-5 mb-4 mx-auto" [disabled]="form.invalid">Увійти</button>
-    <!-- TODO: bind with correct route -->
 
-    <a class="d-block text-center" [routerLink]="['/register']" routerLinkActive="router-link-active">Зареєструватися</a>
   </form>
 </div>
