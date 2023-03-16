@@ -69,8 +69,13 @@ export class SobvRegisterComponent {
         },
         error: resp => {
           this.errorMessage = resp.message && resp.error.errors;
-          // TODO make timer for notificaltion
+
           this.isSignUpFailed = true;
+
+          setTimeout(() => {
+            this.isSignUpFailed = false;
+          }, 5000);
+
         }
       });
     }
