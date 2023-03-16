@@ -1,5 +1,5 @@
 <div class="sobv-register">
-  <h1>Оцінка МПЗ підрозділу<br>Реєстрація</h1>
+  <h1>Оцінка МПЗ підрозділу</h1>
   <form (submit)="onSubmit()">
     <sobv-text-box type="text" title="Прізвище та ім'я" id="'name'" [control]="getControlName()" ></sobv-text-box>
       <div class="alert alert-danger" *ngIf="form.get('name')?.invalid && (form.get('name')?.dirty || form.get('name')?.touched)">
@@ -28,6 +28,12 @@
       </div>
     </div>
     <br>
+    <!-- TODO: bind with correct route -->
+    <a class="d-block text-end mb-4">Забули пароль?</a>
+
+
     <button type="submit" class="btn btn-lg btn-primary d-block px-5 mb-4 mx-auto" [disabled]="form.invalid">Зареєструватися</button>
+    <!-- TODO: bind with correct route -->
+    <a class="d-block text-center" [routerLink]="['/login']">Увійти</a>
   </form>
 </div>
