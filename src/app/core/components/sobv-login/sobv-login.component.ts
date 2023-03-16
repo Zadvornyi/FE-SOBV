@@ -55,8 +55,8 @@ export class SobvLoginComponent {
           this.roles = this.storageService.getUser().roles;
           if(data) this.router.navigate(['/dashboard']);
         },
-        error: resp => {
-          this.errorMessage = resp.message && resp.error.errors;
+        error: error => {
+          this.errorMessage = error;
           this.isLoginFailed = true;
         }
       });

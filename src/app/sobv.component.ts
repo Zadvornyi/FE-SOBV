@@ -17,9 +17,9 @@ export class SobvComponent {
   }
 
   ngOnInit() {
-    if (!this.storageService.isLoggedIn()) {
-      this.router.navigate(['/auth/login']);
-    }
+    // if (!this.storageService.isLoggedIn()) {
+    //   this.router.navigate(['/auth/login']);
+    // }
 
   }
 }
