@@ -19,7 +19,10 @@ export const routingConfiguration: ExtraOptions = {
 //TODO: create Lazy-loading modules
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
-  {path: 'dashboard', component: SobvDashboardComponent},
+  {path: 'dashboard',
+    component: SobvDashboardComponent,
+    canActivate: [AuthGuard]
+  },
   {path: 'auth/login', component: SobvLoginComponent, pathMatch: 'full'},
   {path: 'auth/register', component: SobvRegisterComponent, pathMatch: 'full'},
   {
