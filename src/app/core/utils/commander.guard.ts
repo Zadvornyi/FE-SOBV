@@ -16,7 +16,8 @@ export class CommanderGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     let role = this.authService.getUser().role
-    if (!this.authService.isLoggedIn() && role !== Role.combatant) {
+    if (role !== Role.combatant) {
+      this.router.navigate(['error/403']);
       return false;
     } else {
       return true;

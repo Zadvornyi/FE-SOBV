@@ -22,7 +22,7 @@ const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
   {path: 'dashboard',
     component: SobvDashboardComponent,
-    canActivate: [CommanderGuard]
+    canActivate: [AuthGuard, CommanderGuard]
   },
   {path: 'auth/login', component: SobvLoginComponent, pathMatch: 'full'},
   {path: 'auth/register', component: SobvRegisterComponent, pathMatch: 'full'},
