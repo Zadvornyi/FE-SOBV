@@ -10,6 +10,7 @@ import {SobvPollQuestionsComponent} from "./polls/components/sobv-poll-questions
 import {SobvLoginComponent} from "./core/components/sobv-login/sobv-login.component";
 import {SobvRegisterComponent} from "./core/components/sobv-register/sobv-register.component";
 import {AuthGuard} from "./core/utils/auth.guard";
+import {CommanderGuard} from "./core/utils/commander.guard";
 
 
 export const routingConfiguration: ExtraOptions = {
@@ -21,7 +22,7 @@ const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
   {path: 'dashboard',
     component: SobvDashboardComponent,
-    canActivate: [AuthGuard]
+    canActivate: [CommanderGuard]
   },
   {path: 'auth/login', component: SobvLoginComponent, pathMatch: 'full'},
   {path: 'auth/register', component: SobvRegisterComponent, pathMatch: 'full'},
