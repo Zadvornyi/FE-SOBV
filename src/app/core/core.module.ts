@@ -41,7 +41,8 @@ import { UserRoleDirective } from './directives/user-role.directive';
     RouterModule,
     ReactiveFormsModule,
     NgbTooltipModule,
-    NgxPopperModule
+    NgxPopperModule,
+
   ],
   exports: [
     SobvHeaderComponent,
