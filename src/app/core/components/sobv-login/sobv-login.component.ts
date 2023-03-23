@@ -47,8 +47,8 @@ export class SobvLoginComponent {
         next: data => {
           this.isLoginFailed = false;
           this.isLoggedIn = true;
-          
-          if(data && data.role === Role.combatant) {
+
+          if(data && data.role === Role.Combatant) {
             this.router.navigate([`/profile/serviceman/${data.id}`]);
           }else {
             this.router.navigate(['/dashboard']);

@@ -16,6 +16,8 @@ import {SobvRegisterComponent} from "./components/sobv-register/sobv-register.co
 import {SobvPasswordBoxComponent} from "./components/sobv-password-box/sobv-password-box.component";
 import {SobvTextBoxComponent} from "./components/sobv-text-box/sobv-text-box.component";
 import {SobvLoginComponent} from "./components/sobv-login/sobv-login.component";
+import { AuthorizedUserDirective } from './directives/authorized-user.directive';
+import { UserRoleDirective } from './directives/user-role.directive';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import {SobvLoginComponent} from "./components/sobv-login/sobv-login.component";
     SobvLoginComponent,
     SobvTextBoxComponent,
     SobvPasswordBoxComponent,
-    SobvRegisterComponent
+    SobvRegisterComponent,
+    AuthorizedUserDirective,
+    UserRoleDirective
   ],
   imports: [
     CommonModule,
@@ -47,7 +51,9 @@ import {SobvLoginComponent} from "./components/sobv-login/sobv-login.component";
     SobvHeaderBaseComponent,
     SobvTimeLineComponent,
     SobvRateBarComponent,
-    SobvLoginComponent
+    SobvLoginComponent,
+    AuthorizedUserDirective,
+    UserRoleDirective
   ],
   providers: [],
 })

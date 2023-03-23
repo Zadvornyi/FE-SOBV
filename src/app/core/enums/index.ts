@@ -1,7 +1,7 @@
 export enum Role {
-  Admin = 'Admin',
+  Admin = 'admin',
   Chieftain = 'chieftain',
-  captain = 'captain',
-  platoon_leader = 'platoon_leader',
-  combatant = 'combatant'
+  Captain = 'captain',
+  Platoon_leader = 'platoon_leader',
+  Combatant = 'combatant'
 }

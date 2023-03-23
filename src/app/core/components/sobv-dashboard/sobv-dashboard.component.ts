@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Role} from "../../enums";
 
 @Component({
   selector: 'sobv-dashboard',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sobv-dashboard.component.scss']
 })
 export class SobvDashboardComponent implements OnInit {
-
+  public roles = Role
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }
