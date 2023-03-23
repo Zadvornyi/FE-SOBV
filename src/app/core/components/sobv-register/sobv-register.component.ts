@@ -30,11 +30,11 @@ export class SobvRegisterComponent implements OnInit {
     private authService: AuthService
   ) {
     this.form = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      firstName: ['', [Validators.required, Validators.minLength(3)]],
-      lastName: ['', [Validators.required, Validators.minLength(3)]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
-      confirmPassword: ['', [Validators.required]]
+      email:  ['',  { validators: [Validators.required, Validators.email], updateOn: 'blur'}],
+      firstName:  ['',  { validators: [Validators.required, Validators.minLength(3)], updateOn: 'blur'}],
+      lastName:  ['',  { validators: [Validators.required, Validators.minLength(3)], updateOn: 'blur'}],
+      password:  ['',  { validators: [Validators.required, Validators.minLength(8)], updateOn: 'blur'}],
+      confirmPassword:  ['',  { validators: [Validators.required]}]
     }, {
       validators: confirmPasswordValidator
     });
@@ -76,9 +76,9 @@ export class SobvRegisterComponent implements OnInit {
 
   onSubmit() {
     if (!this.isSubmitButtonDisabled && this.form.invalid) {
-    this.isSignUpFailed = true;
-    this.isSubmitButtonDisabled = this.form.invalid;
-    this.errorMessage = "Перевірте будь-ласка поля";
+      this.isSignUpFailed = true;
+      this.isSubmitButtonDisabled = this.form.invalid;
+      this.errorMessage = "Перевірте будь-ласка поля";
   } else
     if (this.form.valid && !this.isSubmitButtonDisabled) {
       const {firstName, lastName, email, password} = this.form.value;
@@ -97,7 +97,5 @@ export class SobvRegisterComponent implements OnInit {
         }
       });
     }
-
-
   }
 }

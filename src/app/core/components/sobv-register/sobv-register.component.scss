@@ -8,15 +8,8 @@
   display: flex;
   align-items: center;
   padding-bottom: 50px;
-  .sobv-text-box {
-    position: relative;
-    > label {
-      color: map-get($sobv-map-color, light-gray);
-      font-size: $sobv-font-size-sm;
-    }
-    > input {
-      height: 100%;
-    }
+  > form {
+    width: 220px;
   }
   > h1 {
     margin-top: 60px;

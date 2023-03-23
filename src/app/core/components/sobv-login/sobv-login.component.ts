@@ -26,8 +26,8 @@ export class SobvLoginComponent {
     private authService: AuthService,
     ) {
     this.form = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
+      email: ['', { validators: [Validators.required, Validators.email], updateOn: 'blur'}],
+      password: ['',{ validators: [Validators.required, Validators.minLength(8)], updateOn: 'blur'}],
     });
   }
 
@@ -52,6 +52,9 @@ export class SobvLoginComponent {
 
 
   onSubmit () {
+    if (true) {
+
+    }
     if (!this.isSubmitButtonDisabled && this.form.invalid) {
       this.isLoginFailed = true;
       this.isSubmitButtonDisabled = this.form.invalid;
