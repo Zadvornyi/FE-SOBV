@@ -3,18 +3,23 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from "../../services/auth.service";
 import {Role} from "../../enums";
+import {animate, style, transition, trigger} from "@angular/animations";
+import {fadeInOut} from "../../../animations";
 
 
 @Component({
   selector: 'sobv-login',
   templateUrl: './sobv-login.component.html',
-  styleUrls: ['./sobv-login.component.scss']
+  styleUrls: ['./sobv-login.component.scss'],
+  animations:[ fadeInOut ]
 })
 export class SobvLoginComponent {
   form: FormGroup;
+  isSubmitButtonDisabled: boolean = false;
   isLoggedIn:boolean = false;
   isLoginFailed:boolean = false;
   errorMessage:string = '';
+
   constructor(
     private router : Router,
     private fb: FormBuilder,
@@ -22,13 +27,19 @@ export class SobvLoginComponent {
     ) {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
+
   ngOnInit(): void {
     if (this.authService.isLoggedIn()) {
       this.isLoggedIn = true;
     }
+
+    this.form.valueChanges.subscribe(() => {
+      this.isSubmitButtonDisabled = this.form.invalid;
+      this.isLoginFailed = false;
+    })
   }
 
   getControlEmail(): FormControl {
@@ -41,7 +52,12 @@ export class SobvLoginComponent {
 
 
   onSubmit () {
-    if(this.form.valid) {
+    if (!this.isSubmitButtonDisabled && this.form.invalid) {
+      this.isLoginFailed = true;
+      this.isSubmitButtonDisabled = this.form.invalid;
+      this.errorMessage = "Перевірте будь-ласка поля";
+    } else
+    if(this.form.valid && !this.isSubmitButtonDisabled) {
       const { email, password } = this.form.value;
       this.authService.login(email, password).subscribe({
         next: data => {

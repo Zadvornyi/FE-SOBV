@@ -1,8 +1,9 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import {AuthService} from "../../services/auth.service";
 import {take} from "rxjs";
 import {Router} from "@angular/router";
+import {fadeInOut} from "../../../animations";
 
 export const confirmPasswordValidator: ValidatorFn = (control: AbstractControl) => {
   const password = control.get('password');
@@ -14,10 +15,12 @@ export const confirmPasswordValidator: ValidatorFn = (control: AbstractControl) 
 @Component({
   selector: 'sobv-sobv-register',
   templateUrl: './sobv-register.component.html',
-  styleUrls: ['./sobv-register.component.scss']
+  styleUrls: ['./sobv-register.component.scss'],
+  animations: [ fadeInOut ]
 })
-export class SobvRegisterComponent {
+export class SobvRegisterComponent implements OnInit {
   form: FormGroup;
+  isSubmitButtonDisabled: boolean = false;
   isSignUpFailed: boolean = false;
   errorMessage: string = '';
 
@@ -35,6 +38,16 @@ export class SobvRegisterComponent {
     }, {
       validators: confirmPasswordValidator
     });
+
+    this.form.markAsUntouched();
+  }
+
+  ngOnInit() {
+    this.form.valueChanges.subscribe(() => {
+      this.isSubmitButtonDisabled = this.form.invalid;
+      this.isSignUpFailed = false;
+      console.log(this.form.value, "log");
+    })
   }
 
   getControlFirstName(): FormControl {
@@ -62,7 +75,12 @@ export class SobvRegisterComponent {
   }
 
   onSubmit() {
-    if (this.form.valid) {
+    if (!this.isSubmitButtonDisabled && this.form.invalid) {
+    this.isSignUpFailed = true;
+    this.isSubmitButtonDisabled = this.form.invalid;
+    this.errorMessage = "Перевірте будь-ласка поля";
+  } else
+    if (this.form.valid && !this.isSubmitButtonDisabled) {
       const {firstName, lastName, email, password} = this.form.value;
 
       this.authService.register(firstName, lastName, email, password).pipe(

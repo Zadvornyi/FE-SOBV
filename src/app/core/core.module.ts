@@ -18,6 +18,7 @@ import {SobvTextBoxComponent} from "./components/sobv-text-box/sobv-text-box.com
 import {SobvLoginComponent} from "./components/sobv-login/sobv-login.component";
 import { AuthorizedUserDirective } from './directives/authorized-user.directive';
 import { UserRoleDirective } from './directives/user-role.directive';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { UserRoleDirective } from './directives/user-role.directive';
     AuthorizedUserDirective,
     UserRoleDirective
   ],
-  imports: [
+  imports: [BrowserAnimationsModule,
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
