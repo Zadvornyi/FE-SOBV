@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from "../../services/auth.service";
-import {StorageService} from "../../services/storage.service";
+import {Role} from "../../enums";
 
 
 @Component({
@@ -15,12 +15,10 @@ export class SobvLoginComponent {
   isLoggedIn:boolean = false;
   isLoginFailed:boolean = false;
   errorMessage:string = '';
-  roles: string[] = [];
   constructor(
     private router : Router,
     private fb: FormBuilder,
     private authService: AuthService,
-    private storageService: StorageService
     ) {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -28,9 +26,8 @@ export class SobvLoginComponent {
     });
   }
   ngOnInit(): void {
-    if (this.storageService.isLoggedIn()) {
+    if (this.authService.isLoggedIn()) {
       this.isLoggedIn = true;
-      this.roles = this.storageService.getUser().roles;
     }
   }
 
@@ -48,12 +45,14 @@ export class SobvLoginComponent {
       const { email, password } = this.form.value;
       this.authService.login(email, password).subscribe({
         next: data => {
-          this.storageService.saveUser(data);
-
           this.isLoginFailed = false;
           this.isLoggedIn = true;
-          this.roles = this.storageService.getUser().roles;
-          if(data) this.router.navigate(['/dashboard']);
+
+          if(data && data.role === Role.Combatant) {
+            this.router.navigate([`/profile/serviceman/${data.id}`]);
+          }else {
+            this.router.navigate(['/dashboard']);
+          }
         },
         error: error => {
           this.errorMessage = error;

@@ -10,6 +10,7 @@ import {SobvPollQuestionsComponent} from "./polls/components/sobv-poll-questions
 import {SobvLoginComponent} from "./core/components/sobv-login/sobv-login.component";
 import {SobvRegisterComponent} from "./core/components/sobv-register/sobv-register.component";
 import {AuthGuard} from "./core/utils/auth.guard";
+import {CommanderGuard} from "./core/utils/commander.guard";
 
 
 export const routingConfiguration: ExtraOptions = {
@@ -19,7 +20,10 @@ export const routingConfiguration: ExtraOptions = {
 //TODO: create Lazy-loading modules
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
-  {path: 'dashboard', component: SobvDashboardComponent},
+  {path: 'dashboard',
+    component: SobvDashboardComponent,
+    canActivate: [AuthGuard, CommanderGuard]
+  },
   {path: 'auth/login', component: SobvLoginComponent, pathMatch: 'full'},
   {path: 'auth/register', component: SobvRegisterComponent, pathMatch: 'full'},
   {
