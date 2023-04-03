@@ -42,11 +42,11 @@ export class SobvLoginComponent {
     })
   }
 
-  getControlEmail(): FormControl {
+  get controlEmail(): FormControl {
     return this.form.get('email') as FormControl;
   }
 
-  getControlPassword (): FormControl {
+  get controlPassword (): FormControl {
     return this.form.get('password') as FormControl;
   }
 

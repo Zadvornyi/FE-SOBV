@@ -3,16 +3,16 @@
   <div class="alert alert-danger" @fadeInOut *ngIf="isLoginFailed">
     {{ errorMessage|json }}
   </div>
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <form [formGroup]="form" (ngSubmit)="onSubmit">
     <div>
-      <sobv-text-box type="email" title="Email" id="'email'" [control]="getControlEmail()" ></sobv-text-box>
+      <sobv-text-box type="email" title="Email" id="'email'" [control]="controlEmail" ></sobv-text-box>
       <div class="alert alert-danger" @fadeInOut *ngIf="form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched)">
         <div @fadeInOut *ngIf="form.get('email')?.errors?.required">Це обов'язкове поле</div>
         <div @fadeInOut *ngIf="form.get('email')?.errors?.email">Використовуйте правильну адресу!</div>
       </div>
     </div>
     <div>
-      <sobv-password-box title="Пароль" id="'password'" [control]="getControlPassword()" ></sobv-password-box>
+      <sobv-password-box title="Пароль" id="'password'" [control]="controlPassword" ></sobv-password-box>
       <div @fadeInOut class="alert alert-danger" *ngIf="form.get('password')?.invalid && (form.get('password')?.dirty || form.get('password')?.touched)">
         <div @fadeInOut *ngIf="form.get('password')?.errors?.required">Це обов'язкове поле</div>
         <div @fadeInOut *ngIf="form.get('password')?.errors?.minlength">Мінімальна довжина {{form.get('password')?.errors?.minlength.requiredLength}} символів</div>
@@ -23,7 +23,7 @@
     <!-- TODO: bind with correct route -->
     <a class="d-block text-end mb-4">Забули пароль?</a>
 
-    <button type="button" class="btn btn-lg btn-primary d-block px-5 mb-4 mx-auto" [disabled]="isSubmitButtonDisabled" (click)="onSubmit()" >Увійти</button>
+    <button type="button" class="btn btn-lg btn-primary d-block px-5 mb-4 mx-auto" [disabled]="isSubmitButtonDisabled" (click)="onSubmit" >Увійти</button>
 
     <a class="d-block text-center" [routerLink]="['/auth/register']" routerLinkActive="router-link-active">Зареєструватися</a>
   </form>

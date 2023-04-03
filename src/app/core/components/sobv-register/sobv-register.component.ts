@@ -50,27 +50,27 @@ export class SobvRegisterComponent implements OnInit {
     })
   }
 
-  getControlFirstName(): FormControl {
+  get controlFirstName(): FormControl {
     return this.form.get('firstName') as FormControl;
   }
 
-  getControlLastName(): FormControl {
+  get controlLastName(): FormControl {
     return this.form.get('lastName') as FormControl;
   }
 
-  getControlEmail(): FormControl {
+  get controlEmail(): FormControl {
     return this.form.get('email') as FormControl;
   }
 
-  getControlPassword(): FormControl {
+  get controlPassword(): FormControl {
     return this.form.get('password') as FormControl;
   }
 
-  getControlConfirmPassword(): FormControl {
+  get controlConfirmPassword(): FormControl {
     return this.form.get('confirmPassword') as FormControl;
   }
 
-  isConfirmPasswordValid(): boolean {
+  get isConfirmPasswordValid(): boolean {
     return Boolean(confirmPasswordValidator(this.form) && this.form.get('confirmPassword')?.touched);
   }
 

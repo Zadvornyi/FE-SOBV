@@ -6,7 +6,7 @@
   </div>
   <form (submit)="onSubmit()">
     <div>
-      <sobv-text-box type="text" title="Ім'я" id="'firstName'" [control]="getControlFirstName()"></sobv-text-box>
+      <sobv-text-box type="text" title="Ім'я" id="'firstName'" [control]="controlFirstName"></sobv-text-box>
       <div class="alert alert-danger"
            @fadeInOut
            *ngIf="form.get('firstName')?.invalid && (form.get('firstName')?.dirty || form.get('firstName')?.touched)">
@@ -17,7 +17,7 @@
       </div>
     </div>
     <div>
-      <sobv-text-box type="text" title="Прізвище" id="'lastName'" [control]="getControlLastName()"></sobv-text-box>
+      <sobv-text-box type="text" title="Прізвище" id="'lastName'" [control]="controlLastName"></sobv-text-box>
       <div class="alert alert-danger" @fadeInOut
            *ngIf="form.get('lastName')?.invalid && (form.get('lastName')?.dirty || form.get('lastName')?.touched)">
         <div @fadeInOut *ngIf="form.get('lastName')?.errors?.required">Це обов'язкове поле</div>
@@ -27,7 +27,7 @@
       </div>
     </div>
     <div>
-      <sobv-text-box type="email" title="Email" id="'email'" [control]="getControlEmail()"></sobv-text-box>
+      <sobv-text-box type="email" title="Email" id="'email'" [control]="controlEmail"></sobv-text-box>
       <div class="alert alert-danger"
            @fadeInOut
            *ngIf="form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched)">
@@ -36,7 +36,7 @@
       </div>
     </div>
     <div>
-      <sobv-password-box title="Пароль" id="'password'" [control]="getControlPassword()"></sobv-password-box>
+      <sobv-password-box title="Пароль" id="'password'" [control]="controlPassword"></sobv-password-box>
       <div class="alert alert-danger"
            @fadeInOut
            *ngIf="form.get('password')?.invalid && (form.get('password')?.dirty || form.get('password')?.touched)">
@@ -48,10 +48,10 @@
     </div>
     <div>
       <sobv-password-box title="Пароль" id="confirmPassword"
-                         [control]="getControlConfirmPassword()"></sobv-password-box>
+                         [control]="controlConfirmPassword"></sobv-password-box>
       <div class="alert alert-danger"
            @fadeInOut
-           *ngIf="form.get('confirmPassword')?.invalid && form.get('confirmPassword')?.touched || isConfirmPasswordValid() ">
+           *ngIf="form.get('confirmPassword')?.invalid && form.get('confirmPassword')?.touched || isConfirmPasswordValid ">
         <div @fadeInOut *ngIf="form?.hasError('required')"> Це обов'язкове поле</div>
         <div @fadeInOut *ngIf="form?.hasError('confirmPassword')">Паролі не співпадають</div>
       </div>
