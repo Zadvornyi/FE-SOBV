@@ -1,0 +1,24 @@
+@import "../../../styles/variables";
+
+.sobv-rate-timeline-cont {
+  display: inline-block;
+}
+
+.sobv-rate-timeline {
+  height: $sobv-rate-hight;
+  position: relative;
+  > li {
+    position: absolute;
+    color: $sobv-color-gray;
+    font-size: 8px;
+    .time-label {
+      display: inline-block;
+      text-align: center;
+      margin-left: -8px;
+    }
+    &.time-label-today {
+      right: -8px;
+    }
+
+  }
+}

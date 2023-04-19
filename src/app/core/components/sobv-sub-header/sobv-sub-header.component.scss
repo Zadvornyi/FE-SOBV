@@ -3,7 +3,7 @@
 .sobv-sub-header {
   min-height: $sobv-sub-header-height;
 
-  background:#{$sobv-sub-header-background} center right 50px, #{$sobv-background-gradiend};
+  background:#{$sobv-sub-header-background} center right 50px, #{$sobv-background-gradient};
   background-repeat: no-repeat;
 
   padding: 0 2*$sobv-padding-base;
@@ -18,7 +18,7 @@
   font-size: $sobv-font-size;
   font-weight: 300;
   padding: $sobv-padding-base 0;
-  
+
   h1 {
     margin-bottom: 4px;
   }

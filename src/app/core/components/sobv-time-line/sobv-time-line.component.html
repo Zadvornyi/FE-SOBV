@@ -1,0 +1,12 @@
+<div class="sobv-rate-timeline-cont" #timelineCon>
+  <ul class="sobv-rate-timeline">
+    <ng-container *ngFor="let time of timeLineData; let i = index">
+      <li [ngStyle]="{'width': time.width + 'px', 'left': time.left + 'px'}">
+        <div class="time-label">
+          <span>{{time.date}}</span>
+          <div>{{time.year}}</div>
+        </div>
+      </li>
+    </ng-container>
+  </ul>
+</div>

@@ -1,14 +1,19 @@
 <div class="sobv-questions-cont">
+  <form [formGroup]="pollFormService.answersPollForm">
   <ul class="sobv-questions-list">
-    <li *ngFor="let item of questions$ | async">
+    <li *ngFor="let item of questions">
       <section>
         <h3>{{ item.question_text }}</h3>
         <div class="d-flex flex-column flex-md-row">
           <div class="flex-fill mb-3" >
             <div class="text-md-end"> {{ item.description }}</div>
           </div>
-          <div class="flex-fill mx-3">
-            <sobv-poll-choices [choices]="choices"></sobv-poll-choices>
+          <div class="flex-fill mx-3" *ngIf="choices">
+            <sobv-poll-choices
+              [choices]="choices"
+              [question]="item"
+              [answersPollForm]="pollFormService.answersPollForm"
+            ></sobv-poll-choices>
           </div>
           <div class="flex-fill ">
             <div>{{ item.opposite_description }}</div>
@@ -17,4 +22,5 @@
       </section>
     </li>
   </ul>
+  </form>
 </div>

@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {AuthService} from "./core/services/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'sobv-root',
@@ -7,4 +9,12 @@ import { Component } from '@angular/core';
 })
 export class SobvComponent {
   title = 'sobv';
+  constructor(
+    private router : Router,
+    private authService: AuthService) {
+  }
+
+  ngOnInit() {
+
+  }
 }

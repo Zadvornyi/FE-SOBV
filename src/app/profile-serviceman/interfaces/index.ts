@@ -2,8 +2,11 @@ export interface Serviceman {
   first_name: string,
   last_name: string,
   surname_name: string,
-  phone: string,
+  aliases: string,
   email: string,
-  aliases: string
+  phone?: string,
+  company?: number,
+  platoon?: number,
+  current_health?: number,
+  average_health?: number
 }
-
