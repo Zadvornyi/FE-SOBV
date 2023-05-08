@@ -1,13 +1,15 @@
-import { Component } from '@angular/core';
+import {Component, ElementRef, ViewChild} from '@angular/core';
 import * as bootstrap from "bootstrap";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 
+const NAME_PATTERN = /^[а-яА-Яa-zA-ZіІ\s]+$/;
 @Component({
   selector: 'sobv-create-serviceman',
   templateUrl: './sobv-create-serviceman.component.html',
   styleUrls: ['./sobv-create-serviceman.component.scss']
 })
 export class SobvCreateServicemanComponent {
+  @ViewChild('modal') modalRef!: ElementRef<HTMLElement>
   private modal?: bootstrap.Modal;
   form: FormGroup;
 
@@ -15,27 +17,28 @@ export class SobvCreateServicemanComponent {
     private fb: FormBuilder,
   ) {
     this.form = this.fb.group({
-      number: new FormControl('', [Validators.required]),
-      commander: new FormControl('', [Validators.required, Validators.pattern(/^[а-яА-Яa-zA-ZіІ\s]+$/)]),
+      surname: new FormControl('', [Validators.required, Validators.pattern(NAME_PATTERN)], ),
+      name: new FormControl('', [Validators.required, Validators.pattern(NAME_PATTERN)], ),
+      fatherName: new FormControl('', [Validators.required, Validators.pattern(NAME_PATTERN)], ),
+      aliases: new FormControl('', [Validators.required, Validators.pattern(NAME_PATTERN)]),
+      company: new FormControl('', [Validators.required, Validators.pattern(NAME_PATTERN)]),
+      platoon: new FormControl('', [Validators.required, Validators.pattern(NAME_PATTERN)]),
     })
   }
 
 
-  ngOnInit() {
-    this.modal = new bootstrap.Modal(
-      document.getElementById('modal-create-platoon') as HTMLElement
-    );
-
+  ngAfterViewInit () {
+    this.modal = new bootstrap.Modal(this.modalRef.nativeElement);
     this.modal.show();
   }
 
-  getControlNumber(): FormControl {
-    return this.form.get('number') as FormControl;
-  }
-
-  getControlCommander(): FormControl {
-    return this.form.get('commander') as FormControl;
-  }
+  // getControlNumber(): FormControl {
+  //   return this.form.get('number') as FormControl;
+  // }
+  //
+  // getControlCommander(): FormControl {
+  //   return this.form.get('commander') as FormControl;
+  // }
 
   onClose() {
     this.modal?.hide();

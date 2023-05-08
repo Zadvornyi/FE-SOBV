@@ -23,7 +23,7 @@
     <!-- TODO: bind with correct route -->
     <a class="d-block text-end mb-4">Забули пароль?</a>
 
-    <button type="button" class="btn btn-lg btn-primary d-block px-5 mb-4 mx-auto" [disabled]="form.invalid" (click)="onSubmit()" >Увійти</button>
+    <button type="button" class="btn btn-lg btn-primary d-block px-5 mb-4 mx-auto" [disabled]="form.invalid && isLoginFailed" (click)="onSubmit()" >Увійти</button>
 
     <a class="d-block text-center" [routerLink]="['/auth/register']" routerLinkActive="router-link-active">Зареєструватися</a>
   </form>

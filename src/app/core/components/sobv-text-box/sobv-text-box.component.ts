@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import {AbstractControl, FormControl, ɵFormGroupRawValue, ɵGetProperty, ɵTypedOrUntyped} from '@angular/forms';
 
 export type InputType = "text" | "password" | "email";
 const DEFAULT_INPUT_TYPE = "text";
@@ -13,5 +13,14 @@ export class SobvTextBoxComponent {
   @Input() type: InputType = DEFAULT_INPUT_TYPE;
   @Input() title?: string;
   @Input() id?:string;
-  @Input() control: FormControl = new FormControl();
+  // @Input() control?: FormControl<any> | AbstractControl<any, any>;
+  @Input()
+  set control(v: string | FormControl | AbstractControl | null ){
+    if (typeof v === "string") {
+      this.formControl.setValue(v || "");
+    } else {
+      this.formControl.setValue(v?.value);
+    }
+  }
+  formControl: FormControl = new FormControl("");
 }
