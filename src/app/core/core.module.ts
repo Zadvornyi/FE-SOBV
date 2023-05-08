@@ -18,6 +18,9 @@ import {SobvTextBoxComponent} from "./components/sobv-text-box/sobv-text-box.com
 import {SobvLoginComponent} from "./components/sobv-login/sobv-login.component";
 import { AuthorizedUserDirective } from './directives/authorized-user.directive';
 import { UserRoleDirective } from './directives/user-role.directive';
+import {SobvCreateCompanyComponent} from "./components/sobv-create-company/sobv-create-company.component";
+import {SobvCreatePlatoonComponent} from "./components/sobv-create-platoon/sobv-create-platoon.component";
+import { SobvCreateServicemanComponent } from './components/sobv-create-serviceman/sobv-create-serviceman.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import { UserRoleDirective } from './directives/user-role.directive';
     SobvPasswordBoxComponent,
     SobvRegisterComponent,
     AuthorizedUserDirective,
-    UserRoleDirective
+    UserRoleDirective,
+    SobvCreateCompanyComponent,
+    SobvCreatePlatoonComponent,
+    SobvCreateServicemanComponent,
   ],
   imports: [
     CommonModule,
@@ -42,7 +48,6 @@ import { UserRoleDirective } from './directives/user-role.directive';
     ReactiveFormsModule,
     NgbTooltipModule,
     NgxPopperModule,
-
   ],
   exports: [
     SobvHeaderComponent,

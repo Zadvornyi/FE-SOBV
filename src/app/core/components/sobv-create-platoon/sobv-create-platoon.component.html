@@ -16,13 +16,14 @@
             <sobv-text-box type="text" title="Командир" [control]="getControlCommander()" ></sobv-text-box>
             <div class="alert alert-danger" *ngIf="form.get('commander')?.invalid && (form.get('commander')?.dirty || form.get('commander')?.touched)">
               <div *ngIf="form.get('commander')?.errors?.required">Це обов'язкове поле</div>
+              <div *ngIf="form.get('commander')?.errors?.pattern">Використовуйте дозволені символи</div>
             </div>
           </div>
         </fieldset>
       </div>
       <div class="modal-footer border-0 pt-0">
         <button type="button" class="btn btn-secondary" (click)="onClose()">Відмінити</button>
-        <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Зберегти</button>
+        <button type="submit" class="btn btn-primary" [disabled]="form.invalid && form.dirty">Зберегти</button>
       </div>
     </form>
   </div>

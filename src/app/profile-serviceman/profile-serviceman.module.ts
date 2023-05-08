@@ -3,18 +3,22 @@ import { CommonModule } from '@angular/common';
 import {SobvProfileServicemanComponent} from "./components/sobv-profile-serviceman/sobv-profile-serviceman.component";
 import {CoreModule} from "../core/core.module";
 import {NgbDropdownModule} from "@ng-bootstrap/ng-bootstrap";
+import {
+  SobvCreateServicemanComponent
+} from "../core/components/sobv-create-serviceman/sobv-create-serviceman.component";
 
 @NgModule({
   declarations: [
-    SobvProfileServicemanComponent
+    SobvProfileServicemanComponent,
+    SobvCreateServicemanComponent,
   ],
   imports: [
     CommonModule,
-    CoreModule,
-    NgbDropdownModule
+    NgbDropdownModule,
+    CoreModule
   ],
   exports: [
-    SobvProfileServicemanComponent
+    SobvProfileServicemanComponent,
   ],
 })
 export class ProfileServicemanModule { }

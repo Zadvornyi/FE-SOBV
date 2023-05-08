@@ -1,7 +1,7 @@
 <div class="sobv-login">
   <h1>Оцінка МПЗ підрозділу</h1>
   <div class="alert alert-danger" *ngIf="isLoginFailed">
-    {{ errorMessage|json }}
+    {{ errorMessage | json }}
   </div>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div>
@@ -27,4 +27,5 @@
 
     <a class="d-block text-center" [routerLink]="['/auth/register']" routerLinkActive="router-link-active">Зареєструватися</a>
   </form>
+  <sobv-create-serviceman></sobv-create-serviceman>
 </div>
