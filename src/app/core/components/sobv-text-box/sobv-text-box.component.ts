@@ -13,14 +13,15 @@ export class SobvTextBoxComponent {
   @Input() type: InputType = DEFAULT_INPUT_TYPE;
   @Input() title?: string;
   @Input() id?:string;
-  // @Input() control?: FormControl<any> | AbstractControl<any, any>;
+  @Input() inputClass?: string;
   @Input()
   set control(v: string | FormControl | AbstractControl | null ){
     if (typeof v === "string") {
-      this.formControl.setValue(v || "");
+      this.formControl.setValue( "");
     } else {
-      this.formControl.setValue(v?.value);
+      this.formControl = v as FormControl;
     }
   }
+
   formControl: FormControl = new FormControl("");
 }

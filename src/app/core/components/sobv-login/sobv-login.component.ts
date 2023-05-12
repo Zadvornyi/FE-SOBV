@@ -15,6 +15,7 @@ export class SobvLoginComponent {
   isLoggedIn:boolean = false;
   isLoginFailed:boolean = false;
   errorMessage:string = '';
+
   constructor(
     private router : Router,
     private fb: FormBuilder,
@@ -22,9 +23,10 @@ export class SobvLoginComponent {
     ) {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
+
   ngOnInit(): void {
     if (this.authService.isLoggedIn()) {
       this.isLoggedIn = true;
@@ -47,7 +49,6 @@ export class SobvLoginComponent {
         next: data => {
           this.isLoginFailed = false;
           this.isLoggedIn = true;
-
           if(data && data.role === Role.Combatant) {
             this.router.navigate([`/profile/serviceman/${data.id}`]);
           }else {

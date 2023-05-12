@@ -4,8 +4,7 @@
   color: map-get($sobv-map-color, black);
 
   .modal-title {
-    // TODO: change to variable when merge file with it
-    font-size: 18px;
+    font-size: $sobv-font-size-semi-lg;
     color: map-get($sobv-map-color, black);
   }
 
