@@ -9,7 +9,6 @@ export class BasicAuthInterceptor implements HttpInterceptor {
   constructor(
     private authService: AuthService) { }
 
-
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     // add header with basic auth credentials if user is logged in and request is to the api url
     const servicemanData = this.authService.getUser();
@@ -18,7 +17,7 @@ export class BasicAuthInterceptor implements HttpInterceptor {
     if (isLoggedIn && isApiUrl) {
       request = request.clone({
         setHeaders: {
-          Authorization: `Token ${servicemanData.token}`
+          Authorization: `Bearer ${servicemanData.token}`
         }
       });
     }
