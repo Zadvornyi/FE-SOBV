@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, ElementRef, ViewChild} from '@angular/core';
 import * as bootstrap from "bootstrap";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 
@@ -8,6 +8,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./sobv-create-company.component.scss']
 })
 export class SobvCreateCompanyComponent {
+  @ViewChild('modal') modalRef!: ElementRef<HTMLElement>
   private modal?: bootstrap.Modal;
   form: FormGroup;
 
@@ -20,11 +21,8 @@ export class SobvCreateCompanyComponent {
     })
   }
 
-  ngOnInit() {
-    this.modal = new bootstrap.Modal(
-      document.getElementById('modal-create-platoon') as HTMLElement
-    );
-
+  ngAfterViewInit () {
+    this.modal = new bootstrap.Modal(this.modalRef.nativeElement);
     this.modal.show();
   }
 

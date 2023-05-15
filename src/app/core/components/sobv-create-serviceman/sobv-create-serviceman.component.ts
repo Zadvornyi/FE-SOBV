@@ -26,7 +26,6 @@ export class SobvCreateServicemanComponent {
     })
   }
 
-
   ngAfterViewInit () {
     this.modal = new bootstrap.Modal(this.modalRef.nativeElement);
     this.modal.show();

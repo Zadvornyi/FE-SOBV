@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import * as bootstrap from 'bootstrap';
 
@@ -7,7 +7,8 @@ import * as bootstrap from 'bootstrap';
   templateUrl: './sobv-create-platoon.component.html',
   styleUrls: ['./sobv-create-platoon.component.scss'],
 })
-export class SobvCreatePlatoonComponent implements OnInit {
+export class SobvCreatePlatoonComponent {
+  @ViewChild('modal') modalRef!: ElementRef<HTMLElement>
   private modal?: bootstrap.Modal;
   form: FormGroup;
 
@@ -21,11 +22,8 @@ export class SobvCreatePlatoonComponent implements OnInit {
   }
 
 
-  ngOnInit() {
-    this.modal = new bootstrap.Modal(
-      document.getElementById('modal-create-platoon') as HTMLElement
-    );
-
+  ngAfterViewInit() {
+    this.modal = new bootstrap.Modal(this.modalRef.nativeElement);
     this.modal.show();
   }
 
