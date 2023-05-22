@@ -1,0 +1,30 @@
+@import "../../../styles/sobv";
+
+.sobv-modal-content {
+  color: map-get($sobv-map-color, black);
+
+  .modal-title {
+    font-size: $sobv-font-size-semi-lg;
+    color: map-get($sobv-map-color, black);
+  }
+
+  label {
+    font-size: $sobv-font-size;
+    color: $secondary;
+    line-height: 10px;
+    padding-bottom: 11px;
+  }
+
+  input {
+    border: 1px $sobv-color-gray-light solid;
+  }
+}
+
+.sobv-modal-content {
+  margin-top: 25%;
+  background-color: map-get($sobv-map-color, white);
+}
+
+.sobv-invalid-feedback {
+  color: $danger;
+}

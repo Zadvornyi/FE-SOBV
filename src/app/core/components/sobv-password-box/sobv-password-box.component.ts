@@ -10,17 +10,19 @@ import { InputType } from '../sobv-text-box/sobv-text-box.component';
 export class SobvPasswordBoxComponent {
   @Input() title = "";
   @Input() isVisible = false;
-  @Input() control: FormControl = new FormControl();  
+  @Input() control: FormControl = new FormControl();
+  @Input() id?: string;
+
 
   onToggle () {
-    this.isVisible = !this.isVisible; 
+    this.isVisible = !this.isVisible;
   }
 
-  getInputType (): InputType  {
+  get inputType (): InputType  {
     return this.isVisible ? "text" : "password"
   }
 
-  getEyeClass() {
+  get eyeClass() {
     return this.isVisible ? 'bi-eye' : 'bi-eye-slash'
   }
 }

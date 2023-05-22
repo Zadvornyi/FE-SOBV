@@ -1,18 +1,18 @@
 <div class="sobv-login">
   <h1>Оцінка МПЗ підрозділу</h1>
   <div class="alert alert-danger" *ngIf="isLoginFailed">
-    {{ errorMessage|json }}
+    {{ errorMessage | json }}
   </div>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div>
-      <sobv-text-box type="email" title="Email" id="'email'" [control]="getControlEmail()" ></sobv-text-box>
+      <sobv-text-box type="email" title="Email" id="'login-email'" [control]="getControlEmail()" ></sobv-text-box>
       <div class="alert alert-danger" *ngIf="form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched)">
         <div *ngIf="form.get('email')?.errors?.required">Це обов'язкове поле</div>
         <div *ngIf="form.get('email')?.errors?.email">Використовуйте правильну адресу!</div>
       </div>
     </div>
     <div>
-      <sobv-password-box title="Пароль" id="'password'" [control]="getControlPassword()" ></sobv-password-box>
+      <sobv-password-box title="Пароль" id="'login-password'" [control]="getControlPassword()" ></sobv-password-box>
       <div class="alert alert-danger" *ngIf="form.get('password')?.invalid && (form.get('password')?.dirty || form.get('password')?.touched)">
         <div *ngIf="form.get('password')?.errors?.required">Це обов'язкове поле</div>
         <div *ngIf="form.get('password')?.errors?.minlength">Мінімальна довжина {{form.get('password')?.errors?.minlength.requiredLength}} символів</div>

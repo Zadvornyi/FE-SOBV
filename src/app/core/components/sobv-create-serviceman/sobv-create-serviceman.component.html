@@ -1,0 +1,68 @@
+<div class="modal" #modal tabindex="-1">
+  <div class="modal-dialog">
+    <form class="modal-content sobv-modal-content" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="modal-header border-0 pb-0">
+        <h5 class="modal-title">Додати взвод</h5>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-1 col-md">
+              <sobv-text-box type="text" title="Прізвище" [control]="form.get('surname')"></sobv-text-box>
+              <div class="alert alert-danger"
+                   *ngIf="form.get('surname')?.invalid && (form.get('surname')?.dirty || form.get('surname')?.touched)">
+                <div *ngIf="form.get('surname')?.errors?.required">Це обов'язкове поле</div>
+              </div>
+            </div>
+            <div class="col-1 col-md">
+              <sobv-text-box type="text" title="Ім'я" [control]="form.get('name')"></sobv-text-box>
+              <div class="alert alert-danger"
+                   *ngIf="form.get('name')?.invalid && (form.get('name')?.dirty || form.get('name')?.touched)">
+                <div *ngIf="form.get('name')?.errors?.required">Це обов'язкове поле</div>
+                <div *ngIf="form.get('name')?.errors?.pattern">Використовуйте дозволені символи</div>
+              </div>
+            </div>
+            <div class="col-1 col-md">
+              <sobv-text-box type="text" title="По батькові" [control]="form.get('fatherName')"></sobv-text-box>
+              <div class="alert alert-danger"
+                   *ngIf="form.get('fatherName')?.invalid && (form.get('fatherName')?.dirty || form.get('fatherName')?.touched)">
+                <div *ngIf="form.get('fatherName')?.errors?.required">Це обов'язкове поле</div>
+                <div *ngIf="form.get('fatherName')?.errors?.pattern">Використовуйте дозволені символи</div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <sobv-text-box type="text" title="Позивний" [control]="form.get('aliases')"></sobv-text-box>
+            <div class="alert alert-danger"
+                 *ngIf="form.get('aliases')?.invalid && (form.get('aliases')?.dirty || form.get('aliases')?.touched)">
+              <div *ngIf="form.get('aliases')?.errors?.required">Це обов'язкове поле</div>
+              <div *ngIf="form.get('aliases')?.errors?.pattern">Використовуйте дозволені символи</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-1 col-md">
+              <sobv-text-box type="text" title="Рота" [control]="form.get('company')"></sobv-text-box>
+              <div class="alert alert-danger"
+                   *ngIf="form.get('company')?.invalid && (form.get('company')?.dirty || form.get('company')?.touched)">
+                <div *ngIf="form.get('company')?.errors?.required">Це обов'язкове поле</div>
+                <div *ngIf="form.get('company')?.errors?.pattern">Використовуйте дозволені символи</div>
+              </div>
+            </div>
+            <div class="form-group col-1 col-md" >
+              <sobv-text-box type="text" title="Взвод" [control]="form.get('platoon')"></sobv-text-box>
+              <div class="alert alert-danger"
+                   *ngIf="form.get('platoon')?.invalid && (form.get('platoon')?.dirty || form.get('platoon')?.touched)">
+                <div *ngIf="form.get('platoon')?.errors?.required">Це обов'язкове поле</div>
+                <div *ngIf="form.get('platoon')?.errors?.pattern">Використовуйте дозволені символи</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer border-0 pt-0">
+        <button type="button" class="btn btn-secondary" (click)="onClose()">Відмінити</button>
+        <button type="submit" class="btn btn-primary" [disabled]="form.invalid && form.dirty">Зберегти</button>
+      </div>
+    </form>
+  </div>
+</div>

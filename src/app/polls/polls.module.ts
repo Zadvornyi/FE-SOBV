@@ -7,6 +7,7 @@ import { SobvPollModalPopupComponent } from './components/sobv-poll-modal-popup/
 import {RouterModule} from "@angular/router";
 import {ReactiveFormsModule} from "@angular/forms";
 import {SobvPollQuestionsFormService} from "./services/sobv-poll-questions-form.service";
+import {ProfileServicemanModule} from "../profile-serviceman/profile-serviceman.module";
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import {SobvPollQuestionsFormService} from "./services/sobv-poll-questions-form.
     CommonModule,
     RouterModule,
     CoreModule,
+    ProfileServicemanModule,
     ReactiveFormsModule
   ],
   providers: [SobvPollQuestionsFormService],

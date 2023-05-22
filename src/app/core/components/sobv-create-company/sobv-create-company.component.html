@@ -1,13 +1,13 @@
-<div class="modal" id="modal-create-platoon" tabindex="-1">
+<div class="modal" #modal tabindex="-1">
   <div class="modal-dialog">
     <form class="modal-content sobv-modal-content" [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="modal-header border-0 pb-0">
-        <h5 class="modal-title">Додати взвод</h5>
+        <h5 class="modal-title">Додати роту</h5>
       </div>
       <div class="modal-body">
-        <fieldset class="d-flex gap-3">
+        <div class=" d-flex gap-3">
           <div>
-            <sobv-text-box type="text" title="Номер" [control]="getControlNumber()" ></sobv-text-box>
+            <sobv-text-box type="text" inputClass="ngb-highlight" title="Номер" [control]="getControlNumber()" ></sobv-text-box>
             <div class="alert alert-danger" *ngIf="form.get('number')?.invalid && (form.get('number')?.dirty || form.get('number')?.touched)">
               <div *ngIf="form.get('number')?.errors?.required">Це обов'язкове поле</div>
             </div>
@@ -16,13 +16,14 @@
             <sobv-text-box type="text" title="Командир" [control]="getControlCommander()" ></sobv-text-box>
             <div class="alert alert-danger" *ngIf="form.get('commander')?.invalid && (form.get('commander')?.dirty || form.get('commander')?.touched)">
               <div *ngIf="form.get('commander')?.errors?.required">Це обов'язкове поле</div>
+              <div *ngIf="form.get('commander')?.errors?.pattern">Використовуйте дозволені символи</div>
             </div>
           </div>
-        </fieldset>
+        </div>
       </div>
       <div class="modal-footer border-0 pt-0">
         <button type="button" class="btn btn-secondary" (click)="onClose()">Відмінити</button>
-        <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Зберегти</button>
+        <button type="submit" class="btn btn-primary" [disabled]="form.invalid && form.dirty">Зберегти</button>
       </div>
     </form>
   </div>
