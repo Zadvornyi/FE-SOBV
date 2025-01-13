@@ -31,7 +31,7 @@ export class SobvRateBarComponent {
   isShowCurrentDivision?: boolean;
 
   barLength!: number;
-  divisionLineData?: Array<{"left": number}>;
+  divisionLineData?: Array<{ "left": number }>;
   ratesData?: RateHealth[];
   selectedRateHealth?: RateHealth;
 
@@ -101,8 +101,8 @@ export class SobvRateBarComponent {
   private calculatePeriodExist() {
     if (this.currentUnixTime && this.startTime && this.endTime) {
       let curentTimePoint = this.calculatePoint(this.currentUnixTime);
-      let endTimePoint: number =  (this.isFutureStartTime) ? this.calculatePoint(this.endTime): this.barLength;
-      let futureStartPoint: number = (this.isFutureStartTime) ? curentTimePoint: this.calculatePoint(this.endTime);
+      let endTimePoint: number = (this.isFutureStartTime) ? this.calculatePoint(this.endTime) : this.barLength;
+      let futureStartPoint: number = (this.isFutureStartTime) ? curentTimePoint : this.calculatePoint(this.endTime);
       let futureWidthRate = endTimePoint - futureStartPoint;
 
       this.widthPeriodFuture = futureWidthRate;
@@ -139,9 +139,9 @@ export class SobvRateBarComponent {
   }
 
   private calculateRate(startTime: number, endtTime: number) {
-    let px1 = this.calculatePoint(startTime),
-      px2 = (this.currentUnixTime && endtTime > this.currentUnixTime) ? this.calculatePoint(this.currentUnixTime) : this.calculatePoint(endtTime),
-      widthRate = (px2 - px1);
+    let px1 = this.calculatePoint(startTime);
+    let px2 = (this.currentUnixTime && endtTime > this.currentUnixTime) ? this.calculatePoint(this.currentUnixTime) : this.calculatePoint(endtTime);
+    let widthRate = (px2 - px1);
     return {'width': widthRate, 'left': px1}
   };
 
