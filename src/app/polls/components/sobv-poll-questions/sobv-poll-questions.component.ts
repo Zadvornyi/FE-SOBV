@@ -5,6 +5,7 @@ import {SobvPollsService} from "../../services/sobv-polls.service";
 import {ActivatedRoute} from "@angular/router";
 import {SobvPollQuestionsFormService} from "../../services/sobv-poll-questions-form.service";
 import {map} from "rxjs/operators";
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'sobv-poll-questions',
@@ -20,6 +21,7 @@ export class SobvPollQuestionsComponent {
   constructor(
     public pollFormService: SobvPollQuestionsFormService,
     private sobvPollsService: SobvPollsService,
+    private cdr: ChangeDetectorRef,
     private route: ActivatedRoute) {
   }
 
@@ -37,6 +39,7 @@ export class SobvPollQuestionsComponent {
       }),
       tap(report => {
         this.pollFormService.activeReport = report as Report;
+        this.cdr.detectChanges();
       }),
       take(1)
     ).subscribe();
@@ -45,11 +48,14 @@ export class SobvPollQuestionsComponent {
       take(1)
     ).subscribe((resp)=>{
       this.questions = resp;
+      this.cdr.detectChanges();
     });
     this.getChoicesByPollId(this.pollId).pipe(take(1))
       .subscribe((resp) => {
         this.choices = resp;
+        this.cdr.detectChanges();
       });
+
 
   }
 
