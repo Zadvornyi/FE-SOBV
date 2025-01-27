@@ -6,3 +6,36 @@
     font-size: $sobv-font-size-sm;
   }
 }
+
+.category-column {
+  text-align: center;
+}
+
+.label-bar {
+  display: block;
+  padding-left: 0;
+  margin: auto;
+}
+
+
+.sobv-cascade-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sobv-cascade-list > li {
+  padding-left: 20px;
+}
+
+.sobv-cascade-list > li > ul > li {
+  padding-left: 5px;
+}
+
+.sobv-cascade-list > li > ul > li > ul > li {
+  padding-left: 35px;
+}
+
+
+
+

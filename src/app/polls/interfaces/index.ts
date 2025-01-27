@@ -26,7 +26,8 @@ export interface Report {
   id: string
   serviceman: string,
   poll: string,
-  category?: string,
+  category_id: number,
+  category_title?: string,
   health_level: number| null,
   created_date: string,
   update_date: string,

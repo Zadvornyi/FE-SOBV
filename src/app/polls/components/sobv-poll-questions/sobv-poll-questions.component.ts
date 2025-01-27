@@ -53,7 +53,6 @@ export class SobvPollQuestionsComponent {
 
   }
 
-
   private getQuestionsByPollId(pollId: string): Observable<Question[]> {
     return this.sobvPollsService.getQuestionsByPollId(pollId);
   }
@@ -69,6 +68,4 @@ export class SobvPollQuestionsComponent {
     }
     return this.sobvPollsService.createServicemanPollReport(servicemanId, submitData);
   }
-
-
 }

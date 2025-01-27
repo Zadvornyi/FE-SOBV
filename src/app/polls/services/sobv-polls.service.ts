@@ -15,15 +15,12 @@ export class SobvPollsService {
   public getPollsCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(`${GlobalConstants.API_URL}/api/poll/categories`);
   }
-
   public getPollsCategoryById(categoryId: string): Observable<Category> {
     return this.http.get<Category>(`${GlobalConstants.API_URL}/api/poll/category/${categoryId}`);
   }
-
   public getQuestionsByPollId(pollId: string): Observable<Question[]> {
     return this.http.get<Question[]>(`${GlobalConstants.API_URL}/api/poll/${pollId}/question`);
   }
-
   public getChoicesByPollId(pollId: string): Observable<Choice[]> {
     return this.http.get<Choice[]>(`${GlobalConstants.API_URL}/api/poll/${pollId}/choice`);
   }
@@ -44,6 +41,10 @@ export class SobvPollsService {
   }
   public bulkServicemanPollAnswers(data: Answer[]): Observable<any> {
     return this.http.post<Answer[]>(`${GlobalConstants.API_URL}/api/serviceman/bulk/answers`, data);
+  }
+
+  public getServicemen(): Observable<Serviceman[]> {
+    return this.http.get<Serviceman[]>(`${GlobalConstants.API_URL}/api/serviceman`);
   }
 
 }

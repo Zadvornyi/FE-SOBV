@@ -1,4 +1,5 @@
 export interface Serviceman {
+  id: number,
   first_name: string,
   last_name: string,
   surname_name: string,
@@ -7,6 +8,7 @@ export interface Serviceman {
   phone?: string,
   company?: number,
   platoon?: number,
+  serviceman_type?:number,
   current_health?: number,
-  average_health?: number
+  average_health?: number,
 }

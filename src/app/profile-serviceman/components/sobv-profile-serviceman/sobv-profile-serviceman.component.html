@@ -15,96 +15,230 @@
     </div>
   </div>
 </sobv-sub-header>
+
 <section class="container sobv-health-cont" *ngIf="userData">
   <div class="sobv-layout-header">
     <div class="row">
-      <div class="col-lg-10 col-md-40 col-sm-45 col-45"><span class="label-header sobv-half-pl">Project</span>
-      </div>
-      <div class="col-lg-12 col-md-25 col-sm-25 col-30 d-none d-lg-block"><span
-        class="label-header">Category</span></div>
+      <div class="col-lg-10 col-md-40 col-sm-45 col-45"><span class="label-header-inline">Підрозділ</span></div>
+      <div class="col-lg-12 col-md-25 col-sm-25 col-30 d-none d-lg-block"><span class="label-header"></span></div>
       <div class="col-lg-20 d-none d-lg-block d-none d-lg-block">
         <span class="label-header-inline">Health Timeline</span>
-                <sobv-time-line
-                  [startTime]="startTime"
-                  [endTime]="endTime"
-                  [timeLine]="timeLine"
-                ></sobv-time-line>
+        <sobv-time-line
+          [startTime]="startTime"
+          [endTime]="endTime"
+          [timeLine]="timeLine"
+        ></sobv-time-line>
       </div>
       <div class="col-lg-4 d-none d-lg-block">
-        <span class="label-header-inline sobv-health-curr-column">Health (current)</span>
+        <span class="label-header-inline sobv-health-curr-column"></span>
       </div>
       <div class="col-lg-4 col-md-10 col-sm-10 offset-lg-2 col-10">
-        <span class="label-header-inline">Health</span>
+        <span class="label-header-inline"></span>
       </div>
       <div class="col-lg-4 d-none d-lg-block">
-        <span class="label-header-inline">Response rate</span>
+        <span class="label-header-inline">МПЗ середній</span>
       </div>
       <div class="col-lg-4 col-md-10 col-sm-10 col-10 d-none d-md-block">
-        <span class="label-header-inline">Weight</span>
+        <span class="label-header-inline">Вага</span>
       </div>
     </div>
   </div>
-  <ul class="sobv-cascade-list">
-    <li>
-      <div class="main-info sobv-cascade-level-1 blurred">
-        <div class="row">
-          <div class="col-lg-22 col-md-15 col-sm-45 col-45">
-            <i class="bi bi-chevron-down"></i>
-            <span class="title">{{getName()}}</span>
-          </div>
-          <div class="col-lg-20 d-none d-lg-block d-none d-lg-block ">
-                        <sobv-rate-bar
-                          *ngIf="userData"
-                          [startTime]="startTime"
-                          [endTime]="endTime"
-                          [inputData]="reportsData"
-                          [timeLine]="timeLine"
-                        >
-                        </sobv-rate-bar>
-          </div>
-          <div class="col-lg-4 d-none d-lg-block">
-            <span class="label-bar sobv-health-curr-column"
-                  *ngIf="userData?.current_health !== null">{{userData.current_health}}%</span>
-            <span *ngIf="userData.current_health === null"
-                  class="label-bar sobv-health-curr-column">N/A</span>
-          </div>
-          <div class="col-lg-4 col-md-10 offset-md-25 col-sm-10 offset-lg-2 col-10">
-            <span class="label-bar" *ngIf="userData.average_health">{{userData.average_health}}%</span>
-          </div>
-          <div class="col-lg-4 d-none d-lg-block">
-            <span *ngIf="userData?.average_health !== null" class="label-bar">{{userData?.average_health}}%</span>
-            <span *ngIf="userData?.average_health === null" class="label-bar">N/A</span>
-          </div>
-          <div class="col-lg-4 col-md-10 col-sm-10 col-10"></div>
-        </div>
-      </div>
-      <ul class="sobv-cascade-list">
-        <li *ngFor="let report of reportsData">
-          <div class="main-info sobv-cascade-level-2 blurred">
-            <div class="hidden-row-hover"></div>
-            <div class="row">
-              <div class="col-lg-22 col-md-40 col-45">
-                                    <span class="title-action sobv-cursor-cp">
-                                      <span>{{report.poll}}</span>
-                                    </span>
-              </div>
-              <div class="col-lg-20 d-none d-lg-block d-none d-lg-block">
 
-              </div>
-              <div class="col-lg-4 d-none d-lg-block">
-                <span class="label-bar sobv-health-curr-column">N/A</span>
-              </div>
-              <div class="col-lg-4 col-md-10 col-sm-10 offset-lg-2 col-10">
-                <span class="label-bar">N/A</span>
-              </div>
-              <div class="col-lg-4 d-none d-lg-block"></div>
-              <div class="col-lg-4 col-md-10 col-sm-10 col-10 d-none d-md-block">
-                <span class="label-bar">N/A</span>
-              </div>
+
+
+  <ng-container *ngIf="userData?.serviceman_type == 2">
+    <ul class="sobv-cascade-list">
+      <li *ngFor="let platoonId of getPlatoonsByCompany(getCompany()) | keyvalue">
+        <div class="main-info sobv-cascade-level-1 blurred">
+          <div class="row">
+            <div class="col-lg-22 col-md-15 col-sm-45 col-45">
+              <button (click)="togglePlatoon(platoonId.key)" class="btn btn-link">
+                <i class="bi" [ngClass]="platoonState[platoonId.key] ? 'bi-chevron-down' : 'bi-chevron-right'"></i>
+              </button>
+              <span class="title">Взвод {{ platoonId.key }}</span>
             </div>
           </div>
-        </li>
-      </ul>
-    </li>
-  </ul>
+        </div>
+        <ul class="sobv-cascade-list" *ngIf="platoonState[platoonId.key]">
+          <li *ngFor="let soldier of platoonId.value">
+            <div class="main-info sobv-cascade-level-2 blurred" style="margin-left: 20px;">
+              <div class="row">
+                <div class="col-lg-22 col-md-40 col-45">
+                  <button (click)="toggleSoldier(soldier)" class="btn btn-link">
+                    <i class="bi" [ngClass]="soldierState[soldier.first_name] ? 'bi-chevron-down' : 'bi-chevron-right'"></i>
+                  </button>
+                  <span class="title">{{ soldier.aliases }}</span>
+                </div>
+                <div class="col-lg-20 d-none d-lg-block text-center">
+                  <sobv-rate-bar
+                    *ngIf="reportsBySoldier[soldier.id]"
+                    [startTime]="startTime"
+                    [endTime]="endTime"
+                    [inputData]="reportsBySoldier[soldier.id]"
+                    [timeLine]="timeLine"
+                  ></sobv-rate-bar>
+                </div>
+              </div>
+            </div>
+            <ul class="sobv-cascade-list" *ngIf="soldierState[soldier.first_name]">
+              <li *ngFor="let report of reportsBySoldier[soldier.id] || []">
+                <div class="main-info sobv-cascade-level-2 blurred">
+                  <div class="hidden-row-hover"></div>
+                  <div class="row">
+                    <div class="col-lg-22 col-md-40 col-45">
+                    <span class="title-action sobv-cursor-cp">
+                      <span>{{ report.category_title }}</span>
+                    </span>
+                    </div>
+                    <div class="col-lg-20 d-none d-lg-block"></div>
+                    <div class="col-lg-4 d-none d-lg-block text-center">
+                      <span class="label-bar sobv-health-curr-column"></span>
+                    </div>
+                    <div class="col-lg-4 col-md-10 col-sm-10 offset-lg-2 col-10">
+                      <span class="label-bar"></span>
+                    </div>
+                    <div class="col-lg-4 d-none d-lg-block"><span class="label-bar">{{ report.health_level}}%</span></div>
+                    <div class="col-lg-4 col-md-10 col-sm-10 col-10 d-none d-md-block">
+                      <span class="label-bar">1</span>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </ng-container>
+
+  <ng-container *ngIf="userData?.serviceman_type == 3">
+    <ul class="sobv-cascade-list">
+      <li>
+        <div class="main-info sobv-cascade-level-1 blurred">
+          <div class="row">
+            <div class="col-lg-22 col-md-15 col-sm-45 col-45">
+              <button (click)="togglePlatoon(getPlatoon())" class="btn btn-link">
+                <i class="bi" [ngClass]="platoonState[getPlatoon()] ? 'bi-chevron-down' : 'bi-chevron-right'"></i>
+              </button>
+              <span class="title">Взвод {{getPlatoon()}}</span>
+            </div>
+          </div>
+        </div>
+        <ul class="sobv-cascade-list" *ngIf="platoonState[getPlatoon()]">
+          <li *ngFor="let soldier of getServicemenByPlatoon(getCompany(), getPlatoon())">
+            <div class="main-info sobv-cascade-level-2 blurred" style="margin-left: 20px;">
+              <div class="row">
+                <div class="col-lg-22 col-md-40 col-45">
+                  <button (click)="toggleSoldier(soldier)" class="btn btn-link">
+                    <i class="bi" [ngClass]="soldierState[soldier.first_name] ? 'bi-chevron-down' : 'bi-chevron-right'"></i>
+                  </button>
+                  <span class="title">{{soldier.aliases}}</span>
+                </div>
+                <div class="col-lg-20 d-none d-lg-block text-center">
+                  <sobv-rate-bar
+                    *ngIf="reportsBySoldier[soldier.id]"
+                    [startTime]="startTime"
+                    [endTime]="endTime"
+                    [inputData]="reportsBySoldier[soldier.id]"
+                    [timeLine]="timeLine"
+                  ></sobv-rate-bar>
+                </div>
+              </div>
+            </div>
+            <ul class="sobv-cascade-list" *ngIf="soldierState[soldier.first_name]">
+              <li *ngFor="let report of reportsBySoldier[soldier.id] || []">
+                <div class="main-info sobv-cascade-level-2 blurred">
+                  <div class="hidden-row-hover"></div>
+                  <div class="row">
+                    <div class="col-lg-22 col-md-40 col-45">
+                    <span class="title-action sobv-cursor-cp">
+                      <span>{{ report.category_title }}</span>
+                    </span>
+                    </div>
+                    <div class="col-lg-20 d-none d-lg-block"></div>
+                    <div class="col-lg-4 d-none d-lg-block text-center">
+                      <span class="label-bar sobv-health-curr-column"></span>
+                    </div>
+                    <div class="col-lg-4 col-md-10 col-sm-10 offset-lg-2 col-10">
+                      <span class="label-bar"></span>
+                    </div>
+                    <div class="col-lg-4 d-none d-lg-block"><span class="label-bar">{{report.health_level}}%</span></div>
+                    <div class="col-lg-4 col-md-10 col-sm-10 col-10 d-none d-md-block">
+                      <span class="label-bar">1</span>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </ng-container>
+
+
+
+  <ng-container *ngIf="userData?.serviceman_type == 4">
+    <ul class="sobv-cascade-list">
+      <li>
+        <div class="main-info sobv-cascade-level-1 blurred">
+          <div class="row">
+            <div class="col-lg-22 col-md-15 col-sm-45 col-45">
+              <i class="bi bi-chevron-down"></i>
+              <span class="title">{{getName()}}</span>
+            </div>
+            <div class="col-lg-20 d-none d-lg-block d-none d-lg-block ">
+              <sobv-rate-bar
+                *ngIf="userData"
+                [startTime]="startTime"
+                [endTime]="endTime"
+                [inputData]="reportsData"
+                [timeLine]="timeLine"
+              >
+              </sobv-rate-bar>
+            </div>
+            <div class="col-lg-4 d-none d-lg-block">
+            <span class="label-bar sobv-health-curr-column"
+                  *ngIf="userData?.current_health !== null">{{userData.current_health}}%</span>
+              <span *ngIf="userData?.current_health === null"
+                    class="label-bar sobv-health-curr-column">N/A</span>
+            </div>
+            <div class="col-lg-4 col-md-10 offset-md-25 col-sm-10 offset-lg-2 col-10">
+              <span class="label-bar" *ngIf="userData?.average_health">{{userData.average_health}}%</span>
+            </div>
+            <div class="col-lg-4 d-none d-lg-block">
+              <span *ngIf="userData?.average_health !== null" class="label-bar">{{userData.average_health}}%</span>
+              <span *ngIf="userData?.average_health === null" class="label-bar">N/A</span>
+            </div>
+            <div class="col-lg-4 col-md-10 col-sm-10 col-10"></div>
+          </div>
+        </div>
+        <ul class="sobv-cascade-list">
+          <li *ngFor="let report of reportsData">
+            <div class="main-info sobv-cascade-level-2 blurred">
+              <div class="hidden-row-hover"></div>
+              <div class="row">
+                <div class="col-lg-22 col-md-40 col-45">
+                      <span class="title-action sobv-cursor-cp">
+                        <span>{{report.category_title}}</span>
+                      </span>
+                </div>
+                <div class="col-lg-20 d-none d-lg-block"></div>
+                <div class="col-lg-4 d-none d-lg-block text-center">
+                  <span class="label-bar sobv-health-curr-column"></span>
+                </div>
+                <div class="col-lg-4 col-md-10 col-sm-10 offset-lg-2 col-10">
+                  <span class="label-bar"></span>
+                </div>
+                <div class="col-lg-4 d-none d-lg-block"><span class="label-bar">{{report.health_level}}%</span></div>
+                <div class="col-lg-4 col-md-10 col-sm-10 col-10 d-none d-md-block">
+                  <span class="label-bar">1</span>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </ng-container>
 </section>
