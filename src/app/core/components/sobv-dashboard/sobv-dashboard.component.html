@@ -1,9 +1,8 @@
-
 <sobv-sub-header></sobv-sub-header>
 <div class="container">
   <div class="row">
     <div class="col-30">
-      <button type="button" class="btn btn-primary">Primary</button>
+      <button type="button" class="btn btn-primary" (click)="createServicemanComponent.onOpen()">Add Serviceman</button>
       <i class="bi bi-bricks"></i>
     </div>
     <div class="col-30">
@@ -12,7 +11,7 @@
       </div>
 
       <div class="alert alert-danger" role="alert" *sobvUserRole="[roles.Chieftain]">
-         Цей контент для верховного комндира
+         Цей контент для верховного командера
       </div>
 
       <div class="alert alert-danger" role="alert" *sobvUserRole="[roles.Captain]">
@@ -26,3 +25,4 @@
     </div>
   </div>
 </div>
+<sobv-create-serviceman #createServicemanComponent></sobv-create-serviceman>
