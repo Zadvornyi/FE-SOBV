@@ -2,27 +2,117 @@
 <div class="container">
   <div class="row">
     <div class="col-30">
-      <button type="button" class="btn btn-primary" (click)="createServicemanComponent.onOpen()">Add Serviceman</button>
-      <i class="bi bi-bricks"></i>
-    </div>
-    <div class="col-30">
-      <div class="alert alert-warning" role="alert" *sobvAuthorizedUser>
-        Цей контент просто для авторизованого юзера
-      </div>
-
-      <div class="alert alert-danger" role="alert" *sobvUserRole="[roles.Chieftain]">
-         Цей контент для верховного командера
-      </div>
-
-      <div class="alert alert-danger" role="alert" *sobvUserRole="[roles.Captain]">
-        Цей контент для капітана
-      </div>
-
-      <p>sobv-dashboard works!</p>
-      <button type="button" class="btn btn-outline-secondary me-2" placement="top" ngbTooltip="Tooltip on top">
-        Tooltip on top
-      </button>
     </div>
   </div>
 </div>
 <sobv-create-serviceman #createServicemanComponent></sobv-create-serviceman>
+<section class="container sobv-health-cont">
+  <div class="sobv-layout-header">
+    <div class="row">
+      <div class="col-lg-10 col-md-40 col-sm-45 col-45"><span class="label-header sobv-half-pl">Підрозділ</span>
+      </div>
+      <div class="col-lg-12 col-md-25 col-sm-25 col-30 d-none d-lg-block"><span
+        class="label-header">Category</span></div>
+      <div class="col-lg-20 d-none d-lg-block d-none d-lg-block">
+        <span class="label-header-inline">Health Timeline</span>
+        <sobv-time-line></sobv-time-line>
+      </div>
+      <div class="col-lg-4 d-none d-lg-block">
+        <span class="label-header-inline sobv-health-curr-column">Health (current)</span>
+      </div>
+      <div class="col-lg-4 col-md-10 col-sm-10 offset-lg-2 col-10">
+        <span class="label-header-inline">Health</span>
+      </div>
+      <div class="col-lg-4 d-none d-lg-block">
+        <span class="label-header-inline">Response rate</span>
+      </div>
+      <div class="col-lg-4 col-md-10 col-sm-10 col-10 d-none d-md-block">
+        <span class="label-header-inline">Weight</span>
+      </div>
+    </div>
+  </div>
+  <ul class="sobv-cascade-list">
+    <li>
+      <div class="main-info sobv-cascade-level-1 blurred">
+        <div class="row">
+          <div class="col-lg-22 col-md-15 col-sm-45 col-45">
+            <i class="bi bi-chevron-down"></i>
+            <span class="title">Рота</span>
+          </div>
+          <div class="col-lg-20 d-none d-lg-block">
+            <sobv-rate-bar></sobv-rate-bar>
+          </div>
+          <div class="col-lg-4 d-none d-lg-block">
+            <span class="label-bar sobv-health-curr-column">%</span>
+            <span class="label-bar sobv-health-curr-column">N/A</span>
+          </div>
+          <div class="col-lg-4 col-md-10 offset-md-25 col-sm-10 offset-lg-2 col-10">
+            <span class="label-bar">%</span>
+          </div>
+          <div class="col-lg-4 d-none d-lg-block">
+            <span class="label-bar">%</span>
+            <span class="label-bar">N/A</span>
+          </div>
+          <div class="col-lg-4 col-md-10 col-sm-10 col-10"></div>
+        </div>
+      </div>
+      <ul class="sobv-cascade-list">
+        <li *ngFor="let item of [1, 2]">
+          <div class="main-info sobv-cascade-level-2 blurred">
+            <div class="row">
+              <div class="col-lg-22 col-md-15 col-sm-45 col-45">
+                <i class="bi bi-chevron-down"></i>
+                <span class="title">Взвод</span>
+              </div>
+              <div class="col-lg-20 d-none d-lg-block">
+                <sobv-rate-bar></sobv-rate-bar>
+              </div>
+              <div class="col-lg-4 d-none d-lg-block">
+                <span class="label-bar sobv-health-curr-column">%</span>
+                <span class="label-bar sobv-health-curr-column">N/A</span>
+              </div>
+              <div class="col-lg-4 col-md-10 offset-md-25 col-sm-10 offset-lg-2 col-10">
+                <span class="label-bar">%</span>
+              </div>
+              <div class="col-lg-4 d-none d-lg-block">
+                <span class="label-bar">%</span>
+                <span class="label-bar">N/A</span>
+              </div>
+              <div class="col-lg-4 col-md-10 col-sm-10 col-10"></div>
+            </div>
+          </div>
+          <ul class="sobv-cascade-list">
+            <li *ngFor="let item of [1, 2, 3, 4, 5]">
+              <div class="main-info sobv-cascade-level-3 blurred">
+                <div class="hidden-row-hover"></div>
+                <div class="row">
+                  <div class="col-lg-22 col-md-40 col-45">
+                    <span class="title-action sobv-cursor-cp">
+                      <span class="title">Позивний</span>
+                    </span>
+                  </div>
+                  <div class="col-lg-20 d-none d-lg-block"></div>
+                  <div class="col-lg-4 d-none d-lg-block">
+                    <span class="label-bar sobv-health-curr-column">N/A</span>
+                  </div>
+                  <div class="col-lg-4 col-md-10 col-sm-10 offset-lg-2 col-10">
+                    <span class="label-bar">N/A</span>
+                  </div>
+                  <div class="col-lg-4 d-none d-lg-block"></div>
+                  <div class="col-lg-4 col-md-10 col-sm-10 col-10 d-none d-md-block">
+                    <span class="label-bar">N/A</span>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+           <div class="button-container">
+              <button class="btn btn-link text-primary" (click)="createServicemanComponent.onOpen()">
+                <i class="bi bi-plus">Додати бійця</i> 
+              </button>
+            </div>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</section>
