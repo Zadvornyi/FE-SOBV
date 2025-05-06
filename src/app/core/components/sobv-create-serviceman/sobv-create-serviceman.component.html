@@ -6,6 +6,12 @@
       </div>
       <div class="modal-body">
         <div class="container">
+          <div *ngIf="successMessage" class="alert alert-success">
+            {{ successMessage }}
+          </div>
+          <div *ngIf="errorMessage" class="alert alert-danger">
+            {{ errorMessage }}
+          </div>
           <div class="row">
             <div class="col-1 col-md">
               <sobv-text-box type="text" title="Прізвище" [control]="form.get('surname')"></sobv-text-box>
@@ -48,7 +54,7 @@
                 <div *ngIf="form.get('company')?.errors?.pattern">Використовуйте дозволені символи</div>
               </div>
             </div>
-            <div class="form-group col-1 col-md" >
+            <div class="form-group col-1 col-md">
               <sobv-text-box type="text" title="Взвод" [control]="form.get('platoon')"></sobv-text-box>
               <div class="alert alert-danger"
                    *ngIf="form.get('platoon')?.invalid && (form.get('platoon')?.dirty || form.get('platoon')?.touched)">
@@ -60,8 +66,11 @@
         </div>
       </div>
       <div class="modal-footer border-0 pt-0">
-        <button type="button" class="btn btn-secondary" (click)="onClose()">Відмінити</button>
-        <button type="submit" class="btn btn-primary" [disabled]="form.invalid && form.dirty">Зберегти</button>
+        <button type="button" class="btn btn-secondary" (click)="onClose()" [disabled]="isSubmitting">Відмінити</button>
+        <button type="submit" class="btn btn-primary" [disabled]="form.invalid || isSubmitting">
+          <span *ngIf="isSubmitting" class="spinner-border spinner-border-sm mr-1"></span>
+          {{ isSubmitting ? 'Збереження...' : 'Зберегти' }}
+        </button>
       </div>
     </form>
   </div>
