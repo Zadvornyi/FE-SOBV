@@ -6,6 +6,8 @@
   </div>
 </div>
 <sobv-create-serviceman #createServicemanComponent></sobv-create-serviceman>
+<sobv-create-platoon #createPlatoonComponent></sobv-create-platoon>
+<sobv-create-company #createCompanyComponent></sobv-create-company>
 <section class="container sobv-health-cont">
   <div class="sobv-layout-header">
     <div class="row">
@@ -105,14 +107,24 @@
                 </div>
               </div>
             </li>
-          </ul>
-           <div class="button-container">
+            <div class="main-info sobv-cascade-level-3 blurred">
               <button class="btn btn-link text-primary" (click)="createServicemanComponent.onOpen()">
-                <i class="bi bi-plus">Додати бійця</i> 
+                <i class="bi bi-plus">Додати бійця</i>
               </button>
             </div>
+          </ul>
         </li>
+        <div class="main-info sobv-cascade-level-2 blurred">
+          <button class="btn btn-link text-primary" (click)="createPlatoonComponent.onOpen()">
+            <i class="bi bi-plus">Додати взвод</i>
+          </button>
+        </div>
       </ul>
     </li>
+    <div class="main-info sobv-cascade-level-1 blurred">
+      <button class="btn btn-link text-primary" (click)="createCompanyComponent.onOpen()">
+        <i class="bi bi-plus">Додати роту</i>
+      </button>
+    </div>
   </ul>
 </section>
