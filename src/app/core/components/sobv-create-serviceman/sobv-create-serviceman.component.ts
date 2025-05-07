@@ -26,6 +26,7 @@ export class SobvCreateServicemanComponent {
       name: new FormControl('', [Validators.required, Validators.pattern(NAME_PATTERN)], ),
       fatherName: new FormControl('', [Validators.required, Validators.pattern(NAME_PATTERN)], ),
       aliases: new FormControl('', [Validators.required, Validators.pattern(NAME_PATTERN)]),
+      email: new FormControl('', [Validators.required, Validators.email]),
       company: new FormControl('', [Validators.required, Validators.pattern(NAME_PATTERN)]),
       platoon: new FormControl('', [Validators.required, Validators.pattern(NAME_PATTERN)]),
     })
@@ -35,14 +36,6 @@ export class SobvCreateServicemanComponent {
     this.modal = new bootstrap.Modal(this.modalRef.nativeElement);
     this.modal.show();
   }
-
-  // getControlNumber(): FormControl {
-  //   return this.form.get('number') as FormControl;
-  // }
-  //
-  // getControlCommander(): FormControl {
-  //   return this.form.get('commander') as FormControl;
-  // }
 
   onClose() {
     this.modal?.hide();
@@ -65,6 +58,7 @@ export class SobvCreateServicemanComponent {
       last_name: formData.surname,
       surname_name: formData.fatherName,
       aliases: formData.aliases,
+      email: formData.email,
       company: formData.company,
       platoon: formData.platoon
     };
