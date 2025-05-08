@@ -17,6 +17,7 @@ export class SobvCreatePlatoonComponent implements OnInit {
   isSubmitFailed: boolean = false;
   errorMessage: string = '';
   servicemen: any[] = [];
+  companyId: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -51,7 +52,6 @@ export class SobvCreatePlatoonComponent implements OnInit {
 
   ngAfterViewInit() {
     this.modal = new bootstrap.Modal(this.modalRef.nativeElement);
-    //this.modal.show();
   }
 
   getControlNumber(): FormControl {
@@ -69,7 +69,10 @@ export class SobvCreatePlatoonComponent implements OnInit {
     this.modal?.hide();
   }
 
-  onOpen() {
+  onOpen(companyId?: string) {
+    if (companyId) {
+      this.companyId = companyId;
+    }
     this.modal?.show();
   }
 
@@ -80,7 +83,8 @@ export class SobvCreatePlatoonComponent implements OnInit {
       const platoonData = {
         sequence_number: number,
         description: description,
-        commander: commander
+        commander: commander,
+        company: this.companyId
       };
 
       console.log('Submitting platoon data:', platoonData);

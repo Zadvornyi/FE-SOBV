@@ -29,7 +29,7 @@
               <label for="commander" class="form-label">Командир</label>
               <select id="commander" class="form-select" [formControl]="getControlCommander()">
                 <option value="">Виберіть командира</option>
-                <option *ngFor="let serviceman of servicemen" [value]="serviceman.id">
+                <option *ngFor="let serviceman of servicemen" [value]="serviceman.email">
                   {{ serviceman.first_name }} {{ serviceman.last_name }} {{ serviceman.surname_name }}
                 </option>
               </select>

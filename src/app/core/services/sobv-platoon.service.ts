@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { GlobalConstants } from '../global-constants';
+import {Platoon} from "../interfaces";
 
 @Injectable({
   providedIn: 'root'
@@ -15,16 +16,16 @@ export class SobvPlatoonService {
    * @param data - The platoon data
    * @returns Observable of the created platoon
    */
-  createPlatoon(data: { sequence_number: number, description?: string, commander?: string }): Observable<any> {
-    return this.http.post(`${GlobalConstants.API_URL}/api/platoon`, data);
+  createPlatoon(data: { sequence_number: number, description?: string, commander?: string, company?: string }): Observable<Platoon> {
+    return this.http.post<Platoon>(`${GlobalConstants.API_URL}/api/platoon`, data);
   }
 
   /**
    * Get all platoons
    * @return Observable of all platoons
    */
-  getPlatoons(): Observable<any> {
-    return this.http.get(`${GlobalConstants.API_URL}/api/platoon`);
+  getPlatoons(): Observable<Platoon[]> {
+    return this.http.get<Platoon[]>(`${GlobalConstants.API_URL}/api/platoon`);
   }
 
   /**
@@ -32,8 +33,8 @@ export class SobvPlatoonService {
    * @param id - The platoon ID
    * @return Observable of the platoon
    */
-  getPlatoonById(id: string): Observable<any> {
-    return this.http.get(`${GlobalConstants.API_URL}/api/platoon/${id}`);
+  getPlatoonById(id: string): Observable<Platoon> {
+    return this.http.get<Platoon>(`${GlobalConstants.API_URL}/api/platoon/${id}`);
   }
 
   /**
@@ -42,8 +43,8 @@ export class SobvPlatoonService {
    * @param data - The updated platoon data
    * @return Observable of the updated platoon
    */
-  updatePlatoon(id: string, data: any): Observable<any> {
-    return this.http.put(`${GlobalConstants.API_URL}/api/platoon/${id}`, data);
+  updatePlatoon(id: string, data: any): Observable<Platoon> {
+    return this.http.put<Platoon>(`${GlobalConstants.API_URL}/api/platoon/${id}`, data);
   }
 
   /**

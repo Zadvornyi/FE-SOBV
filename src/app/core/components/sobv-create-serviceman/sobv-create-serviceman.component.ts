@@ -16,6 +16,8 @@ export class SobvCreateServicemanComponent {
   isSubmitting = false;
   successMessage = '';
   errorMessage = '';
+  platoonId: string = '';
+  companyId: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -27,21 +29,22 @@ export class SobvCreateServicemanComponent {
       fatherName: new FormControl('', [Validators.required, Validators.pattern(NAME_PATTERN)], ),
       aliases: new FormControl('', [Validators.required, Validators.pattern(NAME_PATTERN)]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      company: new FormControl('', [Validators.required, Validators.pattern(NAME_PATTERN)]),
-      platoon: new FormControl('', [Validators.required, Validators.pattern(NAME_PATTERN)]),
     })
   }
 
   ngAfterViewInit () {
     this.modal = new bootstrap.Modal(this.modalRef.nativeElement);
-    //this.modal.show();
   }
 
   onClose() {
     this.modal?.hide();
   }
 
-  onOpen() {
+  onOpen(platoonId?: string, companyId?: string) {
+    if (platoonId && companyId) {
+      this.platoonId = platoonId;
+      this.companyId = companyId;
+    }
     this.modal?.show();
   }
 
@@ -59,8 +62,8 @@ export class SobvCreateServicemanComponent {
       surname_name: formData.fatherName,
       aliases: formData.aliases,
       email: formData.email,
-      company: formData.company,
-      platoon: formData.platoon
+      platoon: this.platoonId,
+      company: this.companyId
     };
 
     this.servicemanService.createServiceman(serviceman).subscribe(

@@ -82,7 +82,7 @@
               </div>
               <div class="col-lg-4 col-md-10 col-sm-10 col-10"></div>
             </div>
-          </div>  
+          </div>
           <ul class="sobv-cascade-list">
             <li *ngFor="let serviceman of servicemen">
               <div class="main-info sobv-cascade-level-3 blurred" *ngIf="serviceman.platoon === platoon.description && serviceman.company === company.description">
@@ -90,7 +90,7 @@
                 <div class="row">
                   <div class="col-lg-22 col-md-40 col-45">
                     <span class="title-action sobv-cursor-cp">
-                      <span class="title">{{ serviceman.first_name }}</span>  
+                      <span class="title">{{ serviceman.first_name }}</span>
                     </span>
                   </div>
                   <div class="col-lg-20 d-none d-lg-block"></div>
@@ -108,14 +108,14 @@
               </div>
             </li>
             <div class="main-info sobv-cascade-level-3 blurred" *ngIf="platoon.company === company.id" >
-              <button class="btn btn-link text-primary" (click)="createServicemanComponent.onOpen()">
+              <button class="btn btn-link text-primary" (click)="createServicemanComponent.onOpen(platoon.id, company.id)">
                 <i class="bi bi-plus">Додати бійця</i>
               </button>
             </div>
           </ul>
         </li>
         <div class="main-info sobv-cascade-level-2 blurred">
-          <button class="btn btn-link text-primary" (click)="createPlatoonComponent.onOpen()">
+          <button class="btn btn-link text-primary" (click)="createPlatoonComponent.onOpen(company.id)">
             <i class="bi bi-plus">Додати взвод</i>
           </button>
         </div>
