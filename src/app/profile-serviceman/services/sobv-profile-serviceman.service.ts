@@ -12,6 +12,10 @@ export class SobvProfileServicemanService {
   constructor(private http: HttpClient) {
   }
 
+  getServicemen(): Observable<Serviceman[]> {
+    return this.http.get<Serviceman[]>(`${GlobalConstants.API_URL}/api/serviceman`);
+  }
+
   public getServicemanById(ServicemanId: number): Observable<Serviceman> {
     return this.http.get<Serviceman>(`${GlobalConstants.API_URL}/api/serviceman/${ServicemanId}`);
   }
