@@ -24,7 +24,7 @@ export class SobvCreatePlatoonComponent implements OnInit {
     private servicemanService: SobvProfileServicemanService
   ) {
     this.form = this.fb.group({
-      number: new FormControl('', [Validators.required]),
+      number: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')]),
       description: new FormControl(''),
       commander: new FormControl('', [Validators.required]),
     })

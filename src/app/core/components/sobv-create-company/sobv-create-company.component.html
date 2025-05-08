@@ -5,25 +5,44 @@
         <h5 class="modal-title">Додати роту</h5>
       </div>
       <div class="modal-body">
-        <div class=" d-flex gap-3">
-          <div>
-            <sobv-text-box type="text" inputClass="ngb-highlight" title="Номер" [control]="getControlNumber()" ></sobv-text-box>
-            <div class="alert alert-danger" *ngIf="form.get('number')?.invalid && (form.get('number')?.dirty || form.get('number')?.touched)">
-              <div *ngIf="form.get('number')?.errors?.required">Це обов'язкове поле</div>
-            </div>
-          </div>
-          <div>
-            <sobv-text-box type="text" title="Командир" [control]="getControlCommander()" ></sobv-text-box>
-            <div class="alert alert-danger" *ngIf="form.get('commander')?.invalid && (form.get('commander')?.dirty || form.get('commander')?.touched)">
-              <div *ngIf="form.get('commander')?.errors?.required">Це обов'язкове поле</div>
-              <div *ngIf="form.get('commander')?.errors?.pattern">Використовуйте дозволені символи</div>
-            </div>
-          </div>
+        <div class="alert alert-danger" *ngIf="isSubmitFailed">
+          {{ errorMessage }}
         </div>
+
+        <fieldset class="d-flex flex-column gap-3">
+          <div class="row">
+            <div class="col-md-4">
+              <sobv-text-box type="text" inputClass="ngb-highlight" title="Номер" [control]="getControlNumber()" ></sobv-text-box>
+              <small class="text-danger" *ngIf="form.get('number')?.invalid && (form.get('number')?.dirty || form.get('number')?.touched)">
+                <span *ngIf="form.get('number')?.errors?.required">Це обов'язкове поле</span>
+                <span *ngIf="form.get('number')?.errors?.pattern">Використовуйте лише цифри</span>
+              </small>
+            </div>
+            <div class="col-md-4">
+              <sobv-text-box type="text" title="Опис підрозділу" [control]="getControlDescription()" ></sobv-text-box>
+              <small class="text-danger" *ngIf="form.get('description')?.invalid && (form.get('description')?.dirty || form.get('description')?.touched)">
+                <span *ngIf="form.get('description')?.errors?.required">Це обов'язкове поле</span>
+                <span *ngIf="form.get('description')?.errors?.pattern">Використовуйте дозволені символи</span>
+              </small>
+            </div>
+            <div class="col-md-4">
+              <label for="commander" class="form-label">Командир</label>
+              <select id="commander" class="form-select" [formControl]="getControlCommander()">
+                <option value="">Виберіть командира</option>
+                <option *ngFor="let serviceman of servicemen" [value]="serviceman.id">
+                  {{ serviceman.first_name }} {{ serviceman.last_name }} {{ serviceman.surname_name }}
+                </option>
+              </select>
+              <small class="text-danger" *ngIf="form.get('commander')?.invalid && (form.get('commander')?.dirty || form.get('commander')?.touched)">
+                <span *ngIf="form.get('commander')?.errors?.required">Це обов'язкове поле</span>
+              </small>
+            </div>
+          </div>
+        </fieldset>
       </div>
       <div class="modal-footer border-0 pt-0">
         <button type="button" class="btn btn-secondary" (click)="onClose()">Відмінити</button>
-        <button type="submit" class="btn btn-primary" [disabled]="form.invalid && form.dirty">Зберегти</button>
+        <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Зберегти</button>
       </div>
     </form>
   </div>
