@@ -7,7 +7,7 @@ import {Observable, take} from "rxjs";
 import {SobvRateScrollService} from "../../../core/services/sobv-rate-scroll.service";
 
 import * as moment from 'moment'
-import {Serviceman} from "../../interfaces";
+import {Serviceman} from "../../../core/interfaces";
 
 @Component({
   selector: 'sobv-profile-serviceman',

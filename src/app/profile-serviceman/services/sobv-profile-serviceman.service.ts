@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {Serviceman} from "../interfaces";
+import {Serviceman} from "../../core/interfaces";
 import {GlobalConstants} from "../../core/global-constants";
 
 @Injectable({

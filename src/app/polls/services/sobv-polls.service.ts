@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from "rxjs";
 import {GlobalConstants} from '../../core/global-constants';
 import {Choice, Question, Category, Report, Answer} from "../interfaces";
-import {Serviceman} from "../../profile-serviceman/interfaces";
+import {Serviceman} from "../../core/interfaces";
 
 @Injectable({
   providedIn: 'root'
