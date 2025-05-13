@@ -5,7 +5,7 @@ export type InputType = "text" | "password" | "email";
 const DEFAULT_INPUT_TYPE = "text";
 
 @Component({
-  selector: 'sobv-text-box',
+  selector: 'sobv-text-box-input-form',
   templateUrl: './sobv-text-box.component.html',
   styleUrls: ['./sobv-text-box.component.scss'],
 })
