@@ -8,6 +8,9 @@
         <div class="alert alert-danger" *ngIf="isSubmitFailed">
           {{ errorMessage }}
         </div>
+        <div class="alert alert-success" *ngIf="isSubmitSuccess">
+          {{ successMessage }}
+        </div>
 
         <fieldset class="d-flex flex-column gap-3">
           <div class="row">

@@ -14,9 +14,10 @@ export class SobvCreateCompanyComponent {
   @ViewChild('modal') modalRef!: ElementRef<HTMLElement>
   private modal?: bootstrap.Modal;
   form: FormGroup;
-  isSubmitting: boolean = false;
   isSubmitFailed: boolean = false;
+  isSubmitSuccess: boolean = false;
   errorMessage: string = '';
+  successMessage: string = '';
   servicemen: any[] = [];
 
 
@@ -42,10 +43,6 @@ export class SobvCreateCompanyComponent {
     ).subscribe({
       next: (response) => {
         this.servicemen = response;
-        console.log('Servicemen loaded:', this.servicemen);
-      },
-      error: (error) => {
-        console.error('Error loading servicemen:', error);
       }
     });
   }
@@ -53,7 +50,6 @@ export class SobvCreateCompanyComponent {
 
   ngAfterViewInit () {
     this.modal = new bootstrap.Modal(this.modalRef.nativeElement);
-    //this.modal.show();
   }
 
   getControlNumber(): FormControl {
@@ -69,6 +65,8 @@ export class SobvCreateCompanyComponent {
   }
 
   onClose() {
+    this.isSubmitFailed = false;
+    this.isSubmitSuccess = false;
     this.modal?.hide();
   }
 
@@ -86,22 +84,18 @@ export class SobvCreateCompanyComponent {
         commander: commander
       };
 
-      this.isSubmitting = true;
-
       this.companyService.createCompany(companyData).pipe(
         take(1)
       ).subscribe({
         next: (response) => {
-          console.log('Company created successfully:', response);
-          this.isSubmitFailed = false;
+          this.isSubmitSuccess = true;
+          this.successMessage = 'Company created successfully';
           this.form.reset();
           this.onClose();
         },
         error: (error) => {
-          console.error('Error creating company:', error);
-          this.errorMessage = error.message || 'Failed to create company';
-          this.isSubmitting = false;
           this.isSubmitFailed = true;
+          this.errorMessage = error.message || 'Failed to create company';
         }
       });
     } else {

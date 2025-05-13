@@ -13,7 +13,8 @@ export class SobvCreateServicemanComponent {
   @ViewChild('modal') modalRef!: ElementRef<HTMLElement>
   private modal?: bootstrap.Modal;
   form: FormGroup;
-  isSubmitting = false;
+  isSubmitSuccess = false;
+  isSubmitFailed = false;
   successMessage = '';
   errorMessage = '';
   platoonId: string = '';
@@ -38,6 +39,8 @@ export class SobvCreateServicemanComponent {
 
   onClose() {
     this.modal?.hide();
+    this.isSubmitSuccess = false;
+    this.isSubmitFailed = false;
   }
 
   onOpen(platoonId?: string, companyId?: string) {
@@ -53,8 +56,6 @@ export class SobvCreateServicemanComponent {
       return;
     }
 
-    this.isSubmitting = true;
-
     const formData = this.form.value;
     const serviceman = {
       first_name: formData.name,
@@ -68,16 +69,14 @@ export class SobvCreateServicemanComponent {
 
     this.servicemanService.createServiceman(serviceman).subscribe(
       (response) => {
-        this.isSubmitting = false;
-        this.successMessage = 'Сервісмена успішно створено!';
-        setTimeout(() => {
-          this.onClose();
-        }, 2000);
+        this.isSubmitSuccess = true;
+        this.successMessage = 'Бійця успішно створено!';
+        this.form.reset();
+        this.onClose();
       },
       (error) => {
-        this.isSubmitting = false;
-        this.errorMessage = 'Помилка при створенні сервісмена. Спробуйте ще раз.';
-        console.error('Error creating serviceman:', error);
+        this.isSubmitFailed = true;
+        this.errorMessage = error.message || 'Помилка в створенні бійця';
       }
     );
   }

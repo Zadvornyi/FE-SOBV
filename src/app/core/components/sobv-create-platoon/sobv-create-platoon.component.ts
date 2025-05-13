@@ -15,7 +15,9 @@ export class SobvCreatePlatoonComponent implements OnInit {
   private modal?: bootstrap.Modal;
   form: FormGroup;
   isSubmitFailed: boolean = false;
+  isSubmitSuccess: boolean = false;
   errorMessage: string = '';
+  successMessage: string = '';
   servicemen: any[] = [];
   companyId: string = '';
 
@@ -41,10 +43,6 @@ export class SobvCreatePlatoonComponent implements OnInit {
     ).subscribe({
       next: (response) => {
         this.servicemen = response;
-        console.log('Servicemen loaded:', this.servicemen);
-      },
-      error: (error) => {
-        console.error('Error loading servicemen:', error);
       }
     });
   }
@@ -66,6 +64,8 @@ export class SobvCreatePlatoonComponent implements OnInit {
   }
 
   onClose() {
+    this.isSubmitSuccess = false;
+    this.isSubmitFailed = false;
     this.modal?.hide();
   }
 
@@ -87,21 +87,18 @@ export class SobvCreatePlatoonComponent implements OnInit {
         company: this.companyId
       };
 
-      console.log('Submitting platoon data:', platoonData);
-
       this.platoonService.createPlatoon(platoonData).pipe(
         take(1)
       ).subscribe({
         next: (response) => {
-          console.log('Platoon created successfully:', response);
-          this.isSubmitFailed = false;
+          this.isSubmitSuccess = true;
+          this.successMessage = 'Platoon created successfully';
           this.form.reset();
           this.onClose();
         },
         error: (error) => {
-          console.error('Error creating platoon:', error);
-          this.errorMessage = error.message || 'Failed to create platoon';
           this.isSubmitFailed = true;
+          this.errorMessage = error.message || 'Failed to create platoon';
         }
       });
     } else {
