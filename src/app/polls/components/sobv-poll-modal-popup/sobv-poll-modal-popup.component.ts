@@ -7,7 +7,6 @@ import {Answer, Category, Poll, Report} from "../../interfaces";
 import {SobvPollsService} from "../../services/sobv-polls.service";
 import {SobvPollQuestionsFormService} from "../../services/sobv-poll-questions-form.service";
 
-
 @Component({
   selector: 'sobv-poll-modal-popup',
   templateUrl: './sobv-poll-modal-popup.component.html',
@@ -31,6 +30,7 @@ export class SobvPollModalPopupComponent {
   }
 
   ngOnInit() {
+
     this.servicemanId = this.route.snapshot.paramMap.get('servicemanId') as string
     this.categoryId = this.route.snapshot.paramMap.get('categoryId') as string
 
@@ -44,11 +44,15 @@ export class SobvPollModalPopupComponent {
         this.setPoll(this.categoryData.polls[0].id);
       }
     })
+
   }
 
   ngAfterViewInit() {
-    this.modalInstace = this.modalService.open(this.templatePopupRef, {fullscreen: true})
+      this.modalInstace = this.modalService.open(this.templatePopupRef, { fullscreen: true });
   }
+
+
+
 
   back() {
     if (!this.activePollList?.previous) return;
