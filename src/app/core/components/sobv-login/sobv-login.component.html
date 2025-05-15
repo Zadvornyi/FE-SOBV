@@ -5,7 +5,7 @@
   </div>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div>
-      <sobv-text-box type="email" title="Email" id="'login-email'" [control]="getControlEmail()" ></sobv-text-box>
+      <sobv-text-box-input-form type="email" title="Email" id="'login-email'" [control]="getControlEmail()" ></sobv-text-box-input-form>
       <div class="alert alert-danger" *ngIf="form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched)">
         <div *ngIf="form.get('email')?.errors?.required">Це обов'язкове поле</div>
         <div *ngIf="form.get('email')?.errors?.email">Використовуйте правильну адресу!</div>

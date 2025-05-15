@@ -7,7 +7,7 @@ import {Observable, take} from "rxjs";
 import {SobvRateScrollService} from "../../../core/services/sobv-rate-scroll.service";
 
 import * as moment from 'moment'
-import {Serviceman} from "../../interfaces";
+import {Serviceman} from "../../../core/interfaces";
 
 @Component({
   selector: 'sobv-profile-serviceman',
@@ -35,15 +35,15 @@ export class SobvProfileServicemanComponent implements OnInit {
     //init timeline
     this.startTime = moment().subtract(6, 'month').unix();
     this.endTime = moment().add(3, 'month').unix();
+
     this.timeLine = this.sobvRateScroll.initTimeLineRate(this.startTime, this.endTime);
     this.servicemanId = this.route.snapshot.paramMap.get('servicemanId') as string;
     this.getServiceman(this.servicemanId).pipe(take(1)).subscribe((resp) => {
-      this.userData = resp
     })
-    this.getPollsCategories().pipe(take(1)).subscribe((resp) => {
+    this.getPollsCategories().pipe(take(1)).subscribe((resp: Category[]) => {
       this.categories = resp
     });
-    this.getServicemanReports(this.servicemanId).pipe(take(1)).subscribe((resp) => {
+    this.getServicemanReports(this.servicemanId).pipe(take(1)).subscribe((resp: Report[]) => {
       this.reportsData = resp
     });
   }
@@ -55,7 +55,7 @@ export class SobvProfileServicemanComponent implements OnInit {
     return this.sobvPollsService.getServicemanReports(servicemanId);
   }
 
-  private getServiceman (servicemanId: string) {
+  private getServiceman(servicemanId: string): Observable<Serviceman> {
     return this.sobvPollsService.getServiceman(servicemanId);
   }
 
@@ -76,7 +76,7 @@ export class SobvProfileServicemanComponent implements OnInit {
   }
 
   public startPoll(category: Category): void {
-    this.sobvPollsService.getPollsCategoryById(category.id as string).pipe(take(1)).subscribe((resp) => {
+    this.sobvPollsService.getPollsCategoryById(category.id as string).pipe(take(1)).subscribe((resp: Category) => {
       const firstPoll = (resp.polls) ? resp.polls[0] : undefined;
       if (firstPoll) {
         this.router.navigate([`profile/serviceman/${this.servicemanId}/category/${category.id}`]);
