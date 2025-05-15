@@ -35,11 +35,10 @@ export class SobvProfileServicemanComponent implements OnInit {
     //init timeline
     this.startTime = moment().subtract(6, 'month').unix();
     this.endTime = moment().add(3, 'month').unix();
-    this.timeLine = this.sobvRateScroll.initTimeLineRate(this.startTime!, this.endTime!);
 
+    this.timeLine = this.sobvRateScroll.initTimeLineRate(this.startTime, this.endTime);
     this.servicemanId = this.route.snapshot.paramMap.get('servicemanId') as string;
-    this.getServiceman(this.servicemanId as string).pipe(take(1)).subscribe((resp: Serviceman) => {
-      this.userData = resp;
+    this.getServiceman(this.servicemanId).pipe(take(1)).subscribe((resp) => {
     })
     this.getPollsCategories().pipe(take(1)).subscribe((resp: Category[]) => {
       this.categories = resp
@@ -73,7 +72,7 @@ export class SobvProfileServicemanComponent implements OnInit {
   }
 
   getCompany():string {
-    return ` ${this.userData?.company}`
+    return `${this.userData?.company}`
   }
 
   public startPoll(category: Category): void {
